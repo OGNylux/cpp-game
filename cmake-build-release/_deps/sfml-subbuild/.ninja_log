@@ -1,0 +1,21 @@
+# ninja log v5
+2	49	7316372908811337	sfml-populate-prefix/src/sfml-populate-stamp/sfml-populate-mkdir	6cb0499f94f7a876
+2	49	7316372908811337	D:/CMakeSFMLProject/cmake-build-release/_deps/sfml-subbuild/sfml-populate-prefix/src/sfml-populate-stamp/sfml-populate-mkdir	6cb0499f94f7a876
+50	24436	7316373152688373	sfml-populate-prefix/src/sfml-populate-stamp/sfml-populate-download	e978a6b56d244f2f
+50	24436	7316373152688373	D:/CMakeSFMLProject/cmake-build-release/_deps/sfml-subbuild/sfml-populate-prefix/src/sfml-populate-stamp/sfml-populate-download	e978a6b56d244f2f
+24436	25678	0	sfml-populate-prefix/src/sfml-populate-stamp/sfml-populate-update	410f29ef2d3725e1
+24436	25678	0	D:/CMakeSFMLProject/cmake-build-release/_deps/sfml-subbuild/sfml-populate-prefix/src/sfml-populate-stamp/sfml-populate-update	410f29ef2d3725e1
+25679	25715	7316373165468447	sfml-populate-prefix/src/sfml-populate-stamp/sfml-populate-patch	1cf0cccf9d2de1f4
+25679	25715	7316373165468447	D:/CMakeSFMLProject/cmake-build-release/_deps/sfml-subbuild/sfml-populate-prefix/src/sfml-populate-stamp/sfml-populate-patch	1cf0cccf9d2de1f4
+25715	25749	7316373165813742	sfml-populate-prefix/src/sfml-populate-stamp/sfml-populate-configure	5036c4d0081c8adb
+25715	25749	7316373165813742	D:/CMakeSFMLProject/cmake-build-release/_deps/sfml-subbuild/sfml-populate-prefix/src/sfml-populate-stamp/sfml-populate-configure	5036c4d0081c8adb
+25749	25782	7316373166149027	sfml-populate-prefix/src/sfml-populate-stamp/sfml-populate-build	b0946d3648908244
+25749	25782	7316373166149027	D:/CMakeSFMLProject/cmake-build-release/_deps/sfml-subbuild/sfml-populate-prefix/src/sfml-populate-stamp/sfml-populate-build	b0946d3648908244
+25782	25818	7316373166499325	sfml-populate-prefix/src/sfml-populate-stamp/sfml-populate-install	c82215dbca40433b
+25782	25818	7316373166499325	D:/CMakeSFMLProject/cmake-build-release/_deps/sfml-subbuild/sfml-populate-prefix/src/sfml-populate-stamp/sfml-populate-install	c82215dbca40433b
+25818	25853	7316373166849629	sfml-populate-prefix/src/sfml-populate-stamp/sfml-populate-test	75f5fc7eed68d130
+25818	25853	7316373166849629	D:/CMakeSFMLProject/cmake-build-release/_deps/sfml-subbuild/sfml-populate-prefix/src/sfml-populate-stamp/sfml-populate-test	75f5fc7eed68d130
+25853	25902	7316373167340049	CMakeFiles/sfml-populate-complete	ed43de6356548875
+25853	25902	7316373167340049	sfml-populate-prefix/src/sfml-populate-stamp/sfml-populate-done	ed43de6356548875
+25853	25902	7316373167340049	D:/CMakeSFMLProject/cmake-build-release/_deps/sfml-subbuild/CMakeFiles/sfml-populate-complete	ed43de6356548875
+25853	25902	7316373167340049	D:/CMakeSFMLProject/cmake-build-release/_deps/sfml-subbuild/sfml-populate-prefix/src/sfml-populate-stamp/sfml-populate-done	ed43de6356548875
