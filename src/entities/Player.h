@@ -4,23 +4,27 @@
 
 #ifndef PLAYER_H
 #define PLAYER_H
+#include "../engine/Collision.h"
 #include "../engine/Renderer.h"
-#include "box2d/b2_body.h"
 #include "SFML/System/Vector2.hpp"
 
 
-class Player
+class Player : public Collision
 {
 public:
     void begin();
     void update(float deltaTime);
     void draw(Renderer& renderer) const;
 
+    void OnBeginContact() override;
+    void OnEndContact() override;
+
     sf::Vector2f position{};
     float angle{};
 
 private:
     b2Body* body{};
+    bool onGround = false;
 };
 
 

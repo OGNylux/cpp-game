@@ -36,7 +36,7 @@ void Debug::DrawCircle(const b2Vec2 &center, float radius, const b2Color &color)
 {
     sf::CircleShape circle(radius);
     circle.setPosition(center.x, center.y);
-    circle.setOrigin(radius / 2.0f, radius / 2.0f);
+    circle.setOrigin(radius, radius);
     circle.setFillColor(sf::Color::Transparent);
     circle.setOutlineThickness(0.02f);
     circle.setOutlineColor(sf::Color(color.r * 255, color.g * 255, color.b * 255, color.a * 255));
@@ -47,8 +47,8 @@ void Debug::DrawSolidCircle(const b2Vec2 &center, float radius, const b2Vec2 &ax
 {
     sf::CircleShape circle(radius);
     circle.setPosition(center.x, center.y);
-    circle.setOrigin(radius / 2.0f, radius / 2.0f);
-    circle.setFillColor(sf::Color(color.r * 255, color.g * 255, color.b * 255, color.a * 80));
+    circle.setOrigin(radius, radius);
+    circle.setFillColor(sf::Color(color.r * 255, color.g * 255, color.b * 255, color.a * 120));
     target.draw(circle);
 
     b2Vec2 p = center + (radius * axis);
@@ -80,7 +80,7 @@ void Debug::DrawPoint(const b2Vec2 &p, float size, const b2Color &color)
 {
     sf::CircleShape circle(size);
     circle.setPosition(p.x, p.y);
-    circle.setOrigin(size / 2.0f, size / 2.0f);
+    circle.setOrigin(size, size);
     circle.setFillColor(sf::Color(color.r * 255, color.g * 255, color.b * 255, color.a * 255));
     target.draw(circle);
 }
