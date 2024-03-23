@@ -16,5 +16,5 @@ sf::View Camera::getView(const sf::Vector2u windowSize) const
     if(aspect < 1.0f) size = sf::Vector2f(zoomLevel, zoomLevel / aspect);
     else size = sf::Vector2f(zoomLevel * aspect, zoomLevel);
 
-    return sf::View(sf::Vector2f(0.0f, 0.0f), size);
+    return sf::View(position, size);
 }

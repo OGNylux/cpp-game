@@ -14,6 +14,7 @@ public:
     sf::View getView(sf::Vector2u windowSize) const;
 
     float zoomLevel{};
+    sf::Vector2f position{};
 };
 
 

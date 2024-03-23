@@ -1,8 +1,8 @@
 #include <SFML/Graphics.hpp>
 
-#include "Camera.h"
+#include "engine/Camera.h"
 #include "Game.cpp"
-#include "Renderer.h"
+#include "engine/Renderer.h"
 
 
 int main()
@@ -10,10 +10,9 @@ int main()
     auto window = sf::RenderWindow{ sf::VideoMode(1200, 900), "CMake SFML Project" };
     sf::Clock deltaClock;
     window.setFramerateLimit(144);
-
-    Camera camera;
     Renderer renderer(window);
 
+    window.setFramerateLimit(60);
     begin(window);
     while (window.isOpen())
     {

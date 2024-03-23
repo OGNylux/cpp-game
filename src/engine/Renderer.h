@@ -11,13 +11,13 @@
 class Renderer
 {
 public:
-    Renderer(sf::RenderTarget& target);
+    explicit Renderer(sf::RenderTarget& target);
 
-    void draw(const sf::Texture& texture, const sf::Vector2f& position, const sf::Vector2f& size);
+    void draw(const sf::Texture& texture, const sf::Vector2f& position, const sf::Vector2f& size, float angle = 0.0f);
 
+    sf::RenderTarget& target;
 private:
     sf::Sprite sprite{};
-    sf::RenderTarget& target;
 };
 
 

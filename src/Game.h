@@ -5,8 +5,10 @@
 #ifndef CMAKESFMLPROJECT_GAME_H
 #define CMAKESFMLPROJECT_GAME_H
 
-#include "SFML/Graphics/RenderWindow.hpp"
-#include "Renderer.h"
+#include "engine/Camera.h"
+#include "engine/Renderer.h"
+
+extern Camera camera;
 
 void begin(const sf::Window& window);
 void update(float deltaTime);
