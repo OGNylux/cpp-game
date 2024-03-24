@@ -5,12 +5,16 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 option(BUILD_SHARED_LIBS "Build shared libraries" OFF)
 
 if (UNIX)
-    add_custom_target(
-            apt-downloads ALL
-            COMMAND sudo apt-get install libxinerama-dev
-            WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
-            COMMENT "download required dependencies straight from apt on ubuntu"
-    )
+    find_package(X11_Xinerama)
+    if (NOT X11_Xinerama_FOUND)
+        message(STATUS "Xinerama headers not found. Adding custom target to install libxinerama-dev.")
+        add_custom_target(
+                apt-downloads ALL
+                COMMAND sudo apt-get install libxinerama-dev
+                WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
+                COMMENT "download required dependencies straight from apt on ubuntu"
+        )
+    endif()
 endif (UNIX)
 
 include(FetchContent)
