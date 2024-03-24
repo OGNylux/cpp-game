@@ -14,6 +14,7 @@ if (UNIX)
                 WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
                 COMMENT "download required dependencies straight from apt on ubuntu"
         )
+        add_dependencies(platformer apt-downloads)
     endif()
 endif (UNIX)
 
