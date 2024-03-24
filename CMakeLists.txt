@@ -35,6 +35,8 @@ FetchContent_Declare(BOX2D
 FetchContent_MakeAvailable(SFML)
 FetchContent_MakeAvailable(BOX2D)
 
+target_include_directories(platformer PRIVATE ${box2d_SOURCE_DIR}/include)
+
 add_executable(platformer src/main.cpp
         src/engine/Camera.cpp
         src/engine/Camera.h
