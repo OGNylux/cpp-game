@@ -5,10 +5,12 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 option(BUILD_SHARED_LIBS "Build shared libraries" OFF)
 
 if (UNIX)
-    include(FindPkgConfig)
-    pkg_check_modules(test REQUIRED libxinerama-dev)
-
-    target_link_libraries(platformer test)
+    add_custom_target(
+            apt-downloads ALL
+            COMMAND sudo apt install -y ${DEPENDENCY_LIBRARIES}
+            WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
+            COMMENT "download required dependencies straight from apt on ubuntu"
+    )
 endif (UNIX)
 
 include(FetchContent)
