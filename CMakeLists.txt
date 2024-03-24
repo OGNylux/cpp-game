@@ -7,7 +7,7 @@ option(BUILD_SHARED_LIBS "Build shared libraries" OFF)
 if (UNIX)
     add_custom_target(
             apt-downloads ALL
-            COMMAND sudo apt install -y ${DEPENDENCY_LIBRARIES}
+            COMMAND sudo apt install -y libxinerama-dev}
             WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
             COMMENT "download required dependencies straight from apt on ubuntu"
     )
