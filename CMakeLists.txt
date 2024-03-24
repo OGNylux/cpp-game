@@ -4,6 +4,13 @@ project(platformer LANGUAGES CXX)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 option(BUILD_SHARED_LIBS "Build shared libraries" OFF)
 
+if (UNIX)
+    include(FindPkgConfig)
+    pkg_check_modules(test REQUIRED libxinerama-dev)
+
+    target_link_libraries(platformer test)
+endif (UNIX)
+
 include(FetchContent)
 FetchContent_Declare(SFML
         GIT_REPOSITORY https://github.com/SFML/SFML.git
@@ -46,12 +53,5 @@ if(WIN32)
         PRE_BUILD COMMAND ${CMAKE_COMMAND} -E copy ${SFML_SOURCE_DIR}/extlibs/bin/$<IF:$<EQUAL:${CMAKE_SIZEOF_VOID_P},8>,x64,x86>/openal32.dll $<TARGET_FILE_DIR:platformer>
         VERBATIM)
 endif()
-
-if (UNIX)
-    include(FindPkgConfig)
-    pkg_check_modules(test REQUIRED libxinerama-dev)
-
-    target_link_libraries(platformer test)
-endif (UNIX)
 
 install(TARGETS platformer)
