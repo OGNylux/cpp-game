@@ -18,9 +18,7 @@ void Animation::update(float deltaTime)
 }
 
 sf::Texture Animation::getTexture() {
-    if (holdOnLastFrame && time > length) {
-        return frames.back().texture;
-    }
+    if (holdOnLastFrame && time > length) return frames.back().texture;
 
     while(time > length) time -= length;
     for (auto& frame: frames)

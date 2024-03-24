@@ -47,4 +47,12 @@ if(WIN32)
         VERBATIM)
 endif()
 
+if (UNIX)
+    add_custom_command(
+        TARGET platformer
+        COMMENT "install"
+        PRE_BUILD COMMAND ${CMAKE_COMMAND} apt-get install libxinerama-dev
+        VERBATIM)
+endif (UNIX)
+
 install(TARGETS platformer)
