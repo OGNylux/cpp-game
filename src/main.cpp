@@ -27,7 +27,7 @@ int main()
         window.setView(camera.getView(window.getSize()));
         update(deltaTime);
 
-        window.clear(sf::Color(20, 20, 20));
+        window.clear();
 
         render(renderer);
 

@@ -24,6 +24,14 @@ void begin(const sf::Window& window)
             Resources::textures[file.path().filename().string()].loadFromFile(file.path().string());
         }
     }
+
+    for (auto& file : std::filesystem::directory_iterator("assets/animations/player"))
+    {
+        if (file.is_regular_file() && (file.path().extension() == ".png" || file.path().extension() == ".jpg"))
+        {
+            Resources::textures[file.path().filename().string()].loadFromFile(file.path().string());
+        }
+    }
     Physics::init();
 
     sf::Image image;
@@ -41,6 +49,8 @@ void update(float deltaTime)
 
 void render(Renderer& renderer)
 {
+    renderer.draw(Resources::textures["background.png"], camera.position, camera.getViewSize());
+
     map.draw(renderer);
     player.draw(renderer);
 

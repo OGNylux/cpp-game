@@ -30,7 +30,10 @@ add_executable(platformer src/main.cpp
         src/entities/Player.cpp
         src/entities/Player.h
         src/engine/Collision.cpp
-        src/engine/Collision.h)
+        src/engine/Collision.h
+        src/engine/Animation.cpp
+        src/engine/Animation.h
+)
 file(COPY src/assets DESTINATION ${CMAKE_RUNTIME_OUTPUT_DIRECTORY})
 target_link_libraries(platformer PRIVATE sfml-graphics)
 target_link_libraries(platformer PRIVATE box2d)

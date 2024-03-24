@@ -13,9 +13,9 @@ void Physics::init()
 
 }
 
-void Physics::update(float deltaTime)
+void Physics::update(const float deltaTime)
 {
-    world.Step(deltaTime, 6, 2);
+    world.Step(deltaTime, 8, 4);
     world.SetContactListener(new Collision());
 }
 
@@ -24,7 +24,7 @@ void Physics::debugDraw(Renderer& renderer)
     if (!debug)
     {
         debug = new Debug(renderer.target);
-        debug->SetFlags(b2Draw::e_shapeBit);
+        //debug->SetFlags(b2Draw::e_shapeBit);
         world.SetDebugDraw(debug);
     }
 

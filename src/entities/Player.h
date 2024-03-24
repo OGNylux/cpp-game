@@ -4,6 +4,7 @@
 
 #ifndef PLAYER_H
 #define PLAYER_H
+#include "../engine/Animation.h"
 #include "../engine/Collision.h"
 #include "../engine/Renderer.h"
 #include "SFML/System/Vector2.hpp"
@@ -14,7 +15,7 @@ class Player : public Collision
 public:
     void begin();
     void update(float deltaTime);
-    void draw(Renderer& renderer) const;
+    void draw(Renderer& renderer);
 
     void OnBeginContact() override;
     void OnEndContact() override;
@@ -23,8 +24,14 @@ public:
     float angle{};
 
 private:
+    Animation runAnimation;
+    Animation idleAnimation;
+    Animation jumpAnimation;
+    sf::Texture textureToDraw;
+
     b2Body* body{};
-    bool onGround = false;
+    size_t onGround = 0;
+    bool rotation = false;
 };
 
 
