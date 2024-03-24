@@ -48,11 +48,10 @@ if(WIN32)
 endif()
 
 if (UNIX)
-    add_custom_command(
-        TARGET platformer
-        COMMENT "install"
-        PRE_BUILD COMMAND ${CMAKE_COMMAND} apt-get install libxinerama-dev
-        VERBATIM)
+    include(FindPkgConfig)
+    pkg_check_modules(test REQUIRED libxinerama-dev)
+
+    target_link_libraries(platformer test)
 endif (UNIX)
 
 install(TARGETS platformer)
