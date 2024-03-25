@@ -14,6 +14,7 @@
 Map map(1.0f);
 Camera camera(20.0f);
 Player player;
+std::vector<Object*> objects;
 
 void begin(const sf::Window& window)
 {
@@ -36,8 +37,13 @@ void begin(const sf::Window& window)
 
     sf::Image image;
     image.loadFromFile("assets/level.png");
-    player.position = map.createFromImage(image);
+    player.position = map.createFromImage(image, objects);
     player.begin();
+
+    for (auto object: objects) {
+        object -> begin();
+    }
+
 }
 
 void update(float deltaTime)
@@ -45,6 +51,9 @@ void update(float deltaTime)
     Physics::update(deltaTime);
     player.update(deltaTime);
     camera.position = player.position;
+    for (auto object: objects) {
+        object -> update(deltaTime);
+    }
 }
 
 void render(Renderer& renderer)
@@ -53,6 +62,10 @@ void render(Renderer& renderer)
 
     map.draw(renderer);
     player.draw(renderer);
+
+    for (auto object: objects) {
+        object -> render(renderer);
+    }
 
     Physics::debugDraw(renderer);
 }

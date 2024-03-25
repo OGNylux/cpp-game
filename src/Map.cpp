@@ -8,6 +8,8 @@
 #include "Resources.h"
 #include "box2d/b2_body.h"
 #include "box2d/b2_polygon_shape.h"
+#include "entities/Heart.h"
+#include "entities/Object.h"
 
 Map::Map(const float cellSize) : cellSize(cellSize), grid()
 {
@@ -28,8 +30,9 @@ void Map::createCheckerboard(const size_t width, const size_t height)
     }
 }
 
-sf::Vector2f Map::createFromImage(const sf::Image& image)
+sf::Vector2f Map::createFromImage(const sf::Image& image, std::vector<Object*>& objects)
 {
+    objects.clear();
     grid.clear();
     grid = std::vector(image.getSize().x,std::vector(image.getSize().y,0));
 
@@ -50,8 +53,13 @@ sf::Vector2f Map::createFromImage(const sf::Image& image)
                 shape.SetAsBox(cellSize / 2.0f, cellSize / 2.0f);
                 body -> CreateFixture(&shape, 0.0f);
             }
-            else if (color == sf::Color::Red)
-                playerPosition = sf::Vector2f(cellSize * x + cellSize / 2.0f, cellSize * y + cellSize / 2.0f);
+            else if (color == sf::Color::Red) playerPosition = sf::Vector2f(cellSize * x + cellSize / 2.0f, cellSize * y + cellSize / 2.0f);
+            else if(color == sf::Color::Yellow)
+            {
+                Object* heart = new Heart();
+                heart -> position = sf::Vector2f(cellSize * x + cellSize / 2.0f, cellSize * y + cellSize / 2.0f);
+                objects.push_back(heart);
+            }
         }
     }
     return playerPosition;

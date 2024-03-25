@@ -6,15 +6,17 @@
 #define MAP_H
 
 #include <vector>
+
+#include "entities/Object.h"
 #include "engine/Renderer.h"
 #include "SFML/Graphics/Image.hpp"
 
 class Map
 {
 public:
-    Map(float cellSize = 32.0f);
+    explicit Map(float cellSize = 32.0f);
     void createCheckerboard(size_t width, size_t height);
-    sf::Vector2f createFromImage(const sf::Image& image);
+    sf::Vector2f createFromImage(const sf::Image&, std::vector<Object*>& objects);
     void draw(Renderer& renderer);
 
     std::vector<std::vector<int>> grid;
