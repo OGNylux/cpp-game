@@ -8,6 +8,7 @@
 #include <SFML/Graphics.hpp>
 #include "engine/Camera.h"
 #include "engine/Renderer.h"
+#include "entities/Object.h"
 
 
 extern Camera camera;
@@ -15,5 +16,7 @@ extern Camera camera;
 void begin(const sf::Window& window);
 void update(float deltaTime);
 void render(Renderer& renderer);
+
+void deleteObject(Object* object);
 
 #endif //CMAKESFMLPROJECT_GAME_H

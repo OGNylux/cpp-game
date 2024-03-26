@@ -4,12 +4,12 @@
 
 #include "Collision.h"
 
-#include "../FixtureData.h"
+#include "FixtureData.h"
 #include "box2d/b2_contact.h"
 
 void Collision::BeginContact(b2Contact *contact)
 {
-    auto* data = reinterpret_cast<FixtureData*>(contact->GetFixtureA()->GetUserData().pointer);
+    const auto* data = reinterpret_cast<FixtureData*>(contact->GetFixtureA()->GetUserData().pointer);
     if(data && data->listener) data->listener->OnBeginContact(contact->GetFixtureB());
 
 
@@ -19,7 +19,7 @@ void Collision::BeginContact(b2Contact *contact)
 
 void Collision::EndContact(b2Contact *contact)
 {
-    auto* data = reinterpret_cast<FixtureData*>(contact->GetFixtureA()->GetUserData().pointer);
+    const auto* data = reinterpret_cast<FixtureData*>(contact->GetFixtureA()->GetUserData().pointer);
     if(data && data->listener) data->listener->OnEndContact(contact->GetFixtureB());
 
 

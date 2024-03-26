@@ -43,7 +43,6 @@ void begin(const sf::Window& window)
     for (auto object: objects) {
         object -> begin();
     }
-
 }
 
 void update(float deltaTime)
@@ -68,4 +67,14 @@ void render(Renderer& renderer)
     }
 
     Physics::debugDraw(renderer);
+}
+
+void deleteObject(Object* object)
+{
+    const auto& iterator = std::find(objects.begin(), objects.end(), object);
+    if (iterator != objects.end())
+    {
+        delete *iterator;
+        objects.erase(iterator);
+    }
 }

@@ -4,7 +4,7 @@
 
 #ifndef PLAYER_H
 #define PLAYER_H
-#include "../FixtureData.h"
+#include "../engine/FixtureData.h"
 #include "../engine/Animation.h"
 #include "../engine/Collision.h"
 #include "../engine/Renderer.h"
@@ -24,6 +24,7 @@ public:
     sf::Vector2f position{};
     float angle{};
 
+    size_t health = 2;
 private:
     FixtureData fixture_data{};
 

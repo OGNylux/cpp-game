@@ -4,7 +4,7 @@
 
 #ifndef FIXTUREDATA_H
 #define FIXTUREDATA_H
-#include "engine/Collision.h"
+#include "Collision.h"
 
 class Player;
 class Object;

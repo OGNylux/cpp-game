@@ -4,7 +4,7 @@
 
 #include "Map.h"
 
-#include "FixtureData.h"
+#include "engine/FixtureData.h"
 #include "engine/Physics.h"
 #include "Resources.h"
 #include "box2d/b2_body.h"

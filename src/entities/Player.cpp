@@ -14,6 +14,9 @@
 #include "SFML/Window/Keyboard.hpp"
 #include <numbers>
 
+#include "Object.h"
+#include "../Game.h"
+
 constexpr float movementSpeed = 7.0f;
 constexpr float jumpVelocity = 10.0f;
 
@@ -115,16 +118,31 @@ void Player::draw(Renderer& renderer) {
 void Player::OnBeginContact(b2Fixture* other)
 {
     auto* data = reinterpret_cast<FixtureData*>(other->GetUserData().pointer);
-    if(data && data->type == FixtureDataType::MapTile)
+
+    if(!data) return;
+
+    if(data->type == FixtureDataType::MapTile)
     {
         std::cout << "OnGround" << std::endl;
         onGround++;
         jumpAnimation.reset();
+    }
+    else if(data->type == FixtureDataType::Object && data->object->tag == "heart")
+    {
+        if(health < 3)
+        {
+            health++;
+            deleteObject(data->object);
+        }
+        std::cout << "Health: " << health << std::endl;
     }
 }
 
 void Player::OnEndContact(b2Fixture* other)
 {
     auto* data = reinterpret_cast<FixtureData*>(other->GetUserData().pointer);
-    if(data && data->type == FixtureDataType::MapTile && onGround > 0) onGround--;
+
+    if(!data) return;
+
+    if(data->type == FixtureDataType::MapTile && onGround > 0) onGround--;
 }
