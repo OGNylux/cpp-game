@@ -9,8 +9,8 @@
 class Collision : public b2ContactListener
 {
 public:
-    virtual void OnBeginContact(b2Fixture* other);
-    virtual void OnEndContact(b2Fixture* other);
+    virtual void OnBeginContact(b2Fixture *self, b2Fixture* other);
+    virtual void OnEndContact(b2Fixture *self, b2Fixture* other);
 
     void BeginContact(b2Contact *contact) override;
     void EndContact(b2Contact *contact) override;

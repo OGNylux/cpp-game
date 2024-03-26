@@ -18,8 +18,8 @@ public:
     void update(float deltaTime);
     void draw(Renderer& renderer);
 
-    void OnBeginContact(b2Fixture* other) override;
-    void OnEndContact(b2Fixture* other) override;
+    void OnBeginContact(b2Fixture *self, b2Fixture *other) override;
+    void OnEndContact(b2Fixture *self, b2Fixture *other) override;
 
     sf::Vector2f position{};
     float angle{};
@@ -34,7 +34,8 @@ private:
     sf::Texture textureToDraw;
 
     b2Body* body{};
-    size_t onGround = 0;
+    b2Fixture* feet{};
+    size_t onGround{};
     bool rotation = false;
 };
 
