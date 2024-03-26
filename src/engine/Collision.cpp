@@ -4,34 +4,35 @@
 
 #include "Collision.h"
 
+#include "../FixtureData.h"
 #include "box2d/b2_contact.h"
 
 void Collision::BeginContact(b2Contact *contact)
 {
-    auto* collision  = reinterpret_cast<Collision*>(contact->GetFixtureA()->GetUserData().pointer);
-    if(collision) collision -> OnBeginContact();
+    auto* data = reinterpret_cast<FixtureData*>(contact->GetFixtureA()->GetUserData().pointer);
+    if(data && data->listener) data->listener->OnBeginContact(contact->GetFixtureB());
 
 
-    collision  = reinterpret_cast<Collision*>(contact->GetFixtureB()->GetUserData().pointer);
-    if(collision) collision -> OnBeginContact();
+    data = reinterpret_cast<FixtureData*>(contact->GetFixtureB()->GetUserData().pointer);
+    if(data && data->listener) data->listener->OnBeginContact(contact->GetFixtureA());
 }
 
 void Collision::EndContact(b2Contact *contact)
 {
-    auto* collision  = reinterpret_cast<Collision*>(contact->GetFixtureA()->GetUserData().pointer);
-    if(collision) collision -> OnEndContact();
+    auto* data = reinterpret_cast<FixtureData*>(contact->GetFixtureA()->GetUserData().pointer);
+    if(data && data->listener) data->listener->OnEndContact(contact->GetFixtureB());
 
 
-    collision  = reinterpret_cast<Collision*>(contact->GetFixtureB()->GetUserData().pointer);
-    if(collision) collision -> OnEndContact();
+    data = reinterpret_cast<FixtureData*>(contact->GetFixtureB()->GetUserData().pointer);
+    if(data && data->listener) data->listener->OnEndContact(contact->GetFixtureA());
 }
 
-void Collision::OnBeginContact()
+void Collision::OnBeginContact(b2Fixture* other)
 {
 
 }
 
-void Collision::OnEndContact()
+void Collision::OnEndContact(b2Fixture* other)
 {
 
 }

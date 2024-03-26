@@ -4,11 +4,12 @@
 
 #ifndef PLAYER_H
 #define PLAYER_H
+#include "../FixtureData.h"
 #include "../engine/Animation.h"
 #include "../engine/Collision.h"
 #include "../engine/Renderer.h"
 #include "SFML/System/Vector2.hpp"
-
+#include <Box2D/Box2D.h>
 
 class Player : public Collision
 {
@@ -17,13 +18,15 @@ public:
     void update(float deltaTime);
     void draw(Renderer& renderer);
 
-    void OnBeginContact() override;
-    void OnEndContact() override;
+    void OnBeginContact(b2Fixture* other) override;
+    void OnEndContact(b2Fixture* other) override;
 
     sf::Vector2f position{};
     float angle{};
 
 private:
+    FixtureData fixture_data{};
+
     Animation runAnimation;
     Animation idleAnimation;
     Animation jumpAnimation;

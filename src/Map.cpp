@@ -4,9 +4,11 @@
 
 #include "Map.h"
 
+#include "FixtureData.h"
 #include "engine/Physics.h"
 #include "Resources.h"
 #include "box2d/b2_body.h"
+#include "box2d/b2_fixture.h"
 #include "box2d/b2_polygon_shape.h"
 #include "entities/Heart.h"
 #include "entities/Object.h"
@@ -51,7 +53,17 @@ sf::Vector2f Map::createFromImage(const sf::Image& image, std::vector<Object*>& 
                 b2Body* body = Physics::world.CreateBody(&bodyDef);
                 b2PolygonShape shape{};
                 shape.SetAsBox(cellSize / 2.0f, cellSize / 2.0f);
-                body -> CreateFixture(&shape, 0.0f);
+
+                FixtureData* fixture_data = new FixtureData();
+                fixture_data->type = FixtureDataType::MapTile;
+                fixture_data->mapX = x;
+                fixture_data->mapY = y;
+
+                b2FixtureDef fixtureDef{};
+                fixtureDef.shape = &shape;
+                fixtureDef.userData.pointer = reinterpret_cast<uintptr_t>(fixture_data);
+                fixtureDef.density = 0.0f;
+                body->CreateFixture(&fixtureDef);
             }
             else if (color == sf::Color::Red) playerPosition = sf::Vector2f(cellSize * x + cellSize / 2.0f, cellSize * y + cellSize / 2.0f);
             else if(color == sf::Color::Yellow)

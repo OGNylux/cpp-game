@@ -44,6 +44,10 @@ void Player::begin()
            AnimationFrame(0.0f, Resources::textures["player_jump_00.png"])
         }, true);
 
+    fixture_data.listener = this;
+    fixture_data.player = this;
+    fixture_data.type = FixtureDataType::Player;
+
     b2BodyDef bodyDef{};
     bodyDef.type = b2_dynamicBody;
     bodyDef.position.Set(position.x, position.y);
@@ -51,6 +55,7 @@ void Player::begin()
     body = Physics::world.CreateBody(&bodyDef);
 
     b2FixtureDef fixtureDef{};
+    fixtureDef.userData.pointer = reinterpret_cast<uintptr_t>(&fixture_data);
     fixtureDef.density = 1.0f;
     fixtureDef.friction = 0.0f;
 
@@ -70,7 +75,6 @@ void Player::begin()
     body->CreateFixture(&fixtureDef);
 
     polygonShape.SetAsBox(0.4f, 0.2f, b2Vec2(0.0f, 1.0f), 0.0f);
-    fixtureDef.userData.pointer = reinterpret_cast<uintptr_t>(this);
     fixtureDef.isSensor = true;
     body->CreateFixture(&fixtureDef);
 }
@@ -108,13 +112,19 @@ void Player::draw(Renderer& renderer) {
     renderer.draw(textureToDraw, {position.x, position.y-0.19f}, sf::Vector2f(rotation ? -(50.0f/16.0f) : (50.0f/16.0f), (37.0f/16.0f)), angle);
 }
 
-void Player::OnBeginContact()
+void Player::OnBeginContact(b2Fixture* other)
 {
-    onGround++;
-    jumpAnimation.reset();
+    auto* data = reinterpret_cast<FixtureData*>(other->GetUserData().pointer);
+    if(data && data->type == FixtureDataType::MapTile)
+    {
+        std::cout << "OnGround" << std::endl;
+        onGround++;
+        jumpAnimation.reset();
+    }
 }
 
-void Player::OnEndContact()
+void Player::OnEndContact(b2Fixture* other)
 {
-    if(onGround > 0) onGround--;
+    auto* data = reinterpret_cast<FixtureData*>(other->GetUserData().pointer);
+    if(data && data->type == FixtureDataType::MapTile && onGround > 0) onGround--;
 }
