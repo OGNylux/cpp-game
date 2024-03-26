@@ -13,6 +13,7 @@ public:
     explicit Camera(float zoomLevel = 5.0f);
     sf::Vector2f getViewSize();
     sf::View getView(sf::Vector2u windowSize);
+    sf::View getUIView();
 
     float zoomLevel{};
     sf::Vector2f position{};

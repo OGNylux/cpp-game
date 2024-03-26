@@ -57,7 +57,9 @@ void update(float deltaTime)
 
 void render(Renderer& renderer)
 {
-    renderer.draw(Resources::textures["background.png"], camera.position, camera.getViewSize());
+    sf::Texture test = Resources::textures["background2.png"];
+    renderer.draw(test, {30,10}, {100,42});
+    renderer.draw(test, {130,10}, {100,42});
 
     map.draw(renderer);
     player.draw(renderer);
