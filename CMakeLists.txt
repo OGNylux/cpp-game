@@ -15,7 +15,10 @@ FetchContent_MakeAvailable(SFML)
 FetchContent_MakeAvailable(BOX2D)
 
 if(UNIX)
-    include(libxinerama-dev)
+    find_package(X11 REQUIRED)
+    if(NOT X11_Xinerama_FOUND)
+        message(FATAL_ERROR "libxinerama-dev not found. Please install it using 'sudo apt-get install libxinerama-dev'")
+    endif()
 endif()
 
 add_executable(platformer src/main.cpp
