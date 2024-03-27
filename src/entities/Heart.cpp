@@ -3,6 +3,9 @@
 //
 
 #include "Heart.h"
+
+#include <iostream>
+
 #include "../Resources.h"
 #include "../engine/FixtureData.h"
 #include "../engine/Physics.h"
@@ -11,9 +14,9 @@
 
 Heart::~Heart()
 {
-    Physics::world.DestroyBody(body);
+    std::cout << "Heart deleted" << std::endl;
+    Physics::bodiesToDestroy.push_back(body);
 }
-
 
 void Heart::begin()
 {
@@ -26,7 +29,7 @@ void Heart::begin()
 
     b2BodyDef bodyDef{};
     bodyDef.position.Set(position.x, position.y);
-    b2Body* body = Physics::world.CreateBody(&bodyDef);
+    body = Physics::world.CreateBody(&bodyDef);
     b2PolygonShape shape{};
     shape.SetAsBox(0.4f, 0.4f);
 

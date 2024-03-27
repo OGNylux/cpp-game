@@ -5,6 +5,7 @@
 #ifndef PHYSICS_H
 #define PHYSICS_H
 
+#include <vector>
 #include <box2d/b2_world.h>
 
 #include "Debug.h"
@@ -16,6 +17,7 @@ public:
     static void init();
     static void update(float deltaTime);
     static void debugDraw(Renderer& renderer);
+    static std::vector<b2Body*> bodiesToDestroy;
     static b2World world;
     static Debug* debug;
 };

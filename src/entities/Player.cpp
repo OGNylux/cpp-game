@@ -128,11 +128,8 @@ void Player::OnBeginContact(b2Fixture *self, b2Fixture* other)
     }
     else if(data->type == FixtureDataType::Object && data->object->tag == "heart")
     {
-        if(health < 3)
-        {
-            health++;
-            deleteObject(data->object);
-        }
+        deleteObject(data->object);
+        ++health;
         std::cout << "Health: " << health << std::endl;
     }
 }
@@ -144,4 +141,8 @@ void Player::OnEndContact(b2Fixture *self, b2Fixture* other)
     if(!data) return;
 
     if(feet == self && data->type == FixtureDataType::MapTile && onGround > 0) onGround--;
+}
+
+size_t Player::getHealth() const {
+    return health;
 }

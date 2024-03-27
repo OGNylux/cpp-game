@@ -24,12 +24,14 @@ int main()
                 window.close();
             }
         }
-        window.setView(camera.getView(window.getSize()));
         update(deltaTime);
 
         window.clear();
-
+        window.setView(camera.getView(window.getSize()));
         render(renderer);
+
+        window.setView(camera.getUIView());
+        renderUI(renderer, window);
 
         window.display();
     }

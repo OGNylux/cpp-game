@@ -20,11 +20,11 @@ public:
 
     void OnBeginContact(b2Fixture *self, b2Fixture *other) override;
     void OnEndContact(b2Fixture *self, b2Fixture *other) override;
+    size_t getHealth() const;
 
     sf::Vector2f position{};
     float angle{};
 
-    size_t health = 2;
 private:
     FixtureData fixture_data{};
 
@@ -33,6 +33,7 @@ private:
     Animation jumpAnimation;
     sf::Texture textureToDraw;
 
+    size_t health = 2;
     b2Body* body{};
     b2Fixture* feet{};
     size_t onGround{};

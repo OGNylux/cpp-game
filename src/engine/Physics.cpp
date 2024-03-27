@@ -7,6 +7,7 @@
 
 b2World Physics::world{b2Vec2(0.0f, 9.2f)};
 Debug* Physics::debug = nullptr;
+std::vector<b2Body*> Physics::bodiesToDestroy;
 
 void Physics::init()
 {
@@ -17,6 +18,12 @@ void Physics::update(const float deltaTime)
 {
     world.Step(deltaTime, 8, 4);
     world.SetContactListener(new Collision());
+
+    // this sucks but it works
+    for (b2Body* body : bodiesToDestroy) {
+        world.DestroyBody(body);
+    }
+    bodiesToDestroy.clear();
 }
 
 void Physics::debugDraw(Renderer& renderer)
@@ -24,7 +31,7 @@ void Physics::debugDraw(Renderer& renderer)
     if (!debug)
     {
         debug = new Debug(renderer.target);
-        //debug->SetFlags(b2Draw::e_shapeBit);
+        debug->SetFlags(b2Draw::e_aabbBit);
         world.SetDebugDraw(debug);
     }
 

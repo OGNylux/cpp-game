@@ -12,14 +12,14 @@
 class Heart : public Object
 {
 public:
-    ~Heart();
+    ~Heart() override;
 
     void begin() override;
     void update(float deltaTime) override;
     void render(Renderer &renderer) override;
 private:
+    b2Body* body;
     Animation animation;
-    b2Body* body{};
 };
 
 

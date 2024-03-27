@@ -11,6 +11,7 @@
 class Object
 {
 public:
+    virtual ~Object() = default;
     virtual void begin() {}
     virtual void update(float deltaTime) {}
     virtual void render(Renderer& renderer) {}
