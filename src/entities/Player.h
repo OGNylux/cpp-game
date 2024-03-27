@@ -26,7 +26,7 @@ public:
     float angle{};
 
 private:
-    FixtureData fixture_data{};
+    FixtureData fixtureData{};
 
     Animation runAnimation;
     Animation idleAnimation;

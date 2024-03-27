@@ -21,11 +21,3 @@ void Renderer::draw(const sf::Texture& texture, const sf::Vector2f& position, co
     sprite.setScale(sf::Vector2f(size.x / texture.getSize().x, size.y / texture.getSize().y));
     target.draw(sprite);
 }
-void Renderer::draw2(const sf::Texture& texture, const sf::Vector2f& position, float angle)
-{
-    sprite.setTexture(texture);
-    sprite.setRotation(angle);
-    sprite.setPosition(position);
-    sprite.setTextureRect({0, 0, 100, static_cast<int>(texture.getSize().y)});
-    target.draw(sprite);
-}

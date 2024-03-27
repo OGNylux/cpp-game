@@ -8,7 +8,7 @@ Camera::Camera(const float zoomLevel) : zoomLevel(zoomLevel)
 {
 }
 
-sf::Vector2f Camera::getViewSize()
+sf::Vector2f Camera::getViewSize() const
 {
     return viewSize;
 }

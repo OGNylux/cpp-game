@@ -19,10 +19,8 @@ int main()
         float deltaTime = deltaClock.restart().asSeconds();
         for (auto event = sf::Event{}; window.pollEvent(event);)
         {
-            if (event.type == sf::Event::Closed)
-            {
-                window.close();
-            }
+            if(event.type == sf::Event::Closed)window.close();
+            if(event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape) paused = !paused;
         }
         update(deltaTime);
 

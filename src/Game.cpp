@@ -16,6 +16,9 @@ Map map(1.0f);
 Camera camera(20.0f);
 Player player;
 std::vector<Object*> objects{};
+bool paused{};
+
+sf::RectangleShape background(sf::Vector2f(1.0f, 1.0f));
 
 void begin(const sf::Window& window)
 {
@@ -34,6 +37,19 @@ void begin(const sf::Window& window)
             Resources::textures[file.path().filename().string()].loadFromFile(file.path().string());
         }
     }
+
+
+    for (auto& file : std::filesystem::directory_iterator("assets/animations/heart"))
+    {
+        if (file.is_regular_file() && (file.path().extension() == ".png" || file.path().extension() == ".jpg"))
+        {
+            Resources::textures[file.path().filename().string()].loadFromFile(file.path().string());
+        }
+    }
+
+    background.setFillColor(sf::Color(0, 0, 0, 150));
+    background.setOrigin(0.5f, 0.5f);
+
     Physics::init();
 
     sf::Image image;
@@ -49,6 +65,8 @@ void begin(const sf::Window& window)
 
 void update(float deltaTime)
 {
+    if(paused) return;
+
     Physics::update(deltaTime);
     player.update(deltaTime);
     camera.position = player.position;
@@ -83,6 +101,12 @@ void renderUI(Renderer& renderer, sf::RenderWindow& window)
     {
         renderer.draw(heartTexture, position, {static_cast<float>(textureSize.x/4.0f), static_cast<float>(textureSize.y/4.0f)});
         position.x += 4.0f;
+    }
+
+    if(paused)
+    {
+        background.setScale(camera.getViewSize());
+        renderer.target.draw(background);
     }
 }
 

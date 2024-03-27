@@ -19,7 +19,7 @@ public:
     sf::Vector2f createFromImage(const sf::Image&, std::vector<Object*>& objects);
     void draw(Renderer& renderer);
 
-    std::vector<std::vector<int>> grid;
+    std::vector<std::vector<sf::Texture*>> grid;
     float cellSize{};
 };
 

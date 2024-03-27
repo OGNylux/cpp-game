@@ -14,6 +14,7 @@
 #include "SFML/Window/Keyboard.hpp"
 #include <numbers>
 
+#include "Enemy.h"
 #include "Object.h"
 #include "../Game.h"
 
@@ -47,9 +48,9 @@ void Player::begin()
            AnimationFrame(0.0f, Resources::textures["player_jump_00.png"])
         }, true);
 
-    fixture_data.listener = this;
-    fixture_data.player = this;
-    fixture_data.type = FixtureDataType::Player;
+    fixtureData.listener = this;
+    fixtureData.player = this;
+    fixtureData.type = FixtureDataType::Player;
 
     b2BodyDef bodyDef{};
     bodyDef.type = b2_dynamicBody;
@@ -58,7 +59,7 @@ void Player::begin()
     body = Physics::world.CreateBody(&bodyDef);
 
     b2FixtureDef fixtureDef{};
-    fixtureDef.userData.pointer = reinterpret_cast<uintptr_t>(&fixture_data);
+    fixtureDef.userData.pointer = reinterpret_cast<uintptr_t>(&fixtureData);
     fixtureDef.density = 1.0f;
     fixtureDef.friction = 0.0f;
 
@@ -131,6 +132,11 @@ void Player::OnBeginContact(b2Fixture *self, b2Fixture* other)
         deleteObject(data->object);
         ++health;
         std::cout << "Health: " << health << std::endl;
+    }
+    else if(feet == self && data->type == FixtureDataType::Object && data->object->tag == "enemy")
+    {
+        auto* enemy = dynamic_cast<Enemy*>(data->object);
+        if(enemy) enemy->die();
     }
 }
 

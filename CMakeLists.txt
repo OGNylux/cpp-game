@@ -37,6 +37,8 @@ add_executable(platformer src/main.cpp
         src/entities/Heart.cpp
         src/entities/Heart.h
         src/engine/FixtureData.h
+        src/entities/Enemy.cpp
+        src/entities/Enemy.h
 )
 file(COPY src/assets DESTINATION ${CMAKE_RUNTIME_OUTPUT_DIRECTORY})
 target_link_libraries(platformer PRIVATE sfml-graphics)

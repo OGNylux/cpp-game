@@ -31,7 +31,6 @@ public:
 
 private:
     sf::RenderTarget& target;
-
 };
 
 

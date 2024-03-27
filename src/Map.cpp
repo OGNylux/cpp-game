@@ -10,6 +10,7 @@
 #include "box2d/b2_body.h"
 #include "box2d/b2_fixture.h"
 #include "box2d/b2_polygon_shape.h"
+#include "entities/Enemy.h"
 #include "entities/Heart.h"
 #include "entities/Object.h"
 
@@ -19,14 +20,15 @@ Map::Map(const float cellSize) : cellSize(cellSize), grid()
 
 void Map::createCheckerboard(const size_t width, const size_t height)
 {
-    grid = std::vector(width,std::vector(height,0));
+    grid = std::vector(width,std::vector(height, static_cast<sf::Texture*>(nullptr)));
 
     int last = 0;
     for (auto& column: grid)
     {
         for (auto& cell: column)
         {
-            last = cell = !last;
+            last = !last;
+            if(last) cell = &Resources::textures["block.png"];
         }
         if (width % 2 == 0) last = !last;
     }
@@ -36,7 +38,7 @@ sf::Vector2f Map::createFromImage(const sf::Image& image, std::vector<Object*>& 
 {
     objects.clear();
     grid.clear();
-    grid = std::vector(image.getSize().x,std::vector(image.getSize().y,0));
+    grid = std::vector(image.getSize().x,std::vector(image.getSize().y, static_cast<sf::Texture*>(nullptr)));
 
     sf::Vector2f playerPosition{};
 
@@ -45,9 +47,24 @@ sf::Vector2f Map::createFromImage(const sf::Image& image, std::vector<Object*>& 
         for (size_t y = 0; y < grid[x].size(); y++)
         {
             sf::Color color = image.getPixel(x, y);
-            if (color == sf::Color::Black)
+            Object* object = nullptr;
+            if (color == sf::Color::Red)
             {
-                grid[x][y] = 1;
+                playerPosition = sf::Vector2f(cellSize * x + cellSize / 2.0f, cellSize * y + cellSize / 2.0f);
+                continue;
+            }
+            else if (color == sf::Color::Black) grid[x][y] = &Resources::textures["block.png"];
+            else if (color == sf::Color::Blue) grid[x][y] = &Resources::textures["block2.png"];
+            else if(color == sf::Color::Yellow) object = new Heart();
+            else if(color == sf::Color::Green) object = new Enemy();
+
+            if(object)
+            {
+                object -> position = sf::Vector2f(cellSize * x + cellSize / 2.0f, cellSize * y + cellSize / 2.0f);
+                objects.push_back(object);
+            }
+            else if(grid[x][y] != nullptr)
+            {
                 b2BodyDef bodyDef{};
                 bodyDef.position.Set(cellSize * x + cellSize / 2.0f, cellSize * y + cellSize / 2.0f);
                 b2Body* body = Physics::world.CreateBody(&bodyDef);
@@ -65,13 +82,6 @@ sf::Vector2f Map::createFromImage(const sf::Image& image, std::vector<Object*>& 
                 fixtureDef.density = 0.0f;
                 body->CreateFixture(&fixtureDef);
             }
-            else if (color == sf::Color::Red) playerPosition = sf::Vector2f(cellSize * x + cellSize / 2.0f, cellSize * y + cellSize / 2.0f);
-            else if(color == sf::Color::Yellow)
-            {
-                Object* heart = new Heart();
-                heart -> position = sf::Vector2f(cellSize * x + cellSize / 2.0f, cellSize * y + cellSize / 2.0f);
-                objects.push_back(heart);
-            }
         }
     }
     return playerPosition;
@@ -85,7 +95,7 @@ void Map::draw(Renderer& renderer)
         int y = 0;
         for (const auto& cell: column)
         {
-            if(cell) renderer.draw(Resources::textures["block.png"], sf::Vector2f(cellSize * x + cellSize / 2.0f, cellSize * y + cellSize / 2.0f), sf::Vector2f(cellSize, cellSize));
+            if(cell) renderer.draw(*cell, sf::Vector2f(cellSize * x + cellSize / 2.0f, cellSize * y + cellSize / 2.0f), sf::Vector2f(cellSize, cellSize));
             y++;
         }
         x++;

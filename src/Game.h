@@ -12,6 +12,7 @@
 
 
 extern Camera camera;
+extern bool paused;
 
 void begin(const sf::Window& window);
 void update(float deltaTime);
