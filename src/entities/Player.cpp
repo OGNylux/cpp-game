@@ -21,7 +21,7 @@
 constexpr float movementSpeed = 7.0f;
 constexpr float jumpVelocity = 10.0f;
 
-void Player::begin()
+void Player::init()
 {
     idleAnimation = Animation(1.0f,
 {

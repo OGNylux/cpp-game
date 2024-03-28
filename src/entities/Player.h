@@ -14,7 +14,7 @@
 class Player : public Collision
 {
 public:
-    void begin();
+    void init();
     void update(float deltaTime);
     void draw(Renderer& renderer);
 

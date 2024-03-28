@@ -10,12 +10,12 @@
 #include "engine/Renderer.h"
 #include "entities/Object.h"
 
-
 extern Camera camera;
 extern bool paused;
 
 void restart();
-void begin(const sf::Window& window);
+void init(const sf::Window& window);
+void initTextures(const std::string& path);
 void update(float deltaTime);
 void render(Renderer& renderer);
 void renderUI(Renderer& renderer, const sf::Window& window);

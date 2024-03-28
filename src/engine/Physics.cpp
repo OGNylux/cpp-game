@@ -11,7 +11,7 @@ std::vector<b2Body*> Physics::bodiesToDestroy;
 
 void Physics::init()
 {
-    if(world) delete world;
+    delete world;
 
     world = new b2World(b2Vec2(0.0f, 9.8f));
     world -> SetDebugDraw(debug);

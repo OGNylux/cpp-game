@@ -10,9 +10,8 @@
 #include "../engine/Physics.h"
 #include "box2d/b2_circle_shape.h"
 #include "Box2D/b2_fixture.h"
-#include "Box2D/b2_polygon_shape.h"
 
-void Enemy::begin()
+void Enemy::init()
 {
     tag = "enemy";
     animation = Animation(0.6f,

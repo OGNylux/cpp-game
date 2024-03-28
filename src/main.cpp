@@ -9,11 +9,10 @@ int main()
 {
     auto window = sf::RenderWindow{ sf::VideoMode(1200, 900), "CMake SFML Project" };
     sf::Clock deltaClock;
-    window.setFramerateLimit(144);
     Renderer renderer(window);
 
     window.setFramerateLimit(60);
-    begin(window);
+    init(window);
     while (window.isOpen())
     {
         float deltaTime = deltaClock.restart().asSeconds();

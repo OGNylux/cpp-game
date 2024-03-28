@@ -7,7 +7,7 @@
 #include "box2d/b2_draw.h"
 #include "SFML/Graphics/RenderTarget.hpp"
 
-class Debug : public b2Draw
+class Debug final : public b2Draw
 {
 public:
     explicit Debug(sf::RenderTarget& target) : target(target)

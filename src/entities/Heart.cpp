@@ -18,7 +18,7 @@ Heart::~Heart()
     Physics::bodiesToDestroy.push_back(body);
 }
 
-void Heart::begin()
+void Heart::init()
 {
     tag = "heart";
     animation = Animation(0.6f,

@@ -15,7 +15,7 @@ class Renderer;
 class Enemy : public Object
 {
 public:
-    void begin() override;
+    void init() override;
     void update(float deltaTime) override;
     void render(Renderer& renderer) override;
     bool getDeadState() const;

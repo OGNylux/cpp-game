@@ -12,7 +12,7 @@ class Object
 {
 public:
     virtual ~Object() = default;
-    virtual void begin() {}
+    virtual void init() {}
     virtual void update(float deltaTime) {}
     virtual void render(Renderer& renderer) {}
 

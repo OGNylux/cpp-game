@@ -14,7 +14,7 @@ class Heart : public Object
 public:
     ~Heart() override;
 
-    void begin() override;
+    void init() override;
     void update(float deltaTime) override;
     void render(Renderer &renderer) override;
 private:

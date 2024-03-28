@@ -34,6 +34,11 @@ void Map::createCheckerboard(const size_t width, const size_t height)
     }
 }
 
+sf::Vector2f Map::getCenterOfCell(const size_t x, const size_t y) const
+{
+    return {cellSize * static_cast<float>(x) + cellSize / 2.0f, cellSize * static_cast<float>(y) + cellSize / 2.0f};
+}
+
 sf::Vector2f Map::createFromImage(const sf::Image& image, std::vector<Object*>& objects)
 {
     objects.clear();
@@ -49,36 +54,33 @@ sf::Vector2f Map::createFromImage(const sf::Image& image, std::vector<Object*>& 
             sf::Color color = image.getPixel(x, y);
             Object* object = nullptr;
             if (color == sf::Color::Red)
-            {
-                playerPosition = sf::Vector2f(cellSize * x + cellSize / 2.0f, cellSize * y + cellSize / 2.0f);
-                continue;
-            }
-            else if (color == sf::Color::Black) grid[x][y] = &Resources::textures["block.png"];
+                playerPosition = getCenterOfCell(x, y);
+            if (color == sf::Color::Black) grid[x][y] = &Resources::textures["block.png"];
             else if (color == sf::Color::Blue) grid[x][y] = &Resources::textures["block2.png"];
             else if(color == sf::Color::Yellow) object = new Heart();
             else if(color == sf::Color::Green) object = new Enemy();
 
             if(object)
             {
-                object -> position = sf::Vector2f(cellSize * x + cellSize / 2.0f, cellSize * y + cellSize / 2.0f);
+                object -> position = getCenterOfCell(x, y);
                 objects.push_back(object);
             }
             else if(grid[x][y] != nullptr)
             {
                 b2BodyDef bodyDef{};
-                bodyDef.position.Set(cellSize * x + cellSize / 2.0f, cellSize * y + cellSize / 2.0f);
+                bodyDef.position.Set(getCenterOfCell(x, y).x, getCenterOfCell(x, y).y);
                 b2Body* body = Physics::world->CreateBody(&bodyDef);
                 b2PolygonShape shape{};
                 shape.SetAsBox(cellSize / 2.0f, cellSize / 2.0f);
 
-                FixtureData* fixture_data = new FixtureData();
-                fixture_data->type = FixtureDataType::MapTile;
-                fixture_data->mapX = x;
-                fixture_data->mapY = y;
+                auto* fixtureData = new FixtureData();
+                fixtureData->type = FixtureDataType::MapTile;
+                fixtureData->mapX = x;
+                fixtureData->mapY = y;
 
                 b2FixtureDef fixtureDef{};
                 fixtureDef.shape = &shape;
-                fixtureDef.userData.pointer = reinterpret_cast<uintptr_t>(fixture_data);
+                fixtureDef.userData.pointer = reinterpret_cast<uintptr_t>(fixtureData);
                 fixtureDef.density = 0.0f;
                 body->CreateFixture(&fixtureDef);
             }
@@ -95,7 +97,7 @@ void Map::draw(Renderer& renderer)
         int y = 0;
         for (const auto& cell: column)
         {
-            if(cell) renderer.draw(*cell, sf::Vector2f(cellSize * x + cellSize / 2.0f, cellSize * y + cellSize / 2.0f), sf::Vector2f(cellSize, cellSize));
+            if(cell) renderer.draw(*cell, getCenterOfCell(x, y), sf::Vector2f(cellSize, cellSize));
             y++;
         }
         x++;

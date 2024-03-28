@@ -16,6 +16,7 @@ class Map
 public:
     explicit Map(float cellSize = 32.0f);
     void createCheckerboard(size_t width, size_t height);
+    sf::Vector2f getCenterOfCell(size_t x, size_t y) const;
     sf::Vector2f createFromImage(const sf::Image&, std::vector<Object*>& objects);
     void draw(Renderer& renderer);
 
