@@ -5,7 +5,7 @@
 #include "Physics.h"
 #include "Collision.h"
 
-b2World* Physics::world{};
+b2World* Physics::world;
 Debug* Physics::debug = nullptr;
 std::vector<b2Body*> Physics::bodiesToDestroy;
 

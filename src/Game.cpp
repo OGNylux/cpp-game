@@ -17,7 +17,7 @@ Camera camera(20.0f);
 Player player;
 std::vector<Object*> objects{};
 sf::Image image;
-bool paused{};
+bool paused = false;
 
 sf::RectangleShape background(sf::Vector2f(1.0f, 1.0f));
 

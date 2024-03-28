@@ -15,11 +15,11 @@ public:
     sf::View getView(sf::Vector2u windowSize);
     sf::View getUIView();
 
-    float zoomLevel{};
-    sf::Vector2f position{};
+    float zoomLevel;
+    sf::Vector2f position;
 
 private:
-    sf::Vector2f viewSize{};
+    sf::Vector2f viewSize;
 };
 
 

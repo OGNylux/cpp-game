@@ -9,7 +9,6 @@
 #include "../engine/Collision.h"
 #include "../engine/Renderer.h"
 #include "SFML/System/Vector2.hpp"
-#include <Box2D/Box2D.h>
 
 class Player : public Collision
 {
@@ -22,9 +21,9 @@ public:
     void OnEndContact(b2Fixture *self, b2Fixture *other) override;
     size_t getHealth() const;
 
-    sf::Vector2f position{};
-    float angle{};
-    bool isDead{};
+    sf::Vector2f position;
+    float angle;
+    bool isDead = false;
 
 private:
     FixtureData fixtureData{};

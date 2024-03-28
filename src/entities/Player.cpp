@@ -52,18 +52,18 @@ void Player::init()
     fixtureData.player = this;
     fixtureData.type = FixtureDataType::Player;
 
-    b2BodyDef bodyDef{};
+    b2BodyDef bodyDef;
     bodyDef.type = b2_dynamicBody;
     bodyDef.position.Set(position.x, position.y);
     bodyDef.fixedRotation = true;
     body = Physics::world->CreateBody(&bodyDef);
 
-    b2FixtureDef fixtureDef{};
+    b2FixtureDef fixtureDef;
     fixtureDef.userData.pointer = reinterpret_cast<uintptr_t>(&fixtureData);
     fixtureDef.density = 1.0f;
     fixtureDef.friction = 0.0f;
 
-    b2CircleShape circleShape{};
+    b2CircleShape circleShape;
     circleShape.m_radius = 0.4f;
     circleShape.m_p.Set(0.0f, -0.5f);
     fixtureDef.shape = &circleShape;
@@ -73,7 +73,7 @@ void Player::init()
     body->CreateFixture(&fixtureDef);
 
 
-    b2PolygonShape polygonShape{};
+    b2PolygonShape polygonShape;
     polygonShape.SetAsBox(0.5f, 0.25f);
     fixtureDef.shape = &polygonShape;
     body->CreateFixture(&fixtureDef);

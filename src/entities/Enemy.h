@@ -12,7 +12,7 @@
 
 class Renderer;
 
-class Enemy : public Object
+class Enemy final : public Object
 {
 public:
     void init() override;

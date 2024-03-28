@@ -27,17 +27,17 @@ void Heart::init()
             AnimationFrame(0.0f, Resources::textures["heart_idle_01.png"])
         });
 
-    b2BodyDef bodyDef{};
+    b2BodyDef bodyDef;
     bodyDef.position.Set(position.x, position.y);
     body = Physics::world->CreateBody(&bodyDef);
-    b2PolygonShape shape{};
+    b2PolygonShape shape;
     shape.SetAsBox(0.4f, 0.4f);
 
     auto* fixture_data = new FixtureData();
     fixture_data->type = FixtureDataType::Object;
     fixture_data->object = this;
 
-    b2FixtureDef fixtureDef{};
+    b2FixtureDef fixtureDef;
     fixtureDef.userData.pointer = reinterpret_cast<uintptr_t>(fixture_data);
     fixtureDef.isSensor = true;
     fixtureDef.density = 0.0f;

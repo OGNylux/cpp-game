@@ -20,7 +20,7 @@ public:
     void draw(Renderer& renderer);
 
     std::vector<std::vector<sf::Texture*>> grid;
-    float cellSize{};
+    float cellSize;
 };
 
 

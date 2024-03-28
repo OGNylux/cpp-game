@@ -20,7 +20,7 @@ void Enemy::init()
             AnimationFrame(0.0f, Resources::textures["block.png"])
         });
 
-    b2BodyDef bodyDef{};
+    b2BodyDef bodyDef;
     bodyDef.type = b2_dynamicBody;
     bodyDef.position.Set(position.x, position.y);
     bodyDef.fixedRotation = true;
@@ -32,7 +32,7 @@ void Enemy::init()
     b2CircleShape circle_shape;
     circle_shape.m_radius = 0.5f;
 
-    b2FixtureDef fixtureDef{};
+    b2FixtureDef fixtureDef;
     fixtureDef.userData.pointer = reinterpret_cast<uintptr_t>(&fixtureData);
     fixtureDef.shape = &circle_shape;
     fixtureDef.density = 1.0f;
