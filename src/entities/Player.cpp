@@ -157,7 +157,37 @@ void Player::OnEndContact(b2Fixture *self, b2Fixture* other)
     if(feet == self && data->type == FixtureDataType::MapTile && onGround > 0) onGround--;
 }
 
-size_t Player::getHealth() const
+int Player::getHealth() const
 {
     return health;
 }
+
+sf::Vector2f Player::getPosition() const
+{
+    return position;
+}
+
+sf::Vector2f Player::setPosition(sf::Vector2f newPosition)
+{
+    position = newPosition;
+    return position;
+}
+
+float Player::getAngle() const
+{
+    return angle;
+}
+
+bool Player::getDeadState() const
+{
+    return isDead;
+}
+
+bool Player::setDeadState(const bool state)
+{
+    isDead = state;
+    return isDead;
+}
+
+
+

@@ -25,9 +25,9 @@ void restart()
 {
     Physics::init();
     player = Player();
-    player.position = map.createFromImage(image, objects);
+    player.setPosition(map.createFromImage(image, objects));
 
-    player.isDead = false;
+    player.setDeadState(false);
     paused = false;
     player.init();
 
@@ -65,7 +65,7 @@ void initTextures(const std::string& path)
 
 void update(float deltaTime)
 {
-    if(player.isDead)
+    if(player.getDeadState())
     {
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Enter)) restart();
         else paused = true;
@@ -74,7 +74,7 @@ void update(float deltaTime)
 
     Physics::update(deltaTime);
     player.update(deltaTime);
-    camera.position = player.position;
+    camera.setPosition(player.getPosition());
     for (auto object: objects)
     {
         object -> update(deltaTime);

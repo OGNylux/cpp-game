@@ -8,6 +8,22 @@ Camera::Camera(const float zoomLevel) : zoomLevel(zoomLevel)
 {
 }
 
+float Camera::getZoomLevel() const
+{
+    return zoomLevel;
+}
+
+sf::Vector2f Camera::getPostion() const
+{
+    return position;
+}
+
+sf::Vector2f Camera::setPosition(const sf::Vector2f newPosition)
+{
+    position = newPosition;
+    return position;
+}
+
 sf::Vector2f Camera::getViewSize() const
 {
     return viewSize;

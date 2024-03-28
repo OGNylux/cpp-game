@@ -10,7 +10,7 @@
 #include "../engine/Renderer.h"
 #include "SFML/System/Vector2.hpp"
 
-class Player : public Collision
+class Player final : public Collision
 {
 public:
     void init();
@@ -19,12 +19,12 @@ public:
 
     void OnBeginContact(b2Fixture *self, b2Fixture *other) override;
     void OnEndContact(b2Fixture *self, b2Fixture *other) override;
-    size_t getHealth() const;
-
-    sf::Vector2f position;
-    float angle;
-    bool isDead = false;
-
+    int getHealth() const;
+    sf::Vector2f getPosition() const;
+    sf::Vector2f setPosition(sf::Vector2f newPosition);
+    float getAngle() const;
+    bool getDeadState() const;
+    bool setDeadState(bool state);
 private:
     FixtureData fixtureData{};
 
@@ -33,10 +33,14 @@ private:
     Animation jumpAnimation;
     sf::Texture textureToDraw;
 
-    size_t health = 2;
+    int health = 2;
+    sf::Vector2f position;
+    float angle{};
+    bool isDead = false;
+
     b2Body* body{};
     b2Fixture* feet{};
-    size_t onGround{};
+    int onGround{};
     bool rotation = false;
 };
 

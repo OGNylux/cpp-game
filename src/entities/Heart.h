@@ -9,7 +9,7 @@
 #include "Box2D/b2_body.h"
 
 
-class Heart : public Object
+class Heart final : public Object
 {
 public:
     ~Heart() override;
