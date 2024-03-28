@@ -14,24 +14,8 @@
 #include "entities/Heart.h"
 #include "entities/Object.h"
 
-Map::Map(const float cellSize) : cellSize(cellSize), grid()
+Map::Map(const float cellSize) : cellSize(cellSize)
 {
-}
-
-void Map::createCheckerboard(const size_t width, const size_t height)
-{
-    grid = std::vector(width,std::vector(height, static_cast<sf::Texture*>(nullptr)));
-
-    int last = 0;
-    for (auto& column: grid)
-    {
-        for (auto& cell: column)
-        {
-            last = !last;
-            if(last) cell = &Resources::textures["block.png"];
-        }
-        if (width % 2 == 0) last = !last;
-    }
 }
 
 sf::Vector2f Map::getCenterOfCell(const size_t x, const size_t y) const
@@ -47,14 +31,13 @@ sf::Vector2f Map::createFromImage(const sf::Image& image, std::vector<Object*>& 
 
     sf::Vector2f playerPosition{};
 
-    for (size_t x = 0; x < grid.size(); x++)
+    for (int x = 0; x < grid.size(); x++)
     {
-        for (size_t y = 0; y < grid[x].size(); y++)
+        for (int y = 0; y < grid[x].size(); y++)
         {
             sf::Color color = image.getPixel(x, y);
             Object* object = nullptr;
-            if (color == sf::Color::Red)
-                playerPosition = getCenterOfCell(x, y);
+            if (color == sf::Color::Red) playerPosition = getCenterOfCell(x, y);
             if (color == sf::Color::Black) grid[x][y] = &Resources::textures["block.png"];
             else if (color == sf::Color::Blue) grid[x][y] = &Resources::textures["block2.png"];
             else if(color == sf::Color::Yellow) object = new Heart();

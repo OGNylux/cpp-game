@@ -32,7 +32,8 @@ void restart()
     player.init();
 
 
-    for (auto object: objects) {
+    for (auto object: objects)
+    {
         object -> init();
     }
 }
@@ -74,7 +75,8 @@ void update(float deltaTime)
     Physics::update(deltaTime);
     player.update(deltaTime);
     camera.position = player.position;
-    for (auto object: objects) {
+    for (auto object: objects)
+    {
         object -> update(deltaTime);
     }
 }
@@ -88,7 +90,8 @@ void render(Renderer& renderer)
     map.draw(renderer);
     player.draw(renderer);
 
-    for (auto object: objects) {
+    for (auto object: objects)
+    {
         object -> render(renderer);
     }
 

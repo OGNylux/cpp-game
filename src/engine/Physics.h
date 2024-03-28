@@ -16,7 +16,7 @@ class Physics
 public:
     static void init();
     static void update(float deltaTime);
-    static void debugDraw(Renderer& renderer);
+    static void debugDraw(const Renderer& renderer);
     static std::vector<b2Body*> bodiesToDestroy;
     static b2World* world;
     static Debug* debug;

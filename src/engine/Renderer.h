@@ -18,7 +18,6 @@ public:
     sf::RenderTarget& target;
 private:
     sf::Sprite sprite{};
-    sf::Sprite sprite2{};
 };
 
 

@@ -18,7 +18,7 @@ public:
     void update(float deltaTime) override;
     void render(Renderer &renderer) override;
 private:
-    b2Body* body;
+    b2Body* body{};
     Animation animation;
 };
 

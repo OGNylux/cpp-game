@@ -6,11 +6,11 @@
 
 #include <utility>
 
-Animation::Animation(float length, std::vector<AnimationFrame> frames, const bool holdOnLastFrame) : length(length), holdOnLastFrame(holdOnLastFrame), frames(std::move(frames))
+Animation::Animation(const float length, std::vector<AnimationFrame> frames, const bool holdOnLastFrame) : length(length), holdOnLastFrame(holdOnLastFrame), frames(std::move(frames))
 {
 }
 
-void Animation::update(float deltaTime)
+void Animation::update(const float deltaTime)
 {
     if (!holdOnLastFrame || time <= length) {
         time += deltaTime;

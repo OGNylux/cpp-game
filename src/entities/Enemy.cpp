@@ -41,7 +41,7 @@ void Enemy::init()
 
 }
 
-void Enemy::update(float deltaTime)
+void Enemy::update(const float deltaTime)
 {
     if(isDead)
     {

@@ -33,7 +33,7 @@ void Heart::init()
     b2PolygonShape shape{};
     shape.SetAsBox(0.4f, 0.4f);
 
-    FixtureData* fixture_data = new FixtureData();
+    auto* fixture_data = new FixtureData();
     fixture_data->type = FixtureDataType::Object;
     fixture_data->object = this;
 

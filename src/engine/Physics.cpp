@@ -24,13 +24,14 @@ void Physics::update(const float deltaTime)
     world->SetContactListener(new Collision());
 
     // this sucks but it works
-    for (b2Body* body : bodiesToDestroy) {
+    for (b2Body* body : bodiesToDestroy)
+    {
         world->DestroyBody(body);
     }
     bodiesToDestroy.clear();
 }
 
-void Physics::debugDraw(Renderer& renderer)
+void Physics::debugDraw(const Renderer& renderer)
 {
     if (!debug)
     {

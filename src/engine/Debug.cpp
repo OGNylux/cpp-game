@@ -16,7 +16,7 @@ void Debug::DrawPolygon(const b2Vec2 *vertices, int32 vertexCount, const b2Color
     }
     polygon.setFillColor(sf::Color::Transparent);
     polygon.setOutlineThickness(0.02f);
-    polygon.setOutlineColor(sf::Color(color.r * 255, color.g * 255, color.b * 255, color.a * 255));
+    polygon.setOutlineColor(sf::Color(color.r * 255.0f, color.g * 255, color.b * 255, color.a * 255));
     target.draw(polygon);
 }
 
@@ -68,9 +68,9 @@ void Debug::DrawSegment(const b2Vec2 &p1, const b2Vec2 &p2, const b2Color &color
 
 void Debug::DrawTransform(const b2Transform &xf)
 {
-    b2Vec2 p = xf.p;
-    b2Vec2 px = p + (0.5f * xf.q.GetXAxis());
-    b2Vec2 py = p + (0.5f * xf.q.GetYAxis());
+    const b2Vec2 p = xf.p;
+    const b2Vec2 px = p + (0.5f * xf.q.GetXAxis());
+    const b2Vec2 py = p + (0.5f * xf.q.GetYAxis());
 
     DrawSegment(p, px, b2Color(1.0f, 0.0f, 0.0f));
     DrawSegment(p, py, b2Color(1.0f, 0.0f, 0.0f));

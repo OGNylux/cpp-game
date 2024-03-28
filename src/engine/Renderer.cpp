@@ -12,12 +12,12 @@ Renderer::Renderer(sf::RenderTarget &target) : target(target)
 }
 
 
-void Renderer::draw(const sf::Texture& texture, const sf::Vector2f& position, const sf::Vector2f& size, float angle)
+void Renderer::draw(const sf::Texture& texture, const sf::Vector2f& position, const sf::Vector2f& size, const float angle)
 {
     sprite.setTexture(texture, true);
     sprite.setOrigin(static_cast<sf::Vector2f>(texture.getSize()) / 2.0f);
     sprite.setRotation(angle);
     sprite.setPosition(position);
-    sprite.setScale(sf::Vector2f(size.x / texture.getSize().x, size.y / texture.getSize().y));
+    sprite.setScale(sf::Vector2f(size.x / static_cast<float>(texture.getSize().x), size.y / static_cast<float>(texture.getSize().y)));
     target.draw(sprite);
 }
