@@ -56,7 +56,7 @@ void Player::begin()
     bodyDef.type = b2_dynamicBody;
     bodyDef.position.Set(position.x, position.y);
     bodyDef.fixedRotation = true;
-    body = Physics::world.CreateBody(&bodyDef);
+    body = Physics::world->CreateBody(&bodyDef);
 
     b2FixtureDef fixtureDef{};
     fixtureDef.userData.pointer = reinterpret_cast<uintptr_t>(&fixtureData);
@@ -112,7 +112,8 @@ void Player::update(float deltaTime)
     angle = body->GetAngle() * (180.0f / static_cast<float>(std::numbers::pi));
 }
 
-void Player::draw(Renderer& renderer) {
+void Player::draw(Renderer& renderer)
+{
     renderer.draw(textureToDraw, {position.x, position.y-0.19f}, sf::Vector2f(rotation ? -(50.0f/16.0f) : (50.0f/16.0f), (37.0f/16.0f)), angle);
 }
 
@@ -133,10 +134,17 @@ void Player::OnBeginContact(b2Fixture *self, b2Fixture* other)
         ++health;
         std::cout << "Health: " << health << std::endl;
     }
-    else if(feet == self && data->type == FixtureDataType::Object && data->object->tag == "enemy")
+    else if(data->type == FixtureDataType::Object && data->object->tag == "enemy")
     {
         auto* enemy = dynamic_cast<Enemy*>(data->object);
-        if(enemy) enemy->die();
+        if(!enemy) return;
+
+        if(feet == self) enemy->die();
+        else if(!enemy->getDeadState())
+        {
+            health--;
+            if(health == 0) isDead = true;
+        }
     }
 }
 
@@ -149,6 +157,7 @@ void Player::OnEndContact(b2Fixture *self, b2Fixture* other)
     if(feet == self && data->type == FixtureDataType::MapTile && onGround > 0) onGround--;
 }
 
-size_t Player::getHealth() const {
+size_t Player::getHealth() const
+{
     return health;
 }

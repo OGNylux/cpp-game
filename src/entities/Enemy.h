@@ -18,6 +18,7 @@ public:
     void begin() override;
     void update(float deltaTime) override;
     void render(Renderer& renderer) override;
+    bool getDeadState() const;
 
     void die();
 private:

@@ -5,23 +5,27 @@
 #include "Physics.h"
 #include "Collision.h"
 
-b2World Physics::world{b2Vec2(0.0f, 9.2f)};
+b2World* Physics::world{};
 Debug* Physics::debug = nullptr;
 std::vector<b2Body*> Physics::bodiesToDestroy;
 
 void Physics::init()
 {
+    if(world) delete world;
+
+    world = new b2World(b2Vec2(0.0f, 9.8f));
+    world -> SetDebugDraw(debug);
 
 }
 
 void Physics::update(const float deltaTime)
 {
-    world.Step(deltaTime, 8, 4);
-    world.SetContactListener(new Collision());
+    world->Step(deltaTime, 8, 4);
+    world->SetContactListener(new Collision());
 
     // this sucks but it works
     for (b2Body* body : bodiesToDestroy) {
-        world.DestroyBody(body);
+        world->DestroyBody(body);
     }
     bodiesToDestroy.clear();
 }
@@ -32,8 +36,8 @@ void Physics::debugDraw(Renderer& renderer)
     {
         debug = new Debug(renderer.target);
         debug->SetFlags(b2Draw::e_aabbBit);
-        world.SetDebugDraw(debug);
+        world->SetDebugDraw(debug);
     }
 
-    world.DebugDraw();
+    world->DebugDraw();
 }

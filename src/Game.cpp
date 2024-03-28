@@ -20,6 +20,24 @@ bool paused{};
 
 sf::RectangleShape background(sf::Vector2f(1.0f, 1.0f));
 
+void restart()
+{
+    Physics::init();
+    sf::Image image;
+    image.loadFromFile("assets/level.png");
+    player = Player();
+    player.position = map.createFromImage(image, objects);
+
+    player.isDead = false;
+    paused = false;
+    player.begin();
+
+
+    for (auto object: objects) {
+        object -> begin();
+    }
+}
+
 void begin(const sf::Window& window)
 {
     for (auto& file : std::filesystem::directory_iterator("assets"))
@@ -51,20 +69,22 @@ void begin(const sf::Window& window)
     background.setOrigin(0.5f, 0.5f);
 
     Physics::init();
-
-    sf::Image image;
-    image.loadFromFile("assets/level.png");
-    player.position = map.createFromImage(image, objects);
-    player.begin();
-
-
-    for (auto object: objects) {
-        object -> begin();
-    }
+    restart();
 }
 
 void update(float deltaTime)
 {
+    if(player.isDead)
+    {
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Enter))
+        {
+            restart();
+        }
+        else
+        {
+            paused = true;
+        }
+    }
     if(paused) return;
 
     Physics::update(deltaTime);

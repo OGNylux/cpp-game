@@ -25,7 +25,7 @@ void Enemy::begin()
     bodyDef.type = b2_dynamicBody;
     bodyDef.position.Set(position.x, position.y);
     bodyDef.fixedRotation = true;
-    body = Physics::world.CreateBody(&bodyDef);
+    body = Physics::world->CreateBody(&bodyDef);
 
     fixtureData.type = FixtureDataType::Object;
     fixtureData.object = this;
@@ -71,6 +71,11 @@ void Enemy::update(float deltaTime)
 void Enemy::render(Renderer& renderer)
 {
     renderer.draw(animation.getTexture(), !isDead ? position : sf::Vector2f(position.x, position.y + 0.45f), sf::Vector2f(1.0f, isDead ? 0.5f : 1.0f), angle);
+}
+
+bool Enemy::getDeadState() const
+{
+    return isDead;
 }
 
 void Enemy::die()

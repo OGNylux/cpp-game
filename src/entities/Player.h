@@ -24,6 +24,7 @@ public:
 
     sf::Vector2f position{};
     float angle{};
+    bool isDead{};
 
 private:
     FixtureData fixtureData{};

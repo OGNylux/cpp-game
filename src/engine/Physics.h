@@ -18,7 +18,7 @@ public:
     static void update(float deltaTime);
     static void debugDraw(Renderer& renderer);
     static std::vector<b2Body*> bodiesToDestroy;
-    static b2World world;
+    static b2World* world;
     static Debug* debug;
 };
 

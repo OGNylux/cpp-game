@@ -29,7 +29,7 @@ void Heart::begin()
 
     b2BodyDef bodyDef{};
     bodyDef.position.Set(position.x, position.y);
-    body = Physics::world.CreateBody(&bodyDef);
+    body = Physics::world->CreateBody(&bodyDef);
     b2PolygonShape shape{};
     shape.SetAsBox(0.4f, 0.4f);
 

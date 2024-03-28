@@ -14,6 +14,7 @@
 extern Camera camera;
 extern bool paused;
 
+void restart();
 void begin(const sf::Window& window);
 void update(float deltaTime);
 void render(Renderer& renderer);
