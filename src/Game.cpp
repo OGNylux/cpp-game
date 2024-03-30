@@ -119,7 +119,7 @@ void renderUI(Renderer& renderer, sf::RenderWindow& window)
 
 void deleteObject(Object* object)
 {
-    const auto& iterator = std::ranges::find(objects, object);
+    const auto& iterator = std::find(objects.begin(), objects.end(), object);
     if (iterator != objects.end())
     {
         delete *iterator;
