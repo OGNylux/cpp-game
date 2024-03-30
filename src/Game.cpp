@@ -14,7 +14,7 @@
 
 Map map(1.0f);
 Camera camera(20.0f);
-Player player;
+Player player = Player();
 std::vector<Object*> objects{};
 sf::Image image;
 bool paused = false;

@@ -13,10 +13,11 @@
 class Player final : public Collision
 {
 public:
+    void initAnimations();
+    void initCollisionBoxes();
     void init();
     void update(float deltaTime);
     void draw(Renderer& renderer);
-
     void OnBeginContact(b2Fixture *self, b2Fixture *other) override;
     void OnEndContact(b2Fixture *self, b2Fixture *other) override;
     int getHealth() const;
@@ -37,6 +38,8 @@ private:
     sf::Vector2f position;
     float angle{};
     bool isDead = false;
+    bool isHit = false;
+    float invulnerbilityTimer = 0.0f;
 
     b2Body* body{};
     b2Fixture* feet{};

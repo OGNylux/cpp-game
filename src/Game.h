@@ -9,9 +9,11 @@
 #include "engine/Camera.h"
 #include "engine/Renderer.h"
 #include "entities/Object.h"
+#include "entities/Player.h"
 
 extern Camera camera;
 extern bool paused;
+extern Player player;
 
 void restart();
 void init(const sf::Window& window);

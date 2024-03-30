@@ -4,6 +4,9 @@
 
 #include "Enemy.h"
 
+#include <iostream>
+
+#include "Player.h"
 #include "../Game.h"
 #include "../Resources.h"
 #include "../engine/FixtureData.h"
@@ -43,6 +46,7 @@ void Enemy::init()
 
 void Enemy::update(const float deltaTime)
 {
+    checkPlayerDistance();
     if(isDead)
     {
         destroyTimer += deltaTime;
@@ -54,9 +58,20 @@ void Enemy::update(const float deltaTime)
 
     b2Vec2 velocity = body->GetLinearVelocity();
 
-    if(velocity.x == 0.0f)
+    if(playerInRange)
     {
-        movementSpeed = -movementSpeed;
+        if(player.getPosition().x < position.x) movementSpeed = -5.0f;
+        else movementSpeed = 5.0f;
+    }
+    else
+    {
+        randomMoveTimer += deltaTime;
+        if(randomMoveTimer >= 1.5f)
+        {
+            randomMoveTimer = 0.0f;
+            if (rand() % 2 == 0) movementSpeed = -rand() % 5;
+            else movementSpeed = rand() % 5;
+        }
     }
 
     velocity.x = movementSpeed;
@@ -70,6 +85,12 @@ void Enemy::update(const float deltaTime)
 void Enemy::render(Renderer& renderer)
 {
     renderer.draw(animation.getTexture(), !isDead ? position : sf::Vector2f(position.x, position.y + 0.45f), sf::Vector2f(1.0f, isDead ? 0.5f : 1.0f), angle);
+}
+
+void Enemy::checkPlayerDistance()
+{
+    if(abs(player.getPosition().x - position.x) < 10.0f) playerInRange = true;
+    else playerInRange = false;
 }
 
 bool Enemy::getDeadState() const

@@ -18,6 +18,7 @@ public:
     void init() override;
     void update(float deltaTime) override;
     void render(Renderer& renderer) override;
+    void checkPlayerDistance();
     bool getDeadState() const;
 
     void die();
@@ -25,7 +26,9 @@ private:
     float movementSpeed = 5.0f;
 
     float destroyTimer = 0.0f;
+    float randomMoveTimer = 0.0f;
     bool isDead = false;
+    bool playerInRange = false;
 
     Animation animation;
     FixtureData fixtureData{};
