@@ -16,8 +16,7 @@ extern bool paused;
 extern Player player;
 
 void restart();
-void init(const sf::Window& window);
-void initTextures(const std::string& path);
+void init();
 void update(float deltaTime);
 void render(Renderer& renderer);
 void renderUI(Renderer& renderer, const sf::Window& window);

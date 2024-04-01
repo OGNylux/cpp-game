@@ -54,3 +54,11 @@ void Heart::render(Renderer &renderer)
 {
     renderer.draw(animation.getTexture(), position, sf::Vector2f(1.0f, 1.0f));
 }
+
+bool Heart::getCollected() const {
+    return isCollected;
+}
+
+void Heart::setCollected(bool state) {
+    isCollected = state;
+}

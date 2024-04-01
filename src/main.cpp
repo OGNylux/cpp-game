@@ -12,7 +12,7 @@ int main()
     Renderer renderer(window);
 
     window.setFramerateLimit(60);
-    init(window);
+    init();
     while (window.isOpen())
     {
         float deltaTime = deltaClock.restart().asSeconds();
@@ -28,7 +28,7 @@ int main()
         render(renderer);
 
         window.setView(camera.getUIView());
-        renderUI(renderer, window);
+        renderUI(renderer);
 
         window.display();
     }

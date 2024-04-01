@@ -4,8 +4,6 @@
 
 #include "Player.h"
 
-#include <iostream>
-
 #include "../engine/Physics.h"
 #include "../Resources.h"
 #include "box2d/b2_fixture.h"
@@ -84,6 +82,8 @@ void Player::OnBeginContact(b2Fixture *self, b2Fixture* other)
     }
     else if(data->type == FixtureDataType::Object && data->object->tag == "heart")
     {
+        if(data->object->getCollected()) return;
+        data->object->setCollected(true);
         deleteObject(data->object);
         health++;
     }
@@ -190,10 +190,9 @@ sf::Vector2f Player::getPosition() const
     return position;
 }
 
-sf::Vector2f Player::setPosition(sf::Vector2f newPosition)
+void Player::setPosition(sf::Vector2f newPosition)
 {
     position = newPosition;
-    return position;
 }
 
 float Player::getAngle() const
@@ -206,10 +205,9 @@ bool Player::getDeadState() const
     return isDead;
 }
 
-bool Player::setDeadState(const bool state)
+void Player::setDeadState(const bool state)
 {
     isDead = state;
-    return isDead;
 }
 
 

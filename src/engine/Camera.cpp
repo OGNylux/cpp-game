@@ -13,15 +13,14 @@ float Camera::getZoomLevel() const
     return zoomLevel;
 }
 
-sf::Vector2f Camera::getPostion() const
+sf::Vector2f Camera::getPosition() const
 {
     return position;
 }
 
-sf::Vector2f Camera::setPosition(const sf::Vector2f newPosition)
+void Camera::setPosition(const sf::Vector2f newPosition)
 {
     position = newPosition;
-    return position;
 }
 
 sf::Vector2f Camera::getViewSize() const

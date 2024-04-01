@@ -15,6 +15,8 @@ public:
     virtual void init() {}
     virtual void update(float deltaTime) {}
     virtual void render(Renderer& renderer) {}
+    virtual bool getCollected() const {};
+    virtual void setCollected(bool state) {};
 
     std::string tag;
 

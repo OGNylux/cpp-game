@@ -4,12 +4,9 @@
 
 #include "Enemy.h"
 
-#include <iostream>
-
 #include "Player.h"
 #include "../Game.h"
 #include "../Resources.h"
-#include "../engine/FixtureData.h"
 #include "../engine/Physics.h"
 #include "box2d/b2_circle_shape.h"
 #include "Box2D/b2_fixture.h"

@@ -7,7 +7,6 @@
 #include "Resources.h"
 #include "Map.h"
 #include "entities/Player.h"
-#include <filesystem>
 #include <iostream>
 
 #include "engine/Physics.h"
@@ -34,15 +33,15 @@ void restart()
 
     for (auto object: objects)
     {
-        object -> init();
+        object->init();
     }
 }
 
-void init(const sf::Window& window)
+void init()
 {
-    initTextures("assets");
-    initTextures("assets/animations/player");
-    initTextures("assets/animations/heart");
+    Resources::initTexture("assets");
+    Resources::initTexture("assets/animations/player");
+    Resources::initTexture("assets/animations/heart");
     image.loadFromFile("assets/level.png");
 
     background.setFillColor(sf::Color(0, 0, 0, 150));
@@ -50,17 +49,6 @@ void init(const sf::Window& window)
 
     Physics::init();
     restart();
-}
-
-void initTextures(const std::string& path)
-{
-    for (auto& file : std::filesystem::directory_iterator(path))
-    {
-        if (file.is_regular_file() && (file.path().extension() == ".png" || file.path().extension() == ".jpg"))
-        {
-            Resources::textures[file.path().filename().string()].loadFromFile(file.path().string());
-        }
-    }
 }
 
 void update(float deltaTime)
@@ -77,7 +65,7 @@ void update(float deltaTime)
     camera.setPosition(player.getPosition());
     for (auto object: objects)
     {
-        object -> update(deltaTime);
+        object->update(deltaTime);
     }
 }
 
@@ -92,13 +80,13 @@ void render(Renderer& renderer)
 
     for (auto object: objects)
     {
-        object -> render(renderer);
+        object->render(renderer);
     }
 
     Physics::debugDraw(renderer);
 }
 
-void renderUI(Renderer& renderer, sf::RenderWindow& window)
+void renderUI(Renderer &renderer)
 {
     sf::Texture& heartTexture = Resources::textures["heart_idle_00.png"];
     sf::Vector2u textureSize = heartTexture.getSize();

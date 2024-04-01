@@ -22,10 +22,10 @@ public:
     void OnEndContact(b2Fixture *self, b2Fixture *other) override;
     int getHealth() const;
     sf::Vector2f getPosition() const;
-    sf::Vector2f setPosition(sf::Vector2f newPosition);
+    void setPosition(sf::Vector2f newPosition);
     float getAngle() const;
     bool getDeadState() const;
-    bool setDeadState(bool state);
+    void setDeadState(bool state);
 private:
     FixtureData fixtureData{};
 
