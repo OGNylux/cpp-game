@@ -2,6 +2,7 @@
 // Created by nylux on 08.03.2024.
 //
 
+#include <iostream>
 #include "Camera.h"
 
 Camera::Camera(const float zoomLevel) : zoomLevel(zoomLevel)
@@ -37,9 +38,13 @@ sf::View Camera::getView(const sf::Vector2u windowSize)
     return {position, viewSize};
 }
 
-sf::View Camera::getUIView()
+sf::View Camera::getUIView(const sf::Vector2u windowSize)
 {
-    const float aspect = viewSize.x / viewSize.y;
+    float aspect = static_cast<float>(windowSize.x) / static_cast<float>(windowSize.y);
+    if(aspect < 1.0f) viewSize = sf::Vector2f(zoomLevel, zoomLevel / aspect);
+    else viewSize = sf::Vector2f(zoomLevel * aspect, zoomLevel);
+
+    aspect = viewSize.x / viewSize.y;
     viewSize = sf::Vector2f(100.0f, 100.0f / aspect);
-    return {sf::Vector2f(), viewSize};
+    return {sf::Vector2f(viewSize.x / 2.0f, viewSize.y / 2.0f), viewSize};
 }

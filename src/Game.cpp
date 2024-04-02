@@ -10,17 +10,23 @@
 #include <iostream>
 
 #include "engine/Physics.h"
+#include "scenes/MainMenu.h"
+#include "scenes/PauseMenu.h"
 
+Player Game::player = Player();
+bool Game::paused = false;
 Map map(1.0f);
-Camera camera(20.0f);
-Player player = Player();
 std::vector<Object*> objects{};
 sf::Image image;
-bool paused = false;
+PauseMenu pauseMenu = PauseMenu();
 
-sf::RectangleShape background(sf::Vector2f(1.0f, 1.0f));
+Game &Game::getInstance()
+{
+    static Game instance;
+    return instance;
+}
 
-void restart()
+void Game::restart()
 {
     Physics::init();
     player = Player();
@@ -30,28 +36,25 @@ void restart()
     paused = false;
     player.init();
 
-
     for (auto object: objects)
     {
         object->init();
     }
 }
 
-void init()
+void Game::init()
 {
     Resources::initTexture("assets");
     Resources::initTexture("assets/animations/player");
+    Resources::initTexture("assets/animations/enemy");
     Resources::initTexture("assets/animations/heart");
     image.loadFromFile("assets/level.png");
-
-    background.setFillColor(sf::Color(0, 0, 0, 150));
-    background.setOrigin(0.5f, 0.5f);
 
     Physics::init();
     restart();
 }
 
-void update(float deltaTime)
+void Game::update(float deltaTime)
 {
     if(player.getDeadState())
     {
@@ -69,7 +72,7 @@ void update(float deltaTime)
     }
 }
 
-void render(Renderer& renderer)
+void Game::render(Renderer& renderer)
 {
     sf::Texture test = Resources::textures["background2.png"];
     renderer.draw(test, {30,10}, {100,42});
@@ -86,11 +89,11 @@ void render(Renderer& renderer)
     Physics::debugDraw(renderer);
 }
 
-void renderUI(Renderer &renderer)
+void Game::renderUI(Renderer &renderer, sf::RenderWindow &window)
 {
     sf::Texture& heartTexture = Resources::textures["heart_idle_00.png"];
     sf::Vector2u textureSize = heartTexture.getSize();
-    sf::Vector2f position = -camera.getViewSize() / 2.0f + sf::Vector2f{2.0f, 2.0f};
+    sf::Vector2f position = {2.0f, 2.0f};
 
     for (int i = 0; i < player.getHealth(); i++)
     {
@@ -100,12 +103,12 @@ void renderUI(Renderer &renderer)
 
     if(paused)
     {
-        background.setScale(camera.getViewSize());
-        renderer.target.draw(background);
+        pauseMenu.handleInput(window);
+        pauseMenu.draw(renderer);
     }
 }
 
-void deleteObject(Object* object)
+void Game::deleteObject(Object *object)
 {
     const auto& iterator = std::find(objects.begin(), objects.end(), object);
     if (iterator != objects.end())
@@ -114,4 +117,34 @@ void deleteObject(Object* object)
         std::cout << "Object deleted" << std::endl;
         objects.erase(iterator);
     }
+}
+
+Camera Game::getCamera() const
+{
+    return camera;
+}
+
+void Game::setCamera(const Camera &camera)
+{
+    Game::camera = camera;
+}
+
+bool Game::isPaused() const
+{
+    return paused;
+}
+
+void Game::setPaused(bool state)
+{
+    paused = state;
+}
+
+Player Game::getPlayer()
+{
+    return player;
+}
+
+void Game::setPlayer(const Player &player)
+{
+    Game::player = player;
 }

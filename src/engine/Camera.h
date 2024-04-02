@@ -16,7 +16,7 @@ public:
     void setPosition(sf::Vector2f newPosition);
     sf::Vector2f getViewSize() const;
     sf::View getView(sf::Vector2u windowSize);
-    sf::View getUIView();
+    sf::View getUIView(sf::Vector2u windowSize);
 private:
     float zoomLevel;
     sf::Vector2f position;

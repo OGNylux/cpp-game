@@ -11,16 +11,29 @@
 #include "entities/Object.h"
 #include "entities/Player.h"
 
-extern Camera camera;
-extern bool paused;
-extern Player player;
+class Game
+{
+public:
+    static Game & getInstance();
+    void restart();
+    void init();
+    void update(float deltaTime);
+    void render(Renderer& renderer);
+    void renderUI(Renderer& renderer, sf::RenderWindow& window);
+    static void deleteObject(Object* object);
 
-void restart();
-void init();
-void update(float deltaTime);
-void render(Renderer& renderer);
-void renderUI(Renderer& renderer, const sf::Window& window);
+    Camera getCamera() const;
+    void setCamera(const Camera& camera);
+    bool isPaused() const;
+    static void setPaused(bool paused);
+    static Player getPlayer();
+    void setPlayer(const Player& player);
 
-void deleteObject(Object* object);
+private:
+    Camera camera = Camera(20.0f);
+    static bool paused;
+    static Player player;
+};
+
 
 #endif //CMAKESFMLPROJECT_GAME_H

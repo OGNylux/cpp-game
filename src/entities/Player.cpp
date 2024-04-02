@@ -84,7 +84,7 @@ void Player::OnBeginContact(b2Fixture *self, b2Fixture* other)
     {
         if(data->object->getCollected()) return;
         data->object->setCollected(true);
-        deleteObject(data->object);
+        Game::deleteObject(data->object);
         health++;
     }
     else if(data->type == FixtureDataType::Object && data->object->tag == "enemy")

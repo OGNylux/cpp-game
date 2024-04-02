@@ -30,7 +30,9 @@ private:
     bool isDead = false;
     bool playerInRange = false;
 
-    Animation animation;
+    Animation moveAnimation;
+    Animation deathAnimation;
+    sf::Texture textureToDraw;
     FixtureData fixtureData{};
     b2Body* body{};
 };

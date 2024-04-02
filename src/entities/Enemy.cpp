@@ -2,6 +2,7 @@
 // Created by a3445 on 27.03.2024.
 //
 
+#include <iostream>
 #include "Enemy.h"
 
 #include "Player.h"
@@ -14,11 +15,21 @@
 void Enemy::init()
 {
     tag = "enemy";
-    animation = Animation(0.6f,
+    moveAnimation = Animation(0.6f,
 {
-            AnimationFrame(0.3f, Resources::textures["block2.png"]),
-            AnimationFrame(0.0f, Resources::textures["block.png"])
+            AnimationFrame(0.45f, Resources::textures["slime_move_00.png"]),
+            AnimationFrame(0.30f, Resources::textures["slime_move_01.png"]),
+            AnimationFrame(0.15f, Resources::textures["slime_move_02.png"]),
+            AnimationFrame(0.0f, Resources::textures["slime_move_03.png"])
         });
+
+    deathAnimation = Animation(0.6f,
+                               {
+            AnimationFrame(0.45f, Resources::textures["slime_death_00.png"]),
+            AnimationFrame(0.30f, Resources::textures["slime_death_01.png"]),
+            AnimationFrame(0.15f, Resources::textures["slime_death_02.png"]),
+            AnimationFrame(0.0f, Resources::textures["slime_death_03.png"])
+                               });
 
     b2BodyDef bodyDef;
     bodyDef.type = b2_dynamicBody;
@@ -44,20 +55,25 @@ void Enemy::init()
 void Enemy::update(const float deltaTime)
 {
     checkPlayerDistance();
+
+    moveAnimation.update(deltaTime);
+    deathAnimation.update(deltaTime);
+
+    textureToDraw = moveAnimation.getTexture();
+
     if(isDead)
     {
         destroyTimer += deltaTime;
-        if(destroyTimer >= 2.0f) deleteObject(this);
+        textureToDraw = deathAnimation.getTexture();
+        if(destroyTimer >= 0.6f) Game::deleteObject(this);
         return;
     }
-
-    animation.update(deltaTime);
 
     b2Vec2 velocity = body->GetLinearVelocity();
 
     if(playerInRange)
     {
-        if(player.getPosition().x < position.x) movementSpeed = -5.0f;
+        if(Game::getPlayer().getPosition().x < position.x) movementSpeed = -5.0f;
         else movementSpeed = 5.0f;
     }
     else
@@ -81,12 +97,13 @@ void Enemy::update(const float deltaTime)
 
 void Enemy::render(Renderer& renderer)
 {
-    renderer.draw(animation.getTexture(), !isDead ? position : sf::Vector2f(position.x, position.y + 0.45f), sf::Vector2f(1.0f, isDead ? 0.5f : 1.0f), angle);
+    renderer.draw(textureToDraw, sf::Vector2f(position.x, position.y - 0.4f), sf::Vector2f(2.0f, 2.0f), angle);
 }
 
 void Enemy::checkPlayerDistance()
 {
-    if(abs(player.getPosition().x - position.x) < 10.0f) playerInRange = true;
+    float playerPosition = Game::getPlayer().getPosition().x;
+    if(abs(playerPosition - position.x) < 10.0f) playerInRange = true;
     else playerInRange = false;
 }
 
