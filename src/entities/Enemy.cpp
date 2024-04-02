@@ -11,6 +11,7 @@
 #include "../engine/Physics.h"
 #include "box2d/b2_circle_shape.h"
 #include "Box2D/b2_fixture.h"
+#include <numbers>
 
 void Enemy::init()
 {

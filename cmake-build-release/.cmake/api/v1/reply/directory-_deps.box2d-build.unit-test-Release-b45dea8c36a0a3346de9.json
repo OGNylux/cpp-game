@@ -1,0 +1,14 @@
+{
+	"backtraceGraph" : 
+	{
+		"commands" : [],
+		"files" : [],
+		"nodes" : []
+	},
+	"installers" : [],
+	"paths" : 
+	{
+		"build" : "_deps/box2d-build/unit-test",
+		"source" : "cmake-build-release/_deps/box2d-src/unit-test"
+	}
+}

@@ -1,0 +1,21 @@
+# ninja log v5
+1	118	7338039591073641	box2d-populate-prefix/src/box2d-populate-stamp/box2d-populate-mkdir	f68e6dd301160646
+1	118	7338039591073641	D:/Uni/4. Semester/cpp-game/cmake-build-release/_deps/box2d-subbuild/box2d-populate-prefix/src/box2d-populate-stamp/box2d-populate-mkdir	f68e6dd301160646
+119	11004	7338039699943363	box2d-populate-prefix/src/box2d-populate-stamp/box2d-populate-download	747a748a247059a
+119	11004	7338039699943363	D:/Uni/4. Semester/cpp-game/cmake-build-release/_deps/box2d-subbuild/box2d-populate-prefix/src/box2d-populate-stamp/box2d-populate-download	747a748a247059a
+11004	11250	0	box2d-populate-prefix/src/box2d-populate-stamp/box2d-populate-update	f4e7951e70471e87
+11004	11250	0	D:/Uni/4. Semester/cpp-game/cmake-build-release/_deps/box2d-subbuild/box2d-populate-prefix/src/box2d-populate-stamp/box2d-populate-update	f4e7951e70471e87
+11252	11352	7338039703426992	box2d-populate-prefix/src/box2d-populate-stamp/box2d-populate-patch	f38efa1d0b7fceba
+11252	11352	7338039703426992	D:/Uni/4. Semester/cpp-game/cmake-build-release/_deps/box2d-subbuild/box2d-populate-prefix/src/box2d-populate-stamp/box2d-populate-patch	f38efa1d0b7fceba
+11352	11452	7338039704427009	box2d-populate-prefix/src/box2d-populate-stamp/box2d-populate-configure	9ec57a4e3bc81d15
+11352	11452	7338039704427009	D:/Uni/4. Semester/cpp-game/cmake-build-release/_deps/box2d-subbuild/box2d-populate-prefix/src/box2d-populate-stamp/box2d-populate-configure	9ec57a4e3bc81d15
+11452	11554	7338039705442549	box2d-populate-prefix/src/box2d-populate-stamp/box2d-populate-build	dd42685eec01b62
+11452	11554	7338039705442549	D:/Uni/4. Semester/cpp-game/cmake-build-release/_deps/box2d-subbuild/box2d-populate-prefix/src/box2d-populate-stamp/box2d-populate-build	dd42685eec01b62
+11554	11653	7338039706429410	box2d-populate-prefix/src/box2d-populate-stamp/box2d-populate-install	358e9e64d63c80e6
+11554	11653	7338039706429410	D:/Uni/4. Semester/cpp-game/cmake-build-release/_deps/box2d-subbuild/box2d-populate-prefix/src/box2d-populate-stamp/box2d-populate-install	358e9e64d63c80e6
+11653	11753	7338039707429425	box2d-populate-prefix/src/box2d-populate-stamp/box2d-populate-test	1298728b069e5f84
+11653	11753	7338039707429425	D:/Uni/4. Semester/cpp-game/cmake-build-release/_deps/box2d-subbuild/box2d-populate-prefix/src/box2d-populate-stamp/box2d-populate-test	1298728b069e5f84
+11753	11908	7338039708968474	CMakeFiles/box2d-populate-complete	72edff1a437ce591
+11753	11908	7338039708968474	box2d-populate-prefix/src/box2d-populate-stamp/box2d-populate-done	72edff1a437ce591
+11753	11908	7338039708968474	D:/Uni/4. Semester/cpp-game/cmake-build-release/_deps/box2d-subbuild/CMakeFiles/box2d-populate-complete	72edff1a437ce591
+11753	11908	7338039708968474	D:/Uni/4. Semester/cpp-game/cmake-build-release/_deps/box2d-subbuild/box2d-populate-prefix/src/box2d-populate-stamp/box2d-populate-done	72edff1a437ce591
