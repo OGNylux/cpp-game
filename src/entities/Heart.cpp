@@ -9,8 +9,8 @@
 #include "../Resources.h"
 #include "../engine/FixtureData.h"
 #include "../engine/Physics.h"
-#include "Box2D/b2_fixture.h"
-#include "Box2D/b2_polygon_shape.h"
+#include "box2d/b2_fixture.h"
+#include "box2d/b2_polygon_shape.h"
 
 Heart::~Heart()
 {
