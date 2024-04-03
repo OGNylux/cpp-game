@@ -49,7 +49,12 @@ target_link_libraries(platformer PRIVATE sfml-graphics)
 target_link_libraries(platformer PRIVATE box2d)
 target_compile_features(platformer PRIVATE cxx_std_20)
 
-include_directories(${BOX2D_SOURCE_DIR}/include/box2d)
+if(NOT box2d_POPULATED)
+    FetchContent_Populate(BOX2D)
+    add_subdirectory(${box2d_SOURCE_DIR} ${box2d_BINARY_DIR})
+endif()
+
+include_directories(${box2d_SOURCE_DIR}/include)
 
 if(WIN32)
     add_custom_command(
