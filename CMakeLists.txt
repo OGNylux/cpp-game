@@ -59,12 +59,4 @@ if(WIN32)
             VERBATIM)
 endif()
 
-if(UNIX)
-    add_custom_command(
-            TARGET platformer
-            COMMENT "Copy OpenAL DLL"
-            PRE_BUILD COMMAND find / -name "Box2D" 2>/dev/null
-            VERBATIM)
-endif()
-
 install(TARGETS platformer)
