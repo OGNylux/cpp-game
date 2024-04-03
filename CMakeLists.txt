@@ -13,6 +13,10 @@ FetchContent_Declare(BOX2D
         GIT_TAG v2.4.1)
 FetchContent_MakeAvailable(SFML)
 FetchContent_MakeAvailable(BOX2D)
+g
+if(UNIX AND NOT APPLE)
+    find_package(Box2D REQUIRED)
+endif()
 
 add_executable(platformer src/main.cpp
         src/engine/Camera.cpp
