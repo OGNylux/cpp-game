@@ -12,7 +12,7 @@ FetchContent_Declare(BOX2D
         GIT_REPOSITORY https://github.com/erincatto/box2d.git
         GIT_TAG v2.4.1)
 FetchContent_MakeAvailable(SFML)
-FetchContent_MakeAvailable(BOX2D)
+FetchContent_GetProperties(BOX2D)
 
 add_executable(platformer src/main.cpp
         src/engine/Camera.cpp
@@ -53,7 +53,7 @@ if(NOT box2d_POPULATED)
     add_subdirectory(${box2d_SOURCE_DIR} ${box2d_BINARY_DIR})
 endif()
 
-include_directories(${box2d_SOURCE_DIR}/include)
+include_directories(platformer PRIVATE ${box2d_SOURCE_DIR}/include)
 
 target_link_libraries(platformer PRIVATE box2d)
 
