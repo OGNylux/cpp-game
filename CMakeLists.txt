@@ -12,10 +12,11 @@ FetchContent_Declare(BOX2D
         GIT_REPOSITORY https://github.com/erincatto/box2d.git
         GIT_TAG v2.4.1)
 FetchContent_MakeAvailable(SFML)
-FetchContent_MakeAvailable(BOX2D)
 
-if(UNIX AND NOT APPLE)
-    find_package(Box2D REQUIRED)
+FetchContent_GetProperties(BOX2D)
+if(NOT box2d_POPULATED)
+    FetchContent_Populate(BOX2D)
+    add_subdirectory(${box2d_SOURCE_DIR} ${box2d_BINARY_DIR})
 endif()
 
 add_executable(platformer src/main.cpp
@@ -58,15 +59,6 @@ if(WIN32)
             TARGET platformer
             COMMENT "Copy OpenAL DLL"
             PRE_BUILD COMMAND ${CMAKE_COMMAND} -E copy ${SFML_SOURCE_DIR}/extlibs/bin/$<IF:$<EQUAL:${CMAKE_SIZEOF_VOID_P},8>,x64,x86>/openal32.dll $<TARGET_FILE_DIR:platformer>
-            VERBATIM)
-endif()
-
-# create a custom command that copies the box2d headers if its a linux system (they are not included in the box2d target)
-if(UNIX)
-    add_custom_command(
-            TARGET platformer
-            COMMENT "Copy Box2D headers"
-            PRE_BUILD COMMAND ${CMAKE_COMMAND} -E copy_directory ${BOX2D_SOURCE_DIR}/include/box2d ${CMAKE_BINARY_DIR}/include/box2d
             VERBATIM)
 endif()
 
