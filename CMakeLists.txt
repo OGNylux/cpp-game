@@ -14,6 +14,8 @@ FetchContent_Declare(BOX2D
 FetchContent_MakeAvailable(SFML)
 FetchContent_MakeAvailable(BOX2D)
 
+set(BOX2D_BUILD_UNIT_TESTS OFF CACHE BOOL "Build the Box2D unit tests" FORCE)
+
 add_executable(platformer src/main.cpp
         src/engine/Camera.cpp
         src/engine/Camera.h
