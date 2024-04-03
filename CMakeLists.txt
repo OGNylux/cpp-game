@@ -9,8 +9,8 @@ FetchContent_Declare(SFML
         GIT_REPOSITORY https://github.com/SFML/SFML.git
         GIT_TAG 2.6.x)
 FetchContent_Declare(BOX2D
-        GIT_REPOSITORY https://github.com/erincatto/box2d.git
-        GIT_TAG v2.4.1)
+        GIT_REPOSITORY https://github.com/OGNylux/box2d.git
+        GIT_TAG v2.4.2)
 FetchContent_MakeAvailable(SFML)
 FetchContent_MakeAvailable(BOX2D)
 
