@@ -6,7 +6,7 @@
 #define HEART_H
 #include "Object.h"
 #include "../engine/Animation.h"
-#include <Box2D/b2_body.h>
+#include <box2d/b2_body.h>
 
 class Heart final : public Object
 {
