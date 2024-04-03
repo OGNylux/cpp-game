@@ -46,7 +46,6 @@ add_executable(platformer src/main.cpp
 )
 file(COPY src/assets DESTINATION ${CMAKE_RUNTIME_OUTPUT_DIRECTORY})
 target_link_libraries(platformer PRIVATE sfml-graphics)
-target_link_libraries(platformer PRIVATE box2d)
 target_compile_features(platformer PRIVATE cxx_std_20)
 
 if(NOT box2d_POPULATED)
@@ -55,6 +54,8 @@ if(NOT box2d_POPULATED)
 endif()
 
 include_directories(${box2d_SOURCE_DIR}/include)
+
+target_link_libraries(platformer PRIVATE box2d)
 
 if(WIN32)
     add_custom_command(
