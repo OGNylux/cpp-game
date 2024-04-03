@@ -5,4 +5,4 @@ out
 .vs
 .vscode
 cmake-build-debug
-cmmake-build-release
+cmake-build-release

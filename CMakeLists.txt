@@ -49,6 +49,8 @@ target_link_libraries(platformer PRIVATE sfml-graphics)
 target_link_libraries(platformer PRIVATE box2d)
 target_compile_features(platformer PRIVATE cxx_std_20)
 
+include_directories(${BOX2D_SOURCE_DIR}/include/box2d)
+
 if(WIN32)
     add_custom_command(
             TARGET platformer
