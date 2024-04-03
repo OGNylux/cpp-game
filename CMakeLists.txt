@@ -17,6 +17,7 @@ FetchContent_GetProperties(BOX2D)
 if(NOT box2d_POPULATED)
     FetchContent_Populate(BOX2D)
     add_subdirectory(${box2d_SOURCE_DIR} ${box2d_BINARY_DIR})
+    include_directories(${box2d_SOURCE_DIR}/include)
 endif()
 
 add_executable(platformer src/main.cpp
