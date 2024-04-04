@@ -77,6 +77,10 @@ void Enemy::update(const float deltaTime)
         if(Game::getPlayer().getPosition().x < position.x) movementSpeed = -5.0f;
         else movementSpeed = 5.0f;
     }
+    else if(arrivedAtDestination)
+    {
+        movementSpeed = 0.0f;
+    }
     else
     {
         randomMoveTimer += deltaTime;
@@ -104,8 +108,14 @@ void Enemy::render(Renderer& renderer)
 void Enemy::checkPlayerDistance()
 {
     float playerPosition = Game::getPlayer().getPosition().x;
-    if(abs(playerPosition - position.x) < 10.0f) playerInRange = true;
-    else playerInRange = false;
+    float deltaPosition = abs(playerPosition - position.x);
+    if(deltaPosition > 2.0f && deltaPosition < 10.0f) playerInRange = true;
+    else if(deltaPosition <= 1.0f) arrivedAtDestination = true;
+    else
+    {
+        playerInRange = false;
+        arrivedAtDestination = false;
+    }
 }
 
 bool Enemy::getDeadState() const

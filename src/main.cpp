@@ -35,8 +35,3 @@ int main()
         window.display();
     }
 }
-
-Game getGameInstance()
-{
-    return game;
-}

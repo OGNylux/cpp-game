@@ -27,7 +27,7 @@ public:
     bool isPaused() const;
     static void setPaused(bool paused);
     static Player getPlayer();
-    void setPlayer(const Player& player);
+    void setPlayer(const Player& newPlayer);
 
 private:
     Camera camera = Camera(20.0f);

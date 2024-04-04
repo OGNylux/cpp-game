@@ -9,12 +9,12 @@
 #include "../engine/Collision.h"
 #include "../engine/Renderer.h"
 #include "SFML/System/Vector2.hpp"
+#include "box2d/b2_polygon_shape.h"
+#include "box2d/b2_fixture.h"
 
 class Player final : public Collision
 {
 public:
-    void initAnimations();
-    void initCollisionBoxes();
     void init();
     void update(float deltaTime);
     void draw(Renderer& renderer);
@@ -27,11 +27,17 @@ public:
     bool getDeadState() const;
     void setDeadState(bool state);
 private:
+    void initAnimations();
+    void initCollisionBoxes();
+    void createSwordFixture();
     FixtureData fixtureData{};
 
     Animation runAnimation;
+    Animation swordRunAnimation;
     Animation idleAnimation;
+    Animation swordIdleAnimation;
     Animation jumpAnimation;
+    Animation attackAnimation;
     sf::Texture textureToDraw;
 
     int health = 2;
@@ -39,10 +45,16 @@ private:
     float angle{};
     bool isDead = false;
     bool isHit = false;
+    bool swordDrawn = false;
+    bool attacking = false;
     float invulnerbilityTimer = 0.0f;
+    float attackTimer = 0.0f;
 
     b2Body* body{};
+    b2Fixture* center{};
     b2Fixture* feet{};
+    b2Fixture* sword{};
+
     int onGround{};
     bool rotation = false;
 };

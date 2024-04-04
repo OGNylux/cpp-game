@@ -144,7 +144,7 @@ Player Game::getPlayer()
     return player;
 }
 
-void Game::setPlayer(const Player &player)
+void Game::setPlayer(const Player &newPlayer)
 {
-    Game::player = player;
+    Game::player = newPlayer;
 }

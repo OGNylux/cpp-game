@@ -29,6 +29,7 @@ private:
     float randomMoveTimer = 0.0f;
     bool isDead = false;
     bool playerInRange = false;
+    bool arrivedAtDestination = false;
 
     Animation moveAnimation;
     Animation deathAnimation;
