@@ -2,6 +2,7 @@
 // Created by nylux on 21.03.2024.
 //
 
+#include <map>
 #include "Map.h"
 
 #include "engine/FixtureData.h"
@@ -13,6 +14,41 @@
 #include "entities/Enemy.h"
 #include "entities/Heart.h"
 #include "entities/Object.h"
+
+struct ColorComparator {
+    bool operator() (const sf::Color& a, const sf::Color& b) const {
+        if (a.r != b.r)
+            return a.r < b.r;
+        if (a.g != b.g)
+            return a.g < b.g;
+        return a.b < b.b;
+    }
+};
+
+std::map<sf::Color, std::string, ColorComparator> colorToTexture = {
+        {sf::Color(10, 0, 0), "grass_00.png"},
+        {sf::Color(20, 0, 0), "grass_01.png"},
+        {sf::Color(30, 0, 0), "grass_02.png"},
+        {sf::Color(40, 0, 0), "grass_03.png"},
+        {sf::Color(50, 0, 0), "grass_04.png"},
+        {sf::Color(60, 0, 0), "grass_05.png"},
+        {sf::Color(70, 0, 0), "grass_06.png"},
+        {sf::Color(80, 0, 0), "grass_07.png"},
+        {sf::Color(90, 0, 0), "grass_08.png"},
+        {sf::Color(100, 0, 0), "grass_09.png"},
+        {sf::Color(110, 0, 0), "grass_10.png"},
+        {sf::Color(120, 0, 0), "grass_11.png"},
+        {sf::Color(130, 0, 0), "grass_12.png"},
+        {sf::Color(140, 0, 0), "grass_13.png"},
+        {sf::Color(150, 0, 0), "grass_14.png"},
+        {sf::Color(160, 0, 0), "grass_15.png"},
+        {sf::Color(170, 0, 0), "grass_16.png"},
+        {sf::Color(180, 0, 0), "platform_00.png"},
+        {sf::Color(190, 0, 0), "platform_01.png"},
+        {sf::Color(200, 0, 0), "platform_02.png"},
+        {sf::Color(210, 0, 0), "platform_03.png"},
+        {sf::Color(220, 0, 0), "platform_04.png"}
+};
 
 Map::Map(const float cellSize) : cellSize(cellSize)
 {
@@ -38,9 +74,15 @@ sf::Vector2f Map::createFromImage(const sf::Image& image, std::vector<Object*>& 
             sf::Color color = image.getPixel(x, y);
             Object* object = nullptr;
             if (color == sf::Color::Red) playerPosition = getCenterOfCell(x, y);
-            if (color == sf::Color::Black) grid[x][y] = &Resources::textures["block.png"];
-            else if (color == sf::Color::Blue) grid[x][y] = &Resources::textures["block2.png"];
-            else if(color == sf::Color::Yellow) object = new Heart();
+
+            for (const auto& pair : colorToTexture) {
+                if (color == pair.first) {
+                    grid[x][y] = &Resources::textures[pair.second];
+                    break;
+                }
+            }
+
+            if(color == sf::Color::Yellow) object = new Heart();
             else if(color == sf::Color::Green) object = new Enemy();
 
             if(object)

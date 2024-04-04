@@ -75,8 +75,10 @@ void Game::update(float deltaTime)
 void Game::render(Renderer& renderer)
 {
     sf::Texture test = Resources::textures["background2.png"];
-    renderer.draw(test, {30,10}, {100,42});
-    renderer.draw(test, {130,10}, {100,42});
+    sf::Texture tree = Resources::textures["tree.png"];
+    renderer.draw(test, {30,20}, {100,42});
+    renderer.draw(test, {130,20}, {100,42});
+    //renderer.draw(tree, {5,13}, {10,10});
 
     map.draw(renderer);
     player.draw(renderer);

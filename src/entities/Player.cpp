@@ -20,7 +20,6 @@
 constexpr float movementSpeed = 7.0f;
 constexpr float jumpVelocity = 7.0f;
 float attackRange = 0.1f;
-bool test = false;
 
 void Player::init()
 {
@@ -76,11 +75,7 @@ void Player::update(const float deltaTime)
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) velocity.x += move;
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) velocity.x -= move;
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && onGround) velocity.y = -jumpVelocity;
-    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
-    {
-        if(swordDrawn) attacking = true;
-        swordDrawn = true;
-    }
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) attacking = swordDrawn = true;
 
     textureToDraw = swordDrawn ? swordRunAnimation.getTexture() : runAnimation.getTexture();
 
