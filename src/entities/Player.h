@@ -26,6 +26,7 @@ public:
     float getAngle() const;
     bool getDeadState() const;
     void setDeadState(bool state);
+    bool getHitState() const;
 private:
     void initAnimations();
     void initCollisionBoxes();

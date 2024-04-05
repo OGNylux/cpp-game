@@ -94,7 +94,8 @@ void Player::update(const float deltaTime)
 
 void Player::draw(Renderer& renderer)
 {
-    renderer.draw(textureToDraw, {position.x, position.y-0.19f}, sf::Vector2f(rotation ? -(50.0f/16.0f) : (50.0f/16.0f), (37.0f/16.0f)), angle);
+    if(isHit) renderer.drawDamage(textureToDraw, {position.x, position.y-0.19f}, sf::Vector2f(rotation ? -(50.0f/16.0f) : (50.0f/16.0f), (37.0f/16.0f)), angle);
+    else renderer.draw(textureToDraw, {position.x, position.y-0.19f}, sf::Vector2f(rotation ? -(50.0f/16.0f) : (50.0f/16.0f), (37.0f/16.0f)), angle);
 }
 
 void Player::OnBeginContact(b2Fixture *self, b2Fixture* other)
@@ -281,6 +282,10 @@ bool Player::getDeadState() const
 void Player::setDeadState(const bool state)
 {
     isDead = state;
+}
+
+bool Player::getHitState() const {
+    return isHit;
 }
 
 
