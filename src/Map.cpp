@@ -14,6 +14,8 @@
 #include "entities/Enemy.h"
 #include "entities/Heart.h"
 #include "entities/Object.h"
+#include "entities/decor/Tree.h"
+#include "entities/Decor.h"
 
 struct ColorComparator {
     bool operator() (const sf::Color& a, const sf::Color& b) const {
@@ -74,19 +76,21 @@ sf::Vector2f Map::createFromImage(const sf::Image& image, std::vector<Object*>& 
             sf::Color color = image.getPixel(x, y);
             Object* object = nullptr;
             if (color == sf::Color::Red) playerPosition = getCenterOfCell(x, y);
-
-            for (const auto& pair : colorToTexture) {
-                if (color == pair.first) {
+            for (const auto& pair : colorToTexture)
+            {
+                if (color == pair.first)
+                {
                     grid[x][y] = &Resources::textures[pair.second];
                     break;
                 }
             }
-
             if(color == sf::Color::Yellow) object = new Heart();
             else if(color == sf::Color::Green) object = new Enemy();
+            else if(color == sf::Color::Blue) object = new Decor("tree.png", {0, 0}, {10, 10});
 
             if(object)
             {
+                // add position correction
                 object -> position = getCenterOfCell(x, y);
                 objects.push_back(object);
             }

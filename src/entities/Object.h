@@ -21,6 +21,7 @@ public:
     std::string tag;
 
     sf::Vector2f position;
+    sf::Vector2f positionCorrection;
     float angle;
 };
 

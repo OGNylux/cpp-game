@@ -75,18 +75,17 @@ void Game::update(float deltaTime)
 void Game::render(Renderer& renderer)
 {
     sf::Texture test = Resources::textures["background2.png"];
-    sf::Texture tree = Resources::textures["tree.png"];
-    renderer.draw(test, {30,20}, {100,42});
-    renderer.draw(test, {130,20}, {100,42});
-    //renderer.draw(tree, {5,13}, {10,10});
-
+    float parallax = 0.1f*getCamera().getPosition().x;
+    renderer.draw(test, {30+parallax,20}, {100,42});
+    renderer.draw(test, {130+parallax,20}, {100,42});
     map.draw(renderer);
-    player.draw(renderer);
 
     for (auto object: objects)
     {
         object->render(renderer);
     }
+
+    player.draw(renderer);
 
     Physics::debugDraw(renderer);
 }
@@ -116,7 +115,6 @@ void Game::deleteObject(Object *object)
     if (iterator != objects.end())
     {
         delete *iterator;
-        std::cout << "Object deleted" << std::endl;
         objects.erase(iterator);
     }
 }

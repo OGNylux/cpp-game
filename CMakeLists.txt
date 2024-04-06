@@ -47,6 +47,14 @@ add_executable(platformer src/main.cpp
         src/scenes/MainMenu.h
         src/scenes/PauseMenu.cpp
         src/scenes/PauseMenu.h
+        src/entities/decor/Tree.cpp
+        src/entities/decor/Tree.h
+        src/entities/decor/SmallTree.cpp
+        src/entities/decor/SmallTree.h
+        src/entities/decor/Grass.cpp
+        src/entities/decor/Grass.h
+        src/entities/Decor.cpp
+        src/entities/Decor.h
 )
 file(COPY src/assets DESTINATION ${CMAKE_RUNTIME_OUTPUT_DIRECTORY})
 target_link_libraries(platformer PRIVATE sfml-graphics)
