@@ -1,4 +1,5 @@
 #include <SFML/Graphics.hpp>
+#include <chrono>
 
 #include "engine/Camera.h"
 #include "Game.cpp"
@@ -13,10 +14,16 @@ int main()
     sf::Clock deltaClock;
     Renderer renderer(window);
 
+    std::chrono::high_resolution_clock::time_point start;
+    std::chrono::high_resolution_clock::time_point end;
+    float fps;
+
     window.setFramerateLimit(60);
     game.init();
     while (window.isOpen())
     {
+        start = std::chrono::high_resolution_clock::now();
+
         float deltaTime = deltaClock.restart().asSeconds();
         for (auto event = sf::Event{}; window.pollEvent(event);)
         {
@@ -33,5 +40,11 @@ int main()
         game.renderUI(renderer, window);
 
         window.display();
+
+        end = std::chrono::high_resolution_clock::now();
+
+        fps = (float)1e9/(float)std::chrono::duration_cast<std::chrono::nanoseconds>(end-start).count();
+
+        std::cout << fps << std::endl;
     }
 }

@@ -22,7 +22,7 @@ public:
     void renderUI(Renderer& renderer, sf::RenderWindow& window);
     static void deleteObject(Object* object);
 
-    Camera getCamera() const;
+    Camera getCamera();
     void setCamera(const Camera& camera);
     bool isPaused() const;
     static void setPaused(bool paused);

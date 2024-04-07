@@ -3,11 +3,13 @@
 //
 
 #include "Decor.h"
+
+#include <utility>
 #include "../Resources.h"
 
 Decor::Decor(std::string resource, sf::Vector2f positionCorrection, sf::Vector2f size)
 {
-    this->resource = resource;
+    this->resource = std::move(resource);
     this->positionCorrection = positionCorrection;
     this->size = size;
 }
@@ -15,5 +17,6 @@ Decor::Decor(std::string resource, sf::Vector2f positionCorrection, sf::Vector2f
 
 void Decor::render(Renderer &renderer)
 {
-    renderer.draw(Resources::textures[resource], position, size);
+    sf::Vector2f newPosition = {position.x + positionCorrection.x, position.y + positionCorrection.y};
+    renderer.draw(Resources::textures[resource], newPosition, size);
 }

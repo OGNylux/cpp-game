@@ -86,11 +86,10 @@ sf::Vector2f Map::createFromImage(const sf::Image& image, std::vector<Object*>& 
             }
             if(color == sf::Color::Yellow) object = new Heart();
             else if(color == sf::Color::Green) object = new Enemy();
-            else if(color == sf::Color::Blue) object = new Decor("tree.png", {0, 0}, {10, 10});
+            else if(color == sf::Color::Blue) object = new Decor("tree.png", {0, -4.5}, {10, 10});
 
             if(object)
             {
-                // add position correction
                 object -> position = getCenterOfCell(x, y);
                 objects.push_back(object);
             }

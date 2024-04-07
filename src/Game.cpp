@@ -119,7 +119,7 @@ void Game::deleteObject(Object *object)
     }
 }
 
-Camera Game::getCamera() const
+Camera Game::getCamera()
 {
     return camera;
 }
