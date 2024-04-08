@@ -14,7 +14,6 @@
 #include "entities/Enemy.h"
 #include "entities/Heart.h"
 #include "entities/Object.h"
-#include "entities/decor/Tree.h"
 #include "entities/Decor.h"
 
 struct ColorComparator {
@@ -86,7 +85,19 @@ sf::Vector2f Map::createFromImage(const sf::Image& image, std::vector<Object*>& 
             }
             if(color == sf::Color::Yellow) object = new Heart();
             else if(color == sf::Color::Green) object = new Enemy();
-            else if(color == sf::Color::Blue) object = new Decor("tree.png", {0, -4.5}, {10, 10});
+            else if(color == sf::Color(0,250,0)) object = new Decor("tree.png", {0, -4}, {7, 9});
+            else if(color == sf::Color(0, 240, 0)) object = new Decor("small_tree.png", {0, -1.5}, {4, 4});
+            else if(color == sf::Color(0, 230, 0)) object = new Decor("stone.png", {0, -0.5}, {2, 2});
+            else if(color == sf::Color(0, 220, 0)) object = new Decor("small_stone.png", {0, 0}, {1, 1});
+            else if(color == sf::Color(0, 210, 0)) object = new Decor("bush.png", {0, -0.5}, {4, 2});
+            else if(color == sf::Color(0, 200, 0)) object = new Decor("small_bush.png", {0, -0.5}, {3, 2});
+            else if(color == sf::Color(0, 190, 0))
+            {
+                // generate a random number between 0 and 3
+                int random = rand() % 4;
+                std::string test = "flower_0" + std::to_string(random) + ".png";
+                object = new Decor(test, {0, 0}, {1, 1});
+            }
 
             if(object)
             {
