@@ -59,7 +59,6 @@ sf::Vector2f Map::getCenterOfCell(const size_t x, const size_t y) const
 {
     return {cellSize * static_cast<float>(x) + cellSize / 2.0f, cellSize * static_cast<float>(y) + cellSize / 2.0f};
 }
-
 sf::Vector2f Map::createFromImage(const sf::Image& image, std::vector<Object*>& objects)
 {
     objects.clear();
@@ -98,11 +97,19 @@ sf::Vector2f Map::createFromImage(const sf::Image& image, std::vector<Object*>& 
                 std::string test = "flower_0" + std::to_string(random) + ".png";
                 object = new Decor(test, {0, 0}, {1, 1});
             }
+            else if(color == sf::Color(0, 180, 0))
+            {
+                // generate a random number between 0 and 2
+                int random = rand() % 3;
+                std::string test = "grass_foliage_0" + std::to_string(random) + ".png";
+                object = new Decor(test, {0, 0}, {1, 1});
+            }
 
             if(object)
             {
                 object -> position = getCenterOfCell(x, y);
-                objects.push_back(object);
+                if(object->tag == "decor") objects.insert(objects.begin(), object);
+                else objects.push_back(object);
             }
             else if(grid[x][y] != nullptr)
             {

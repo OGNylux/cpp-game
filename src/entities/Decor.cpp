@@ -7,11 +7,9 @@
 #include <utility>
 #include "../Resources.h"
 
-Decor::Decor(std::string resource, sf::Vector2f positionCorrection, sf::Vector2f size)
+Decor::Decor(std::string resource, sf::Vector2f positionCorrection, sf::Vector2f size) : resource(std::move(resource)), positionCorrection(positionCorrection), size(size)
 {
-    this->resource = std::move(resource);
-    this->positionCorrection = positionCorrection;
-    this->size = size;
+    tag = "decor";
 }
 
 

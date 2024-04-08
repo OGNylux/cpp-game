@@ -37,7 +37,7 @@ void Physics::debugDraw(const Renderer& renderer)
     {
         debug = new Debug(renderer.target);
         debug->SetFlags(b2Draw::e_aabbBit);
-        world->SetDebugDraw(debug);
+        //world->SetDebugDraw(debug);
     }
 
     world->DebugDraw();
