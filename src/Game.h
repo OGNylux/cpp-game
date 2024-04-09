@@ -24,14 +24,17 @@ public:
 
     Camera getCamera();
     void setCamera(const Camera& camera);
-    bool isPaused() const;
-    static void setPaused(bool paused);
+    static bool isPaused() ;
+    static void setPaused(bool state);
+    static bool isInGame() ;
+    static void setInGame(bool state);
     static Player getPlayer();
-    void setPlayer(const Player& newPlayer);
+    static void setPlayer(const Player& newPlayer);
 
 private:
     Camera camera = Camera(20.0f);
     static bool paused;
+    static bool inGame;
     static Player player;
 };
 

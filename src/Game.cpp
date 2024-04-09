@@ -15,6 +15,7 @@
 
 Player Game::player = Player();
 bool Game::paused = false;
+bool Game::inGame = false;
 Map map(1.0f);
 std::vector<Object*> objects{};
 sf::Image image;
@@ -92,20 +93,28 @@ void Game::render(Renderer& renderer)
 
 void Game::renderUI(Renderer &renderer, sf::RenderWindow &window)
 {
-    sf::Texture& heartTexture = Resources::textures["heart_idle_00.png"];
-    sf::Vector2u textureSize = heartTexture.getSize();
-    sf::Vector2f position = {2.0f, 2.0f};
-
-    for (int i = 0; i < player.getHealth(); i++)
-    {
-        renderer.draw(heartTexture, position, {static_cast<float>(textureSize.x)/4.0f, static_cast<float>(textureSize.y)/4.0f});
-        position.x += 4.0f;
-    }
-
-    if(paused)
+    if(!inGame)
     {
         pauseMenu.handleInput(window);
         pauseMenu.draw(renderer);
+    }
+    else
+    {
+        sf::Texture& heartTexture = Resources::textures["heart_idle_00.png"];
+        sf::Vector2u textureSize = heartTexture.getSize();
+        sf::Vector2f position = {2.0f, 2.0f};
+
+        for (int i = 0; i < player.getHealth(); i++)
+        {
+            renderer.draw(heartTexture, position, {static_cast<float>(textureSize.x)/4.0f, static_cast<float>(textureSize.y)/4.0f});
+            position.x += 4.0f;
+        }
+
+        if(paused)
+        {
+            pauseMenu.handleInput(window);
+            pauseMenu.draw(renderer);
+        }
     }
 }
 
@@ -129,7 +138,7 @@ void Game::setCamera(const Camera &camera)
     Game::camera = camera;
 }
 
-bool Game::isPaused() const
+bool Game::isPaused()
 {
     return paused;
 }
@@ -137,6 +146,15 @@ bool Game::isPaused() const
 void Game::setPaused(bool state)
 {
     paused = state;
+}
+
+bool Game::isInGame() {
+    return inGame;
+}
+
+void Game::setInGame(bool state)
+{
+    inGame = state;
 }
 
 Player Game::getPlayer()

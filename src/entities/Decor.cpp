@@ -9,7 +9,6 @@
 
 Decor::Decor(std::string resource, sf::Vector2f positionCorrection, sf::Vector2f size) : resource(std::move(resource)), positionCorrection(positionCorrection), size(size)
 {
-    tag = "decor";
 }
 
 

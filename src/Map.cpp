@@ -3,6 +3,7 @@
 //
 
 #include <map>
+#include <iostream>
 #include "Map.h"
 
 #include "engine/FixtureData.h"
@@ -108,7 +109,7 @@ sf::Vector2f Map::createFromImage(const sf::Image& image, std::vector<Object*>& 
             if(object)
             {
                 object -> position = getCenterOfCell(x, y);
-                if(object->tag == "decor") objects.insert(objects.begin(), object);
+                if(std::string(typeid(*object).name()) == "5Decor") objects.insert(objects.begin(), object);
                 else objects.push_back(object);
             }
             else if(grid[x][y] != nullptr)

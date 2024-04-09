@@ -26,6 +26,8 @@ public:
 private:
     sf::RectangleShape background;
 
+    sf::Text title;
+
     sf::RectangleShape startButton;
     sf::Text startText;
 

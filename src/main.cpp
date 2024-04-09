@@ -10,7 +10,8 @@ Game game;
 
 int main()
 {
-    auto window = sf::RenderWindow{ sf::VideoMode(1200, 900), "CMake SFML Project" };
+    PauseMenu pauseMenu = PauseMenu();
+    auto window = sf::RenderWindow{ sf::VideoMode(1200, 900), "CMake SFML Project", sf::Style::Close };
     sf::Clock deltaClock;
     Renderer renderer(window);
 
@@ -30,11 +31,14 @@ int main()
             if(event.type == sf::Event::Closed) window.close();
             if(event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape) game.setPaused(!game.isPaused());
         }
-        game.update(deltaTime);
+        if(Game::isInGame()) game.update(deltaTime);
 
         window.clear();
-        window.setView(game.getCamera().getView(window.getSize()));
-        game.render(renderer);
+        if(Game::isInGame())
+        {
+            window.setView(game.getCamera().getView(window.getSize()));
+            game.render(renderer);
+        }
 
         window.setView(game.getCamera().getUIView(window.getSize()));
         game.renderUI(renderer, window);
@@ -45,6 +49,6 @@ int main()
 
         fps = (float)1e9/(float)std::chrono::duration_cast<std::chrono::nanoseconds>(end-start).count();
 
-        std::cout << fps << std::endl;
+        //std::cout << fps << std::endl;
     }
 }
