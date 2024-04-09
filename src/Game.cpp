@@ -2,16 +2,15 @@
 // Created by nylux on 07.03.2024.
 //
 
-#include <SFML/Graphics.hpp>
 #include "Game.h"
 #include "Resources.h"
 #include "Map.h"
 #include "entities/Player.h"
-#include <iostream>
 
 #include "engine/Physics.h"
 #include "scenes/MainMenu.h"
 #include "scenes/PauseMenu.h"
+#include "scenes/DeathMenu.h"
 
 Player Game::player = Player();
 bool Game::paused = false;
@@ -20,6 +19,8 @@ Map map(1.0f);
 std::vector<Object*> objects{};
 sf::Image image;
 PauseMenu pauseMenu = PauseMenu();
+MainMenu mainMenu = MainMenu();
+DeathMenu deathMenu = DeathMenu();
 
 Game &Game::getInstance()
 {
@@ -46,6 +47,8 @@ void Game::restart()
 void Game::init()
 {
     Resources::initTexture("assets");
+    Resources::initTexture("assets/blocks");
+    Resources::initTexture("assets/decor");
     Resources::initTexture("assets/animations/player");
     Resources::initTexture("assets/animations/enemy");
     Resources::initTexture("assets/animations/heart");
@@ -57,11 +60,6 @@ void Game::init()
 
 void Game::update(float deltaTime)
 {
-    if(player.getDeadState())
-    {
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Enter)) restart();
-        else paused = true;
-    }
     if(paused) return;
 
     Physics::update(deltaTime);
@@ -95,8 +93,8 @@ void Game::renderUI(Renderer &renderer, sf::RenderWindow &window)
 {
     if(!inGame)
     {
-        pauseMenu.handleInput(window);
-        pauseMenu.draw(renderer);
+        mainMenu.handleInput(window);
+        mainMenu.draw(renderer);
     }
     else
     {
@@ -115,6 +113,11 @@ void Game::renderUI(Renderer &renderer, sf::RenderWindow &window)
             pauseMenu.handleInput(window);
             pauseMenu.draw(renderer);
         }
+        else if (player.getDeadState())
+        {
+            deathMenu.handleInput(window);
+            deathMenu.draw(renderer);
+        }
     }
 }
 
@@ -131,11 +134,6 @@ void Game::deleteObject(Object *object)
 Camera Game::getCamera()
 {
     return camera;
-}
-
-void Game::setCamera(const Camera &camera)
-{
-    Game::camera = camera;
 }
 
 bool Game::isPaused()
@@ -160,9 +158,4 @@ void Game::setInGame(bool state)
 Player Game::getPlayer()
 {
     return player;
-}
-
-void Game::setPlayer(const Player &newPlayer)
-{
-    Game::player = newPlayer;
 }

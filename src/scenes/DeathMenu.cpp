@@ -1,14 +1,12 @@
 //
-// Created by a3445 on 02.04.2024.
+// Created by nylux on 09.04.2024.
 //
 
-#include <iostream>
-#include "PauseMenu.h"
+#include "DeathMenu.h"
 #include "SFML/Window/Mouse.hpp"
-#include "../engine/Renderer.h"
 #include "../Game.h"
 
-PauseMenu::PauseMenu()
+DeathMenu::DeathMenu()
 {
     font.loadFromFile("assets/yoster.ttf");
 
@@ -46,7 +44,7 @@ PauseMenu::PauseMenu()
     exitText.setPosition(100.0f / 2 - (exitText.getGlobalBounds().width / 2), 40.1f);
 }
 
-void PauseMenu::handleInput(sf::RenderWindow &window) {
+void DeathMenu::handleInput(sf::RenderWindow &window) {
     const sf::Vector2i mousePosition = {sf::Mouse::getPosition(window).x / 12, sf::Mouse::getPosition(window).y / 12};
 
     // Check if mouse is over the startButton
@@ -69,7 +67,8 @@ void PauseMenu::handleInput(sf::RenderWindow &window) {
 
     if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
         if (startButton.getGlobalBounds().contains(mousePosition.x, mousePosition.y)) {
-            Game::setPaused(false);
+            Game::getPlayer().setDeadState(false);
+            Game::restart();
             printf("startButton\n");
         }
         if (exitButton.getGlobalBounds().contains(mousePosition.x, mousePosition.y)) {
@@ -79,7 +78,7 @@ void PauseMenu::handleInput(sf::RenderWindow &window) {
     }
 }
 
-void PauseMenu::draw(Renderer& renderer) const {
+void DeathMenu::draw(Renderer& renderer) const {
 
     renderer.target.draw(background);
     renderer.target.draw(title);

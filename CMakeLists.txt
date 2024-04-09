@@ -49,6 +49,8 @@ add_executable(platformer src/main.cpp
         src/scenes/PauseMenu.h
         src/entities/Decor.cpp
         src/entities/Decor.h
+        src/scenes/DeathMenu.cpp
+        src/scenes/DeathMenu.h
 )
 file(COPY src/assets DESTINATION ${CMAKE_RUNTIME_OUTPUT_DIRECTORY})
 target_link_libraries(platformer PRIVATE sfml-graphics)

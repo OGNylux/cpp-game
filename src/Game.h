@@ -15,21 +15,20 @@ class Game
 {
 public:
     static Game & getInstance();
-    void restart();
-    void init();
+    static void restart();
+    static void init();
     void update(float deltaTime);
     void render(Renderer& renderer);
-    void renderUI(Renderer& renderer, sf::RenderWindow& window);
+    static void renderUI(Renderer& renderer, sf::RenderWindow& window);
     static void deleteObject(Object* object);
 
     Camera getCamera();
-    void setCamera(const Camera& camera);
+
     static bool isPaused() ;
     static void setPaused(bool state);
     static bool isInGame() ;
     static void setInGame(bool state);
     static Player getPlayer();
-    static void setPlayer(const Player& newPlayer);
 
 private:
     Camera camera = Camera(20.0f);

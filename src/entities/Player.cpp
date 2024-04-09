@@ -127,7 +127,7 @@ void Player::OnBeginContact(b2Fixture *self, b2Fixture* other)
             if(!isHit)
             {
                 isHit = true;
-                //health--;
+                health--;
             }
             if(health == 0) isDead = true;
         }
