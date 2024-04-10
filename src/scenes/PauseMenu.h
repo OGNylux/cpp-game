@@ -18,9 +18,6 @@ public:
     PauseMenu();
 
     void handleInput(sf::RenderWindow &window);
-
-    void update(float delteTime);
-
     void draw(Renderer& renderer) const;
 
 private:

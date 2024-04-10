@@ -2,7 +2,6 @@
 // Created by nylux on 01.04.2024.
 //
 
-#include <iostream>
 #include "MainMenu.h"
 #include "../Game.h"
 #include "../Resources.h"
@@ -45,42 +44,41 @@ MainMenu::MainMenu()
     exitText.setPosition(15.0f / 2 - (exitText.getGlobalBounds().width / 2), 30.1f);
 }
 
-void MainMenu::handleInput(sf::RenderWindow &window) {
+void MainMenu::handleInput(sf::RenderWindow &window)
+{
     const sf::Vector2i mousePosition = {sf::Mouse::getPosition(window).x / 12, sf::Mouse::getPosition(window).y / 12};
 
     // Check if mouse is over the startButton
-    if (startButton.getGlobalBounds().contains(mousePosition.x, mousePosition.y)) {
+    if(startButton.getGlobalBounds().contains(static_cast<float>(mousePosition.x), static_cast<float>(mousePosition.y)))
+    {
         const sf::Color originalColor = startText.getFillColor();
         const sf::Color newColor(originalColor.r, originalColor.g, originalColor.b, 180);
         startText.setFillColor(newColor);
-    } else {
-        startText.setFillColor(sf::Color(255, 255, 255, 255));
     }
+    else startText.setFillColor(sf::Color(255, 255, 255, 255));
 
     // Check if mouse is over the exitButton
-    if (exitButton.getGlobalBounds().contains(mousePosition.x, mousePosition.y)) {
+    if(exitButton.getGlobalBounds().contains(static_cast<float>(mousePosition.x), static_cast<float>(mousePosition.y)))
+    {
         const sf::Color originalColor = exitText.getFillColor();
         const sf::Color newColor(originalColor.r, originalColor.g, originalColor.b, 180);
         exitText.setFillColor(newColor);
-    } else {
-        exitText.setFillColor(sf::Color(255, 255, 255, 255));
     }
+    else exitText.setFillColor(sf::Color(255, 255, 255, 255));
 
-    if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
-        if (startButton.getGlobalBounds().contains(mousePosition.x, mousePosition.y)) {
+    if(sf::Mouse::isButtonPressed(sf::Mouse::Left))
+    {
+        if(startButton.getGlobalBounds().contains(static_cast<float>(mousePosition.x), static_cast<float>(mousePosition.y)))
+        {
             Game::setInGame(true);
             Game::init();
-            printf("startButton\n");
         }
-        if (exitButton.getGlobalBounds().contains(mousePosition.x, mousePosition.y)) {
-            printf("exitButton\n");
-            window.close();
-        }
+        if(exitButton.getGlobalBounds().contains(static_cast<float>(mousePosition.x), static_cast<float>(mousePosition.y))) window.close();
     }
 }
 
-void MainMenu::draw(Renderer& renderer) const {
-
+void MainMenu::draw(Renderer& renderer) const
+{
     renderer.target.draw(background);
     renderer.target.draw(title);
     renderer.target.draw(startButton);

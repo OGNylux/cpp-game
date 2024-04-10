@@ -31,13 +31,13 @@ void Physics::update(const float deltaTime)
     bodiesToDestroy.clear();
 }
 
-void Physics::debugDraw(const Renderer& renderer)
+[[maybe_unused]] void Physics::debugDraw(const Renderer& renderer)
 {
     if (!debug)
     {
         debug = new Debug(renderer.target);
         debug->SetFlags(b2Draw::e_aabbBit);
-        //world->SetDebugDraw(debug);
+        world->SetDebugDraw(debug);
     }
 
     world->DebugDraw();

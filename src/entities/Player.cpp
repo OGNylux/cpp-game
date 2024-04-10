@@ -6,12 +6,9 @@
 
 #include "../engine/Physics.h"
 #include "../Resources.h"
-#include "box2d/b2_fixture.h"
 #include "box2d/b2_circle_shape.h"
-#include "box2d/b2_polygon_shape.h"
 #include "SFML/Window/Keyboard.hpp"
 #include <numbers>
-#include <iostream>
 
 #include "Enemy.h"
 #include "Object.h"
@@ -114,7 +111,7 @@ void Player::OnBeginContact(b2Fixture *self, b2Fixture* other)
         if(data->object->getCollected()) return;
         data->object->setCollected(true);
         Game::deleteObject(data->object);
-        health++;
+        if(health < 3) health++;
     }
     else if(data->type == FixtureDataType::Object && data->object->tag == "enemy")
     {

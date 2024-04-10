@@ -2,7 +2,6 @@
 // Created by a3445 on 27.03.2024.
 //
 
-#include <iostream>
 #include "Enemy.h"
 
 #include "Player.h"
@@ -10,7 +9,6 @@
 #include "../Resources.h"
 #include "../engine/Physics.h"
 #include "box2d/b2_circle_shape.h"
-#include "box2d/b2_fixture.h"
 #include <numbers>
 
 float distanceTimer = 0.0f;
@@ -100,7 +98,7 @@ void Enemy::update(const float deltaTime)
     body->SetLinearVelocity(velocity);
 
     position = sf::Vector2f(body->GetPosition().x, body->GetPosition().y);
-    angle = body->GetAngle() * (180.0f / std::numbers::pi);
+    angle = body->GetAngle() * static_cast<float>(180.0f / std::numbers::pi);
 }
 
 void Enemy::render(Renderer& renderer)

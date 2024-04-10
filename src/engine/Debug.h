@@ -12,7 +12,6 @@ class Debug final : public b2Draw
 public:
     explicit Debug(sf::RenderTarget& target) : target(target)
     {
-
     }
 
     void DrawPolygon(const b2Vec2 *vertices, int32 vertexCount, const b2Color &color) override;

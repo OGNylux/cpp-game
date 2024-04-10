@@ -2,10 +2,8 @@
 // Created by a3445 on 02.04.2024.
 //
 
-#include <iostream>
 #include "PauseMenu.h"
 #include "SFML/Window/Mouse.hpp"
-#include "../engine/Renderer.h"
 #include "../Game.h"
 
 PauseMenu::PauseMenu()
@@ -21,7 +19,6 @@ PauseMenu::PauseMenu()
     title.scale(0.1f, 0.1f);
     title.setFillColor(sf::Color::White);
     title.setPosition(100.0f / 2 - title.getGlobalBounds().width / 2.0f, 10.0f);
-
 
     startButton.setSize(sf::Vector2f(25, 7));
     startButton.setFillColor(sf::Color(255, 255, 255, 180));
@@ -46,41 +43,38 @@ PauseMenu::PauseMenu()
     exitText.setPosition(100.0f / 2 - (exitText.getGlobalBounds().width / 2), 40.1f);
 }
 
-void PauseMenu::handleInput(sf::RenderWindow &window) {
+void PauseMenu::handleInput(sf::RenderWindow &window)
+{
     const sf::Vector2i mousePosition = {sf::Mouse::getPosition(window).x / 12, sf::Mouse::getPosition(window).y / 12};
 
     // Check if mouse is over the startButton
-    if (startButton.getGlobalBounds().contains(mousePosition.x, mousePosition.y)) {
+    if(startButton.getGlobalBounds().contains(static_cast<float>(mousePosition.x), static_cast<float>(mousePosition.y)))
+    {
         const sf::Color originalColor = startButton.getFillColor();
         const sf::Color newColor(originalColor.r, originalColor.g, originalColor.b, 120);
         startButton.setFillColor(newColor);
-    } else {
-        startButton.setFillColor(sf::Color(255, 255, 255, 180));
     }
+    else startButton.setFillColor(sf::Color(255, 255, 255, 180));
+
 
     // Check if mouse is over the exitButton
-    if (exitButton.getGlobalBounds().contains(mousePosition.x, mousePosition.y)) {
+    if(exitButton.getGlobalBounds().contains(static_cast<float>(mousePosition.x), static_cast<float>(mousePosition.y)))
+    {
         const sf::Color originalColor = exitButton.getFillColor();
         const sf::Color newColor(originalColor.r, originalColor.g, originalColor.b, 120);
         exitButton.setFillColor(newColor);
-    } else {
-        exitButton.setFillColor(sf::Color(255, 255, 255, 180));
     }
+    else exitButton.setFillColor(sf::Color(255, 255, 255, 180));
 
-    if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
-        if (startButton.getGlobalBounds().contains(mousePosition.x, mousePosition.y)) {
-            Game::setPaused(false);
-            printf("startButton\n");
-        }
-        if (exitButton.getGlobalBounds().contains(mousePosition.x, mousePosition.y)) {
-            Game::setInGame(false);
-            printf("exitButton\n");
-        }
+    if(sf::Mouse::isButtonPressed(sf::Mouse::Left))
+    {
+        if(startButton.getGlobalBounds().contains(static_cast<float>(mousePosition.x), static_cast<float>(mousePosition.y))) Game::setPaused(false);
+        if(exitButton.getGlobalBounds().contains(static_cast<float>(mousePosition.x), static_cast<float>(mousePosition.y))) Game::setInGame(false);
     }
 }
 
-void PauseMenu::draw(Renderer& renderer) const {
-
+void PauseMenu::draw(Renderer& renderer) const
+{
     renderer.target.draw(background);
     renderer.target.draw(title);
     renderer.target.draw(startButton);

@@ -60,7 +60,7 @@ void Game::init()
 
 void Game::update(float deltaTime)
 {
-    if(paused) return;
+    if(paused || player.getDeadState()) return;
 
     Physics::update(deltaTime);
     player.update(deltaTime);
@@ -86,7 +86,7 @@ void Game::render(Renderer& renderer)
 
     player.draw(renderer);
 
-    Physics::debugDraw(renderer);
+    //Physics::debugDraw(renderer);
 }
 
 void Game::renderUI(Renderer &renderer, sf::RenderWindow &window)
