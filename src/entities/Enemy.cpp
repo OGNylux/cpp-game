@@ -18,18 +18,18 @@ void Enemy::init()
     tag = "enemy";
     moveAnimation = Animation(0.6f,
 {
-            AnimationFrame(0.45f, Resources::textures["slime_move_00.png"]),
-            AnimationFrame(0.30f, Resources::textures["slime_move_01.png"]),
-            AnimationFrame(0.15f, Resources::textures["slime_move_02.png"]),
-            AnimationFrame(0.0f, Resources::textures["slime_move_03.png"])
+            AnimationFrame(0.45f, &Resources::textures["slime_move_00.png"]),
+            AnimationFrame(0.30f, &Resources::textures["slime_move_01.png"]),
+            AnimationFrame(0.15f, &Resources::textures["slime_move_02.png"]),
+            AnimationFrame(0.0f, &Resources::textures["slime_move_03.png"])
         });
 
     deathAnimation = Animation(0.6f,
                                {
-            AnimationFrame(0.45f, Resources::textures["slime_death_00.png"]),
-            AnimationFrame(0.30f, Resources::textures["slime_death_01.png"]),
-            AnimationFrame(0.15f, Resources::textures["slime_death_02.png"]),
-            AnimationFrame(0.0f, Resources::textures["slime_death_03.png"])
+            AnimationFrame(0.45f, &Resources::textures["slime_death_00.png"]),
+            AnimationFrame(0.30f, &Resources::textures["slime_death_01.png"]),
+            AnimationFrame(0.15f, &Resources::textures["slime_death_02.png"]),
+            AnimationFrame(0.0f, &Resources::textures["slime_death_03.png"])
                                });
 
     b2BodyDef bodyDef;
@@ -103,7 +103,7 @@ void Enemy::update(const float deltaTime)
 
 void Enemy::render(Renderer& renderer)
 {
-    renderer.draw(textureToDraw, sf::Vector2f(position.x, position.y - 0.4f), sf::Vector2f(2.0f, 2.0f), angle);
+    renderer.draw(*textureToDraw, sf::Vector2f(position.x, position.y - 0.4f), sf::Vector2f(2.0f, 2.0f), angle);
 }
 
 void Enemy::checkPlayerDistance()

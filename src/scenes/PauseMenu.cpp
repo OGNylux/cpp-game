@@ -8,6 +8,7 @@
 
 PauseMenu::PauseMenu()
 {
+    printf("PauseMenu::PauseMenu()\n");
     font.loadFromFile("assets/yoster.ttf");
 
     background.setSize(sf::Vector2f(100, 100));
@@ -18,7 +19,6 @@ PauseMenu::PauseMenu()
     title.setCharacterSize(100);
     title.scale(0.1f, 0.1f);
     title.setFillColor(sf::Color::White);
-    title.setPosition(100.0f / 2 - title.getGlobalBounds().width / 2.0f, 10.0f);
 
     startButton.setSize(sf::Vector2f(25, 7));
     startButton.setFillColor(sf::Color(255, 255, 255, 180));
@@ -29,7 +29,6 @@ PauseMenu::PauseMenu()
     startText.setCharacterSize(50);
     startText.scale(0.1f, 0.1f);
     startText.setFillColor(sf::Color::Black);
-    startText.setPosition(100.0f / 2 - startText.getGlobalBounds().width / 2.0f, 30.1f);
 
     exitButton.setSize(sf::Vector2f(25, 7));
     exitButton.setFillColor(sf::Color(255, 255, 255, 180));
@@ -40,7 +39,6 @@ PauseMenu::PauseMenu()
     exitText.setCharacterSize(50);
     exitText.scale(0.1f, 0.1f);
     exitText.setFillColor(sf::Color::Black);
-    exitText.setPosition(100.0f / 2 - (exitText.getGlobalBounds().width / 2), 40.1f);
 }
 
 void PauseMenu::handleInput(sf::RenderWindow &window)
@@ -75,6 +73,7 @@ void PauseMenu::handleInput(sf::RenderWindow &window)
 
 void PauseMenu::draw(Renderer& renderer) const
 {
+    printf("PauseMenu::draw()\n");
     renderer.target.draw(background);
     renderer.target.draw(title);
     renderer.target.draw(startButton);

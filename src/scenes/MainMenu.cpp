@@ -19,29 +19,24 @@ MainMenu::MainMenu()
     title.setCharacterSize(100);
     title.scale(0.035f, 0.035f);
     title.setFillColor(sf::Color::White);
-    title.setPosition(50.0f / 2 - title.getGlobalBounds().width / 2.0f, 10.0f);
 
     startButton.setSize(sf::Vector2f(11, 7));
     startButton.setFillColor(sf::Color(255, 255, 255, 0));
-    startButton.setPosition(15.0f / 2 - startButton.getGlobalBounds().width / 2, 20);
 
     startText.setFont(font);
     startText.setString("Play");
     startText.setCharacterSize(50);
     startText.scale(0.1f, 0.1f);
     startText.setFillColor(sf::Color::White);
-    startText.setPosition(15.0f / 2 - startText.getGlobalBounds().width / 2.0f, 20.1f);
 
     exitButton.setSize(sf::Vector2f(11, 7));
     exitButton.setFillColor(sf::Color(255, 255, 255, 0));
-    exitButton.setPosition(15.0f / 2 - exitButton.getGlobalBounds().width / 2, 30);
 
     exitText.setFont(font);
     exitText.setString("Exit");
     exitText.setCharacterSize(50);
     exitText.scale(0.1f, 0.1f);
     exitText.setFillColor(sf::Color::White);
-    exitText.setPosition(15.0f / 2 - (exitText.getGlobalBounds().width / 2), 30.1f);
 }
 
 void MainMenu::handleInput(sf::RenderWindow &window)
@@ -71,7 +66,6 @@ void MainMenu::handleInput(sf::RenderWindow &window)
         if(startButton.getGlobalBounds().contains(static_cast<float>(mousePosition.x), static_cast<float>(mousePosition.y)))
         {
             Game::setInGame(true);
-            Game::init();
         }
         if(exitButton.getGlobalBounds().contains(static_cast<float>(mousePosition.x), static_cast<float>(mousePosition.y))) window.close();
     }

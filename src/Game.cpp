@@ -8,19 +8,13 @@
 #include "entities/Player.h"
 
 #include "engine/Physics.h"
-#include "scenes/MainMenu.h"
-#include "scenes/PauseMenu.h"
-#include "scenes/DeathMenu.h"
 
 Player Game::player = Player();
 bool Game::paused = false;
-bool Game::inGame = false;
+bool Game::inGame = true;
 Map map(1.0f);
 std::vector<Object*> objects{};
 sf::Image image;
-PauseMenu pauseMenu = PauseMenu();
-MainMenu mainMenu = MainMenu();
-DeathMenu deathMenu = DeathMenu();
 
 Game &Game::getInstance()
 {
@@ -93,8 +87,6 @@ void Game::renderUI(Renderer &renderer, sf::RenderWindow &window)
 {
     if(!inGame)
     {
-        mainMenu.handleInput(window);
-        mainMenu.draw(renderer);
     }
     else
     {
@@ -115,8 +107,6 @@ void Game::renderUI(Renderer &renderer, sf::RenderWindow &window)
         }
         else if (player.getDeadState())
         {
-            deathMenu.handleInput(window);
-            deathMenu.draw(renderer);
         }
     }
 }

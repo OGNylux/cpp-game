@@ -39,7 +39,7 @@ private:
     Animation swordIdleAnimation;
     Animation jumpAnimation;
     Animation attackAnimation;
-    sf::Texture textureToDraw;
+    const sf::Texture* textureToDraw{};
 
     int health = 2;
     sf::Vector2f position;

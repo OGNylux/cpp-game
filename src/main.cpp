@@ -11,6 +11,7 @@ int main()
     sf::Clock deltaClock;
     Renderer renderer(window);
 
+    game.init();
     window.setFramerateLimit(60);
     while (window.isOpen())
     {
@@ -20,17 +21,15 @@ int main()
             if(event.type == sf::Event::Closed) window.close();
             if(event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape) Game::setPaused(!Game::isPaused());
         }
-        if(Game::isInGame()) game.update(deltaTime);
+        game.update(deltaTime);
 
         window.clear();
-        if(Game::isInGame())
-        {
-            window.setView(game.getCamera().getView(window.getSize()));
-            game.render(renderer);
-        }
+
+        window.setView(game.getCamera().getView(window.getSize()));
+        game.render(renderer);
 
         window.setView(game.getCamera().getUIView(window.getSize()));
-        Game::renderUI(renderer, window);
+        game.renderUI(renderer, window);
 
         window.display();
     }

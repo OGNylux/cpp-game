@@ -8,12 +8,12 @@
 
 struct AnimationFrame
 {
-    explicit AnimationFrame(const float time = 0.0f, const sf::Texture &texture = sf::Texture{}) : time(time), texture(texture)
+    explicit AnimationFrame(const float time = 0.0f, const sf::Texture* texture = nullptr) : time(time), texture(texture)
     {
     }
 
     float time = 0.0f;
-    sf::Texture texture{};
+    const sf::Texture* texture;
 };
 
 class Animation
@@ -21,7 +21,7 @@ class Animation
 public:
     explicit Animation(float length = 0.0f, std::vector<AnimationFrame> frames = {}, bool holdOnLastFrame = false);
     void update(float deltaTime);
-    sf::Texture getTexture();
+    const sf::Texture* getTexture();
     void reset();
 
 private:
@@ -30,7 +30,5 @@ private:
     bool holdOnLastFrame = false;
     std::vector<AnimationFrame> frames;
 };
-
-
 
 #endif //ANIMATIONS_H

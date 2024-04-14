@@ -91,8 +91,8 @@ void Player::update(const float deltaTime)
 
 void Player::draw(Renderer& renderer)
 {
-    if(isHit) renderer.drawDamage(textureToDraw, {position.x, position.y-0.19f}, sf::Vector2f(rotation ? -(50.0f/16.0f) : (50.0f/16.0f), (37.0f/16.0f)), angle);
-    else renderer.draw(textureToDraw, {position.x, position.y-0.19f}, sf::Vector2f(rotation ? -(50.0f/16.0f) : (50.0f/16.0f), (37.0f/16.0f)), angle);
+    if(isHit) renderer.drawDamage(*textureToDraw, {position.x, position.y-0.19f}, sf::Vector2f(rotation ? -(50.0f/16.0f) : (50.0f/16.0f), (37.0f/16.0f)), angle);
+    else renderer.draw(*textureToDraw, {position.x, position.y-0.19f}, sf::Vector2f(rotation ? -(50.0f/16.0f) : (50.0f/16.0f), (37.0f/16.0f)), angle);
 }
 
 void Player::OnBeginContact(b2Fixture *self, b2Fixture* other)
@@ -144,52 +144,52 @@ void Player::initAnimations()
 {
     idleAnimation = Animation(1.0f,
 {
-           AnimationFrame(0.66f, Resources::textures["player_idle_02.png"]),
-           AnimationFrame(0.33f, Resources::textures["player_idle_01.png"]),
-           AnimationFrame(0.0f, Resources::textures["player_idle_00.png"]),
+           AnimationFrame(0.66f, &Resources::textures["player_idle_02.png"]),
+           AnimationFrame(0.33f, &Resources::textures["player_idle_01.png"]),
+           AnimationFrame(0.0f, &Resources::textures["player_idle_00.png"]),
         });
 
     swordIdleAnimation = Animation(1.0f,
 {
-           AnimationFrame(0.66f, Resources::textures["player_sword_idle_02.png"]),
-           AnimationFrame(0.33f, Resources::textures["player_sword_idle_01.png"]),
-           AnimationFrame(0.0f, Resources::textures["player_sword_idle_00.png"]),
+           AnimationFrame(0.66f, &Resources::textures["player_sword_idle_02.png"]),
+           AnimationFrame(0.33f, &Resources::textures["player_sword_idle_01.png"]),
+           AnimationFrame(0.0f, &Resources::textures["player_sword_idle_00.png"]),
         });
 
     runAnimation = Animation(0.6f,
 {
-           AnimationFrame(0.5f, Resources::textures["player_run_05.png"]),
-           AnimationFrame(0.4f, Resources::textures["player_run_04.png"]),
-           AnimationFrame(0.3f, Resources::textures["player_run_03.png"]),
-           AnimationFrame(0.2f, Resources::textures["player_run_02.png"]),
-           AnimationFrame(0.1f, Resources::textures["player_run_01.png"]),
-           AnimationFrame(0.0f, Resources::textures["player_run_00.png"])
+           AnimationFrame(0.5f, &Resources::textures["player_run_05.png"]),
+           AnimationFrame(0.4f, &Resources::textures["player_run_04.png"]),
+           AnimationFrame(0.3f, &Resources::textures["player_run_03.png"]),
+           AnimationFrame(0.2f, &Resources::textures["player_run_02.png"]),
+           AnimationFrame(0.1f, &Resources::textures["player_run_01.png"]),
+           AnimationFrame(0.0f, &Resources::textures["player_run_00.png"])
         });
 
     swordRunAnimation = Animation(0.6f,
 {
-           AnimationFrame(0.5f, Resources::textures["player_sword_run_05.png"]),
-           AnimationFrame(0.4f, Resources::textures["player_sword_run_04.png"]),
-           AnimationFrame(0.3f, Resources::textures["player_sword_run_03.png"]),
-           AnimationFrame(0.2f, Resources::textures["player_sword_run_02.png"]),
-           AnimationFrame(0.1f, Resources::textures["player_sword_run_01.png"]),
-           AnimationFrame(0.0f, Resources::textures["player_sword_run_00.png"])
+           AnimationFrame(0.5f, &Resources::textures["player_sword_run_05.png"]),
+           AnimationFrame(0.4f, &Resources::textures["player_sword_run_04.png"]),
+           AnimationFrame(0.3f, &Resources::textures["player_sword_run_03.png"]),
+           AnimationFrame(0.2f, &Resources::textures["player_sword_run_02.png"]),
+           AnimationFrame(0.1f, &Resources::textures["player_sword_run_01.png"]),
+           AnimationFrame(0.0f, &Resources::textures["player_sword_run_00.png"])
         });
 
     jumpAnimation = Animation(0.4f,
 {
-           AnimationFrame(0.3f, Resources::textures["player_jump_03.png"]),
-           AnimationFrame(0.2f, Resources::textures["player_jump_02.png"]),
-           AnimationFrame(0.1f, Resources::textures["player_jump_01.png"]),
-           AnimationFrame(0.0f, Resources::textures["player_jump_00.png"])
+           AnimationFrame(0.3f, &Resources::textures["player_jump_03.png"]),
+           AnimationFrame(0.2f, &Resources::textures["player_jump_02.png"]),
+           AnimationFrame(0.1f, &Resources::textures["player_jump_01.png"]),
+           AnimationFrame(0.0f, &Resources::textures["player_jump_00.png"])
         }, true);
 
     attackAnimation = Animation(0.4f,
                                 {
-                                        AnimationFrame(0.3f, Resources::textures["player_attack_03.png"]),
-                                        AnimationFrame(0.2f, Resources::textures["player_attack_02.png"]),
-                                        AnimationFrame(0.1f, Resources::textures["player_attack_01.png"]),
-                                        AnimationFrame(0.0f, Resources::textures["player_attack_00.png"])
+                                        AnimationFrame(0.3f, &Resources::textures["player_attack_03.png"]),
+                                        AnimationFrame(0.2f, &Resources::textures["player_attack_02.png"]),
+                                        AnimationFrame(0.1f, &Resources::textures["player_attack_01.png"]),
+                                        AnimationFrame(0.0f, &Resources::textures["player_attack_00.png"])
                                 });
 
 }

@@ -6,17 +6,21 @@
 
 #include <utility>
 
-Animation::Animation(const float length, std::vector<AnimationFrame> frames, const bool holdOnLastFrame) : length(length), holdOnLastFrame(holdOnLastFrame), frames(std::move(frames))
+Animation::Animation(float length, std::vector<AnimationFrame> frames, const bool holdOnLastFrame) : length(length), holdOnLastFrame(holdOnLastFrame), frames(std::move(frames))
 {
 }
 
-void Animation::update(const float deltaTime)
+void Animation::update(float deltaTime)
 {
-    if (!holdOnLastFrame || time <= length) time += deltaTime;
+    if (!holdOnLastFrame || time <= length) {
+        time += deltaTime;
+    }
 }
 
-sf::Texture Animation::getTexture() {
-    if (holdOnLastFrame && time > length) return frames.back().texture;
+const sf::Texture* Animation::getTexture() {
+    if (holdOnLastFrame && time > length) {
+        return frames.back().texture;
+    }
 
     while(time > length) time -= length;
     for (auto& frame: frames)

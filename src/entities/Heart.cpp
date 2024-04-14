@@ -23,8 +23,8 @@ void Heart::init()
     tag = "heart";
     animation = Animation(0.6f,
 {
-            AnimationFrame(0.3f, Resources::textures["heart_idle_00.png"]),
-            AnimationFrame(0.0f, Resources::textures["heart_idle_01.png"])
+            AnimationFrame(0.3f, &Resources::textures["heart_idle_00.png"]),
+            AnimationFrame(0.0f, &Resources::textures["heart_idle_01.png"])
         });
 
     b2BodyDef bodyDef;
@@ -52,7 +52,7 @@ void Heart::update(const float deltaTime)
 
 void Heart::render(Renderer &renderer)
 {
-    renderer.draw(animation.getTexture(), position, sf::Vector2f(1.0f, 1.0f));
+    renderer.draw(*animation.getTexture(), position, sf::Vector2f(1.0f, 1.0f));
 }
 
 bool Heart::getCollected() const {

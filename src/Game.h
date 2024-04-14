@@ -10,28 +10,32 @@
 #include "engine/Renderer.h"
 #include "entities/Object.h"
 #include "entities/Player.h"
+#include "scenes/PauseMenu.h"
+#include "scenes/MainMenu.h"
+#include "scenes/DeathMenu.h"
 
 class Game
 {
 public:
-    static Game & getInstance();
+    static Game &getInstance();
     static void restart();
     static void init();
     void update(float deltaTime);
     void render(Renderer& renderer);
-    static void renderUI(Renderer& renderer, sf::RenderWindow& window);
+    void renderUI(Renderer& renderer, sf::RenderWindow& window);
     static void deleteObject(Object* object);
 
     Camera getCamera();
 
-    static bool isPaused() ;
+    static bool isPaused();
     static void setPaused(bool state);
-    static bool isInGame() ;
+    static bool isInGame();
     static void setInGame(bool state);
     static Player getPlayer();
 
 private:
     Camera camera = Camera(20.0f);
+    PauseMenu pauseMenu = PauseMenu();
     static bool paused;
     static bool inGame;
     static Player player;

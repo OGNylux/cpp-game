@@ -32,7 +32,7 @@ private:
 
     Animation moveAnimation;
     Animation deathAnimation;
-    sf::Texture textureToDraw;
+    const sf::Texture* textureToDraw;
     FixtureData fixtureData{};
     b2Body* body{};
 };
