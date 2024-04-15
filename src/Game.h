@@ -35,6 +35,7 @@ public:
 
 private:
     Camera camera = Camera(20.0f);
+    MainMenu mainMenu = MainMenu();
     PauseMenu pauseMenu = PauseMenu();
     static bool paused;
     static bool inGame;

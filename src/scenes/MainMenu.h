@@ -24,7 +24,6 @@ public:
 
 private:
     sf::Sprite background;
-    sf::Texture backgroundTexture;
 
     sf::Text title;
 

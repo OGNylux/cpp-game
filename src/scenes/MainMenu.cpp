@@ -2,6 +2,7 @@
 // Created by nylux on 01.04.2024.
 //
 
+#include <iostream>
 #include "MainMenu.h"
 #include "../Game.h"
 #include "../Resources.h"
@@ -9,10 +10,7 @@
 MainMenu::MainMenu()
 {
     font.loadFromFile("assets/yoster.ttf");
-
-    backgroundTexture.loadFromFile("assets/background2.png");
-    background.setTexture(backgroundTexture);
-    background.setScale(0.25f, 0.25f);
+    
 
     title.setFont(font);
     title.setString("Just Another Platformer");

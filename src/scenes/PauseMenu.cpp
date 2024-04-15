@@ -2,6 +2,7 @@
 // Created by a3445 on 02.04.2024.
 //
 
+#include <iostream>
 #include "PauseMenu.h"
 #include "SFML/Window/Mouse.hpp"
 #include "../Game.h"
@@ -9,7 +10,10 @@
 PauseMenu::PauseMenu()
 {
     printf("PauseMenu::PauseMenu()\n");
-    font.loadFromFile("assets/yoster.ttf");
+    if(font.loadFromFile("assets/yoster.ttf"))
+    {
+        printf("loading font\n");
+    }
 
     background.setSize(sf::Vector2f(100, 100));
     background.setFillColor(sf::Color(0, 0, 0, 150));
@@ -27,8 +31,8 @@ PauseMenu::PauseMenu()
     startText.setFont(font);
     startText.setString("Resume");
     startText.setCharacterSize(50);
-    startText.scale(0.1f, 0.1f);
     startText.setFillColor(sf::Color::Black);
+    startText.setPosition(100.0f / 2 - startButton.getGlobalBounds().width / 2, 30.1);
 
     exitButton.setSize(sf::Vector2f(25, 7));
     exitButton.setFillColor(sf::Color(255, 255, 255, 180));
@@ -73,7 +77,7 @@ void PauseMenu::handleInput(sf::RenderWindow &window)
 
 void PauseMenu::draw(Renderer& renderer) const
 {
-    printf("PauseMenu::draw()\n");
+    std::cout << startText.getGlobalBounds().width << std::endl;
     renderer.target.draw(background);
     renderer.target.draw(title);
     renderer.target.draw(startButton);
