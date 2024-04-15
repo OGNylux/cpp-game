@@ -20,7 +20,7 @@ public:
     MainMenu();
 
     void handleInput(sf::RenderWindow &window);
-    void draw(Renderer& renderer) const;
+    void draw(Renderer& renderer);
 
 private:
     sf::Sprite background;

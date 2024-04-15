@@ -11,7 +11,7 @@
 
 Player Game::player = Player();
 bool Game::paused = false;
-bool Game::inGame = true;
+bool Game::inGame = false;
 Map map(1.0f);
 std::vector<Object*> objects{};
 sf::Image image;
@@ -87,6 +87,8 @@ void Game::renderUI(Renderer &renderer, sf::RenderWindow &window)
 {
     if(!inGame)
     {
+        mainMenu.handleInput(window);
+        mainMenu.draw(renderer);
     }
     else
     {

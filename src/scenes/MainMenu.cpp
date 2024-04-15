@@ -10,13 +10,13 @@
 MainMenu::MainMenu()
 {
     font.loadFromFile("assets/yoster.ttf");
-    
 
     title.setFont(font);
     title.setString("Just Another Platformer");
-    title.setCharacterSize(100);
+    title.setCharacterSize(10);
     title.scale(0.035f, 0.035f);
     title.setFillColor(sf::Color::White);
+    title.setPosition(0, 0);
 
     startButton.setSize(sf::Vector2f(11, 7));
     startButton.setFillColor(sf::Color(255, 255, 255, 0));
@@ -26,6 +26,7 @@ MainMenu::MainMenu()
     startText.setCharacterSize(50);
     startText.scale(0.1f, 0.1f);
     startText.setFillColor(sf::Color::White);
+    startText.setPosition(4,25);
 
     exitButton.setSize(sf::Vector2f(11, 7));
     exitButton.setFillColor(sf::Color(255, 255, 255, 0));
@@ -69,12 +70,15 @@ void MainMenu::handleInput(sf::RenderWindow &window)
     }
 }
 
-void MainMenu::draw(Renderer& renderer) const
+void MainMenu::draw(Renderer& renderer)
 {
+    sf::Texture test;
+    test.loadFromFile("assets/background2.png");
+    background.setTexture(test);
     renderer.target.draw(background);
-    renderer.target.draw(title);
+    //renderer.target.draw(title);
     renderer.target.draw(startButton);
     renderer.target.draw(startText);
     renderer.target.draw(exitButton);
-    renderer.target.draw(exitText);
+    //renderer.target.draw(exitText);
 }
