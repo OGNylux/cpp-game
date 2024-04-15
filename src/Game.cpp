@@ -10,7 +10,7 @@
 #include "engine/Physics.h"
 
 Player Game::player = Player();
-bool Game::paused = false;
+bool Game::paused = true;
 bool Game::inGame = false;
 Map map(1.0f);
 std::vector<Object*> objects{};
@@ -109,6 +109,8 @@ void Game::renderUI(Renderer &renderer, sf::RenderWindow &window)
         }
         else if (player.getDeadState())
         {
+            deathMenu.handleInput(window);
+            deathMenu.draw(renderer);
         }
     }
 }

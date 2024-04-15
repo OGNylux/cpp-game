@@ -16,8 +16,9 @@ DeathMenu::DeathMenu()
     title.setFont(font);
     title.setString("You died!");
     title.setCharacterSize(100);
-    title.scale(0.1f, 0.1f);
+    title.scale(0.05f, 0.05f);
     title.setFillColor(sf::Color::White);
+    title.setPosition(38, 15);
 
     startButton.setSize(sf::Vector2f(25, 7));
     startButton.setFillColor(sf::Color(255, 255, 255, 180));
@@ -28,6 +29,7 @@ DeathMenu::DeathMenu()
     startText.setCharacterSize(50);
     startText.scale(0.1f, 0.1f);
     startText.setFillColor(sf::Color::Black);
+    startText.setPosition((100.0f / 2 - startButton.getGlobalBounds().width / 2)+3, 30.1);
 
     exitButton.setSize(sf::Vector2f(25, 7));
     exitButton.setFillColor(sf::Color(255, 255, 255, 180));
@@ -38,6 +40,7 @@ DeathMenu::DeathMenu()
     exitText.setCharacterSize(50);
     exitText.scale(0.1f, 0.1f);
     exitText.setFillColor(sf::Color::Black);
+    exitText.setPosition((100.0f / 2 - exitButton.getGlobalBounds().width / 2)+7, 40.1);
 }
 
 void DeathMenu::handleInput(sf::RenderWindow &window)

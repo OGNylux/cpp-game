@@ -13,29 +13,32 @@ MainMenu::MainMenu()
 
     title.setFont(font);
     title.setString("Just Another Platformer");
-    title.setCharacterSize(10);
-    title.scale(0.035f, 0.035f);
+    title.setCharacterSize(100);
+    title.scale(0.05f, 0.05f);
     title.setFillColor(sf::Color::White);
-    title.setPosition(0, 0);
+    title.setPosition(2, 15);
 
-    startButton.setSize(sf::Vector2f(11, 7));
+    startButton.setSize(sf::Vector2f(12, 7));
     startButton.setFillColor(sf::Color(255, 255, 255, 0));
+    startButton.setPosition(2,25);
 
     startText.setFont(font);
     startText.setString("Play");
     startText.setCharacterSize(50);
     startText.scale(0.1f, 0.1f);
     startText.setFillColor(sf::Color::White);
-    startText.setPosition(4,25);
+    startText.setPosition(2,25.1f);
 
     exitButton.setSize(sf::Vector2f(11, 7));
     exitButton.setFillColor(sf::Color(255, 255, 255, 0));
+    exitButton.setPosition(2,32);
 
     exitText.setFont(font);
     exitText.setString("Exit");
     exitText.setCharacterSize(50);
     exitText.scale(0.1f, 0.1f);
     exitText.setFillColor(sf::Color::White);
+    exitText.setPosition(2,32.1f);
 }
 
 void MainMenu::handleInput(sf::RenderWindow &window)
@@ -65,6 +68,7 @@ void MainMenu::handleInput(sf::RenderWindow &window)
         if(startButton.getGlobalBounds().contains(static_cast<float>(mousePosition.x), static_cast<float>(mousePosition.y)))
         {
             Game::setInGame(true);
+            Game::setPaused(false);
         }
         if(exitButton.getGlobalBounds().contains(static_cast<float>(mousePosition.x), static_cast<float>(mousePosition.y))) window.close();
     }
@@ -72,13 +76,14 @@ void MainMenu::handleInput(sf::RenderWindow &window)
 
 void MainMenu::draw(Renderer& renderer)
 {
-    sf::Texture test;
-    test.loadFromFile("assets/background2.png");
-    background.setTexture(test);
+    sf::Texture backgroundTexture;
+    backgroundTexture.loadFromFile("assets/background2.png");
+    background.setTexture(backgroundTexture);
+    background.setScale(0.25f, 0.25f);
     renderer.target.draw(background);
-    //renderer.target.draw(title);
+    renderer.target.draw(title);
     renderer.target.draw(startButton);
     renderer.target.draw(startText);
     renderer.target.draw(exitButton);
-    //renderer.target.draw(exitText);
+    renderer.target.draw(exitText);
 }

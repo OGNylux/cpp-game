@@ -109,7 +109,8 @@ sf::Vector2f Map::createFromImage(const sf::Image& image, std::vector<Object*>& 
             if(object)
             {
                 object -> position = getCenterOfCell(x, y);
-                if(std::string(typeid(*object).name()) == "5Decor") objects.insert(objects.begin(), object);
+                std::cout << typeid(*object).name() << std::endl;
+                if(std::string(typeid(*object).name()) == "5Decor" || std::string(typeid(*object).name()) == "class Decor") objects.insert(objects.begin(), object);
                 else objects.push_back(object);
             }
             else if(grid[x][y] != nullptr)
