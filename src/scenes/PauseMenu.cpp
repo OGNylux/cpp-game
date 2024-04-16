@@ -2,19 +2,15 @@
 // Created by a3445 on 02.04.2024.
 //
 
-#include <iostream>
 #include "PauseMenu.h"
 #include "SFML/Window/Mouse.hpp"
 #include "../Game.h"
 
 PauseMenu::PauseMenu()
 {
-    font.loadFromFile("assets/yoster.ttf");
-
     background.setSize(sf::Vector2f(100, 100));
     background.setFillColor(sf::Color(0, 0, 0, 150));
 
-    title.setFont(font);
     title.setString("Paused");
     title.setCharacterSize(100);
     title.scale(0.05f, 0.05f);
@@ -24,8 +20,7 @@ PauseMenu::PauseMenu()
     startButton.setSize(sf::Vector2f(25, 7));
     startButton.setFillColor(sf::Color(255, 255, 255, 180));
     startButton.setPosition(100.0f / 2 - startButton.getGlobalBounds().width / 2, 30);
-
-    startText.setFont(font);
+;
     startText.setString("Resume");
     startText.setCharacterSize(50);
     startText.scale(0.1f, 0.1f);
@@ -36,7 +31,6 @@ PauseMenu::PauseMenu()
     exitButton.setFillColor(sf::Color(255, 255, 255, 180));
     exitButton.setPosition(100.0f / 2 - exitButton.getGlobalBounds().width / 2, 40);
 
-    exitText.setFont(font);
     exitText.setString("Exit");
     exitText.setCharacterSize(50);
     exitText.scale(0.1f, 0.1f);
@@ -74,8 +68,14 @@ void PauseMenu::handleInput(sf::RenderWindow &window)
     }
 }
 
-void PauseMenu::draw(Renderer& renderer) const
+void PauseMenu::draw(Renderer& renderer)
 {
+    sf::Font font;
+    font.loadFromFile("assets/yoster.ttf");
+
+    title.setFont(font);
+    startText.setFont(font);
+    exitText.setFont(font);
     renderer.target.draw(background);
     renderer.target.draw(title);
     renderer.target.draw(startButton);

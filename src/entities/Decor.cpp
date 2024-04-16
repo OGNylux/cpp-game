@@ -5,9 +5,9 @@
 #include "Decor.h"
 
 #include <utility>
-#include "../Resources.h"
+#include "../TextureManager.h"
 
-Decor::Decor(std::string resource, sf::Vector2f positionCorrection, sf::Vector2f size) : resource(std::move(resource)), positionCorrection(positionCorrection), size(size)
+Decor::Decor(std::string path, sf::Vector2f positionCorrection, sf::Vector2f size) : path(std::move(path)), positionCorrection(positionCorrection), size(size)
 {
 }
 
@@ -15,5 +15,7 @@ Decor::Decor(std::string resource, sf::Vector2f positionCorrection, sf::Vector2f
 void Decor::render(Renderer &renderer)
 {
     sf::Vector2f newPosition = {position.x + positionCorrection.x, position.y + positionCorrection.y};
-    renderer.draw(Resources::textures[resource], newPosition, size);
+    TextureManager::getInstance().loadTexture(path);
+    sf::Texture& texture = TextureManager::getInstance().getTexture(path);
+    renderer.draw(texture, newPosition, size);
 }

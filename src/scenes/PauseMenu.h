@@ -18,7 +18,7 @@ public:
     PauseMenu();
 
     void handleInput(sf::RenderWindow &window);
-    void draw(Renderer& renderer) const;
+    void draw(Renderer& renderer);
 
 private:
     sf::RectangleShape background;
@@ -30,8 +30,6 @@ private:
 
     sf::RectangleShape exitButton;
     sf::Text exitText;
-
-    sf::Font font;
 };
 
 

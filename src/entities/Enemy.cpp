@@ -6,7 +6,6 @@
 
 #include "Player.h"
 #include "../Game.h"
-#include "../Resources.h"
 #include "../engine/Physics.h"
 #include "box2d/b2_circle_shape.h"
 #include <numbers>
@@ -18,18 +17,18 @@ void Enemy::init()
     tag = "enemy";
     moveAnimation = Animation(0.6f,
 {
-            AnimationFrame(0.45f, &Resources::textures["slime_move_00.png"]),
-            AnimationFrame(0.30f, &Resources::textures["slime_move_01.png"]),
-            AnimationFrame(0.15f, &Resources::textures["slime_move_02.png"]),
-            AnimationFrame(0.0f, &Resources::textures["slime_move_03.png"])
+            AnimationFrame(0.45f, "assets/animations/enemy/slime_move_00.png"),
+            AnimationFrame(0.30f, "assets/animations/enemy/slime_move_01.png"),
+            AnimationFrame(0.15f, "assets/animations/enemy/slime_move_02.png"),
+            AnimationFrame(0.0f, "assets/animations/enemy/slime_move_03.png")
         });
 
     deathAnimation = Animation(0.6f,
                                {
-            AnimationFrame(0.45f, &Resources::textures["slime_death_00.png"]),
-            AnimationFrame(0.30f, &Resources::textures["slime_death_01.png"]),
-            AnimationFrame(0.15f, &Resources::textures["slime_death_02.png"]),
-            AnimationFrame(0.0f, &Resources::textures["slime_death_03.png"])
+            AnimationFrame(0.45f, "assets/animations/enemy/slime_death_00.png"),
+            AnimationFrame(0.30f, "assets/animations/enemy/slime_death_01.png"),
+            AnimationFrame(0.15f, "assets/animations/enemy/slime_death_02.png"),
+            AnimationFrame(0.0f, "assets/animations/enemy/slime_death_03.png")
                                });
 
     b2BodyDef bodyDef;

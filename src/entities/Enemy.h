@@ -9,7 +9,6 @@
 #include "../engine/FixtureData.h"
 #include "box2d/b2_body.h"
 
-
 class Renderer;
 
 class Enemy final : public Object
@@ -32,7 +31,7 @@ private:
 
     Animation moveAnimation;
     Animation deathAnimation;
-    const sf::Texture* textureToDraw;
+    sf::Texture *textureToDraw;
     FixtureData fixtureData{};
     b2Body* body{};
 };

@@ -27,6 +27,7 @@ public:
     bool getDeadState() const;
     void setDeadState(bool state);
     bool getHitState() const;
+    void setHitState(bool state);
 private:
     void initAnimations();
     void initCollisionBoxes();

@@ -29,8 +29,6 @@ add_executable(platformer src/main.cpp
         src/engine/Physics.h
         src/Map.cpp
         src/Map.h
-        src/Resources.cpp
-        src/Resources.h
         src/entities/Player.cpp
         src/entities/Player.h
         src/engine/Collision.cpp
@@ -51,6 +49,8 @@ add_executable(platformer src/main.cpp
         src/entities/Decor.h
         src/scenes/DeathMenu.cpp
         src/scenes/DeathMenu.h
+        src/TextureManager.cpp
+        src/TextureManager.h
 )
 file(COPY src/assets DESTINATION ${CMAKE_RUNTIME_OUTPUT_DIRECTORY})
 target_link_libraries(platformer PRIVATE sfml-graphics)

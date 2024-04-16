@@ -5,13 +5,9 @@
 #include <iostream>
 #include "MainMenu.h"
 #include "../Game.h"
-#include "../Resources.h"
 
 MainMenu::MainMenu()
 {
-    font.loadFromFile("assets/yoster.ttf");
-
-    title.setFont(font);
     title.setString("Just Another Platformer");
     title.setCharacterSize(100);
     title.scale(0.05f, 0.05f);
@@ -22,7 +18,6 @@ MainMenu::MainMenu()
     startButton.setFillColor(sf::Color(255, 255, 255, 0));
     startButton.setPosition(2,25);
 
-    startText.setFont(font);
     startText.setString("Play");
     startText.setCharacterSize(50);
     startText.scale(0.1f, 0.1f);
@@ -33,7 +28,6 @@ MainMenu::MainMenu()
     exitButton.setFillColor(sf::Color(255, 255, 255, 0));
     exitButton.setPosition(2,32);
 
-    exitText.setFont(font);
     exitText.setString("Exit");
     exitText.setCharacterSize(50);
     exitText.scale(0.1f, 0.1f);
@@ -76,6 +70,12 @@ void MainMenu::handleInput(sf::RenderWindow &window)
 
 void MainMenu::draw(Renderer& renderer)
 {
+    sf::Font font;
+    font.loadFromFile("assets/yoster.ttf");
+
+    title.setFont(font);
+    startText.setFont(font);
+    exitText.setFont(font);
     sf::Texture backgroundTexture;
     backgroundTexture.loadFromFile("assets/background2.png");
     background.setTexture(backgroundTexture);

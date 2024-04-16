@@ -2,7 +2,6 @@
 // Created by nylux on 08.03.2024.
 //
 
-#include <iostream>
 #include "Camera.h"
 
 Camera::Camera(const float zoomLevel) : zoomLevel(zoomLevel)

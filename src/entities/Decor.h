@@ -13,7 +13,7 @@ public:
     explicit Decor(std::string resource, sf::Vector2f positionCorrection, sf::Vector2f size);
     void render(Renderer &renderer) override;
 
-    std::string resource;
+    std::string path;
     sf::Vector2f positionCorrection;
     sf::Vector2f size{};
 };

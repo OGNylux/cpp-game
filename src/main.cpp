@@ -11,7 +11,7 @@ int main()
     sf::Clock deltaClock;
     Renderer renderer(window);
 
-    game.init();
+    Game::init();
     window.setFramerateLimit(60);
     while (window.isOpen())
     {

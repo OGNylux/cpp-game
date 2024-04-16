@@ -5,15 +5,18 @@
 #ifndef ANIMATIONS_H
 #define ANIMATIONS_H
 #include "SFML/Graphics/Texture.hpp"
+#include "../TextureManager.h"
 
 struct AnimationFrame
 {
-    explicit AnimationFrame(const float time = 0.0f, const sf::Texture* texture = nullptr) : time(time), texture(texture)
+    explicit AnimationFrame(float time = 0.0f, std::string path = "") : time(time)
     {
+        TextureManager::getInstance().loadTexture(path);
+        texture = &TextureManager::getInstance().getTexture(path);
     }
 
     float time = 0.0f;
-    const sf::Texture* texture;
+    sf::Texture* texture;
 };
 
 class Animation
@@ -21,7 +24,7 @@ class Animation
 public:
     explicit Animation(float length = 0.0f, std::vector<AnimationFrame> frames = {}, bool holdOnLastFrame = false);
     void update(float deltaTime);
-    const sf::Texture* getTexture();
+    sf::Texture * getTexture();
     void reset();
 
 private:

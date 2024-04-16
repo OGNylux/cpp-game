@@ -17,7 +17,7 @@ void Animation::update(float deltaTime)
     }
 }
 
-const sf::Texture* Animation::getTexture() {
+sf::Texture *Animation::getTexture() {
     if (holdOnLastFrame && time > length) {
         return frames.back().texture;
     }

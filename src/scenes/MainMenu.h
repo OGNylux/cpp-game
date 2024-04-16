@@ -16,15 +16,8 @@
 #include "../engine/Renderer.h"
 
 class MainMenu {
-public:
-    MainMenu();
-
-    void handleInput(sf::RenderWindow &window);
-    void draw(Renderer& renderer);
-
 private:
     sf::Sprite background;
-
     sf::Text title;
 
     sf::RectangleShape startButton;
@@ -32,8 +25,11 @@ private:
 
     sf::RectangleShape exitButton;
     sf::Text exitText;
+public:
+    MainMenu();
 
-    sf::Font font;
+    void handleInput(sf::RenderWindow &window);
+    void draw(Renderer& renderer);
 };
 
 

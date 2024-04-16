@@ -6,7 +6,6 @@
 
 #include <iostream>
 
-#include "../Resources.h"
 #include "../engine/FixtureData.h"
 #include "../engine/Physics.h"
 #include "box2d/b2_fixture.h"
@@ -14,7 +13,6 @@
 
 Heart::~Heart()
 {
-    std::cout << "Heart deleted" << std::endl;
     Physics::bodiesToDestroy.push_back(body);
 }
 
@@ -23,8 +21,8 @@ void Heart::init()
     tag = "heart";
     animation = Animation(0.6f,
 {
-            AnimationFrame(0.3f, &Resources::textures["heart_idle_00.png"]),
-            AnimationFrame(0.0f, &Resources::textures["heart_idle_01.png"])
+            AnimationFrame(0.3f, "assets/animations/heart/heart_idle_00.png"),
+            AnimationFrame(0.0f, "assets/animations/heart/heart_idle_01.png")
         });
 
     b2BodyDef bodyDef;

@@ -6,7 +6,6 @@
 #define CAMERA_H
 #include "SFML/Graphics/View.hpp"
 
-
 class Camera
 {
 public:

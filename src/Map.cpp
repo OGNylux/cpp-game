@@ -8,7 +8,6 @@
 
 #include "engine/FixtureData.h"
 #include "engine/Physics.h"
-#include "Resources.h"
 #include "box2d/b2_body.h"
 #include "box2d/b2_fixture.h"
 #include "box2d/b2_polygon_shape.h"
@@ -28,28 +27,28 @@ struct ColorComparator {
 };
 
 std::map<sf::Color, std::string, ColorComparator> colorToTexture = {
-        {sf::Color(10, 0, 0), "grass_00.png"},
-        {sf::Color(20, 0, 0), "grass_01.png"},
-        {sf::Color(30, 0, 0), "grass_02.png"},
-        {sf::Color(40, 0, 0), "grass_03.png"},
-        {sf::Color(50, 0, 0), "grass_04.png"},
-        {sf::Color(60, 0, 0), "grass_05.png"},
-        {sf::Color(70, 0, 0), "grass_06.png"},
-        {sf::Color(80, 0, 0), "grass_07.png"},
-        {sf::Color(90, 0, 0), "grass_08.png"},
-        {sf::Color(100, 0, 0), "grass_09.png"},
-        {sf::Color(110, 0, 0), "grass_10.png"},
-        {sf::Color(120, 0, 0), "grass_11.png"},
-        {sf::Color(130, 0, 0), "grass_12.png"},
-        {sf::Color(140, 0, 0), "grass_13.png"},
-        {sf::Color(150, 0, 0), "grass_14.png"},
-        {sf::Color(160, 0, 0), "grass_15.png"},
-        {sf::Color(170, 0, 0), "grass_16.png"},
-        {sf::Color(180, 0, 0), "platform_00.png"},
-        {sf::Color(190, 0, 0), "platform_01.png"},
-        {sf::Color(200, 0, 0), "platform_02.png"},
-        {sf::Color(210, 0, 0), "platform_03.png"},
-        {sf::Color(220, 0, 0), "platform_04.png"}
+        {sf::Color(10, 0, 0), "assets/blocks/grass_00.png"},
+        {sf::Color(20, 0, 0), "assets/blocks/grass_01.png"},
+        {sf::Color(30, 0, 0), "assets/blocks/grass_02.png"},
+        {sf::Color(40, 0, 0), "assets/blocks/grass_03.png"},
+        {sf::Color(50, 0, 0), "assets/blocks/grass_04.png"},
+        {sf::Color(60, 0, 0), "assets/blocks/grass_05.png"},
+        {sf::Color(70, 0, 0), "assets/blocks/grass_06.png"},
+        {sf::Color(80, 0, 0), "assets/blocks/grass_07.png"},
+        {sf::Color(90, 0, 0), "assets/blocks/grass_08.png"},
+        {sf::Color(100, 0, 0), "assets/blocks/grass_09.png"},
+        {sf::Color(110, 0, 0), "assets/blocks/grass_10.png"},
+        {sf::Color(120, 0, 0), "assets/blocks/grass_11.png"},
+        {sf::Color(130, 0, 0), "assets/blocks/grass_12.png"},
+        {sf::Color(140, 0, 0), "assets/blocks/grass_13.png"},
+        {sf::Color(150, 0, 0), "assets/blocks/grass_14.png"},
+        {sf::Color(160, 0, 0), "assets/blocks/grass_15.png"},
+        {sf::Color(170, 0, 0), "assets/blocks/grass_16.png"},
+        {sf::Color(180, 0, 0), "assets/blocks/platform_00.png"},
+        {sf::Color(190, 0, 0), "assets/blocks/platform_01.png"},
+        {sf::Color(200, 0, 0), "assets/blocks/platform_02.png"},
+        {sf::Color(210, 0, 0), "assets/blocks/platform_03.png"},
+        {sf::Color(220, 0, 0), "assets/blocks/platform_04.png"}
 };
 
 Map::Map(const float cellSize) : cellSize(cellSize)
@@ -79,37 +78,37 @@ sf::Vector2f Map::createFromImage(const sf::Image& image, std::vector<Object*>& 
             {
                 if (color == pair.first)
                 {
-                    grid[x][y] = &Resources::textures[pair.second];
+                    TextureManager::getInstance().loadTexture(pair.second);
+                    grid[x][y] = &TextureManager::getInstance().getTexture(pair.second);
                     break;
                 }
             }
             if(color == sf::Color::Yellow) object = new Heart();
             else if(color == sf::Color::Green) object = new Enemy();
-            else if(color == sf::Color(0,250,0)) object = new Decor("tree.png", {0, -4}, {7, 9});
-            else if(color == sf::Color(0, 240, 0)) object = new Decor("small_tree.png", {0, -1.5}, {4, 4});
-            else if(color == sf::Color(0, 230, 0)) object = new Decor("stone.png", {0, -0.5}, {2, 2});
-            else if(color == sf::Color(0, 220, 0)) object = new Decor("small_stone.png", {0, 0}, {1, 1});
-            else if(color == sf::Color(0, 210, 0)) object = new Decor("bush.png", {0, -0.5}, {4, 2});
-            else if(color == sf::Color(0, 200, 0)) object = new Decor("small_bush.png", {0, -0.5}, {3, 2});
+            else if(color == sf::Color(0,250,0)) object = new Decor("assets/decor/tree.png", {0, -4}, {7, 9});
+            else if(color == sf::Color(0, 240, 0)) object = new Decor("assets/decor/small_tree.png", {0, -1.5}, {4, 4});
+            else if(color == sf::Color(0, 230, 0)) object = new Decor("assets/decor/stone.png", {0, -0.5}, {2, 2});
+            else if(color == sf::Color(0, 220, 0)) object = new Decor("assets/decor/small_stone.png", {0, 0}, {1, 1});
+            else if(color == sf::Color(0, 210, 0)) object = new Decor("assets/decor/bush.png", {0, -0.5}, {4, 2});
+            else if(color == sf::Color(0, 200, 0)) object = new Decor("assets/decor/small_bush.png", {0, -0.5}, {3, 2});
             else if(color == sf::Color(0, 190, 0))
             {
                 // generate a random number between 0 and 3
                 int random = rand() % 4;
-                std::string test = "flower_0" + std::to_string(random) + ".png";
+                std::string test = "assets/decor/flower_0" + std::to_string(random) + ".png";
                 object = new Decor(test, {0, 0}, {1, 1});
             }
             else if(color == sf::Color(0, 180, 0))
             {
                 // generate a random number between 0 and 2
                 int random = rand() % 3;
-                std::string test = "grass_foliage_0" + std::to_string(random) + ".png";
+                std::string test = "assets/decor/grass_foliage_0" + std::to_string(random) + ".png";
                 object = new Decor(test, {0, 0}, {1, 1});
             }
 
             if(object)
             {
                 object -> position = getCenterOfCell(x, y);
-                std::cout << typeid(*object).name() << std::endl;
                 if(std::string(typeid(*object).name()) == "5Decor" || std::string(typeid(*object).name()) == "class Decor") objects.insert(objects.begin(), object);
                 else objects.push_back(object);
             }

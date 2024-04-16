@@ -3,11 +3,11 @@
 //
 
 #include "Game.h"
-#include "Resources.h"
 #include "Map.h"
 #include "entities/Player.h"
 
 #include "engine/Physics.h"
+#include "TextureManager.h"
 
 Player Game::player = Player();
 bool Game::paused = true;
@@ -40,12 +40,6 @@ void Game::restart()
 
 void Game::init()
 {
-    Resources::initTexture("assets");
-    Resources::initTexture("assets/blocks");
-    Resources::initTexture("assets/decor");
-    Resources::initTexture("assets/animations/player");
-    Resources::initTexture("assets/animations/enemy");
-    Resources::initTexture("assets/animations/heart");
     image.loadFromFile("assets/level.png");
 
     Physics::init();
@@ -67,7 +61,8 @@ void Game::update(float deltaTime)
 
 void Game::render(Renderer& renderer)
 {
-    sf::Texture test = Resources::textures["background2.png"];
+    TextureManager::getInstance().loadTexture("assets/background2.png");
+    sf::Texture test = TextureManager::getInstance().getTexture("assets/background2.png");
     float parallax = 0.1f*getCamera().getPosition().x;
     renderer.draw(test, {30+parallax,20}, {100,42});
     renderer.draw(test, {130+parallax,20}, {100,42});
@@ -92,7 +87,8 @@ void Game::renderUI(Renderer &renderer, sf::RenderWindow &window)
     }
     else
     {
-        sf::Texture& heartTexture = Resources::textures["heart_idle_00.png"];
+        TextureManager::getInstance().loadTexture("assets/background2.png");
+        sf::Texture heartTexture = TextureManager::getInstance().getTexture("assets/animations/heart/heart_idle_00.png");
         sf::Vector2u textureSize = heartTexture.getSize();
         sf::Vector2f position = {2.0f, 2.0f};
 
