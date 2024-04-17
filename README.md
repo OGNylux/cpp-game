@@ -64,6 +64,7 @@ If an object gets collected or killed the corresponding deconstructor flags its 
 ## Known Issues
 
 - Hearts give you more than one health points sometimes (the hitboxes are not very good)
+- You can get stuck on a wall when jumping against it sometimes
 - There's no real game-loop
 
 ## Credits
