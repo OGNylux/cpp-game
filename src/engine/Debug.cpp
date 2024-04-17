@@ -4,6 +4,8 @@
 
 #include "Debug.h"
 
+#include <cmath>
+
 #include "SFML/Graphics/CircleShape.hpp"
 #include "SFML/Graphics/ConvexShape.hpp"
 
@@ -16,7 +18,10 @@ void Debug::DrawPolygon(const b2Vec2 *vertices, int32 vertexCount, const b2Color
     }
     polygon.setFillColor(sf::Color::Transparent);
     polygon.setOutlineThickness(0.02f);
-    polygon.setOutlineColor(sf::Color(color.r * 255.0f, color.g * 255, color.b * 255, color.a * 255));
+    polygon.setOutlineColor(sf::Color(static_cast<sf::Uint8>(std::round(color.r * 255.0f)),
+                                      static_cast<sf::Uint8>(std::round(color.g * 255)),
+                                      static_cast<sf::Uint8>(std::round(color.b * 255)),
+                                      static_cast<sf::Uint8>(std::round(color.a * 255))));
     target.draw(polygon);
 }
 
@@ -27,7 +32,10 @@ void Debug::DrawSolidPolygon(const b2Vec2 *vertices, int32 vertexCount, const b2
     {
         polygon.setPoint(i, sf::Vector2f(vertices[i].x, vertices[i].y));
     }
-    polygon.setFillColor(sf::Color(color.r * 255, color.g * 255, color.b * 255, color.a * 255));
+    polygon.setFillColor(sf::Color(static_cast<sf::Uint8>(std::round(color.r * 255.0f)),
+                                   static_cast<sf::Uint8>(std::round(color.g * 255)),
+                                   static_cast<sf::Uint8>(std::round(color.b * 255)),
+                                   static_cast<sf::Uint8>(std::round(color.a * 255))));
     target.draw(polygon);
 }
 
@@ -39,7 +47,10 @@ void Debug::DrawCircle(const b2Vec2 &center, float radius, const b2Color &color)
     circle.setOrigin(radius, radius);
     circle.setFillColor(sf::Color::Transparent);
     circle.setOutlineThickness(0.02f);
-    circle.setOutlineColor(sf::Color(color.r * 255, color.g * 255, color.b * 255, color.a * 255));
+    circle.setOutlineColor(sf::Color(static_cast<sf::Uint8>(std::round(color.r * 255.0f)),
+                                     static_cast<sf::Uint8>(std::round(color.g * 255)),
+                                     static_cast<sf::Uint8>(std::round(color.b * 255)),
+                                     static_cast<sf::Uint8>(std::round(color.a * 255))));
     target.draw(circle);
 }
 
@@ -48,7 +59,10 @@ void Debug::DrawSolidCircle(const b2Vec2 &center, float radius, const b2Vec2 &ax
     sf::CircleShape circle(radius);
     circle.setPosition(center.x, center.y);
     circle.setOrigin(radius, radius);
-    circle.setFillColor(sf::Color(color.r * 255, color.g * 255, color.b * 255, color.a * 120));
+    circle.setFillColor(sf::Color(static_cast<sf::Uint8>(std::round(color.r * 255.0f)),
+                                  static_cast<sf::Uint8>(std::round(color.g * 255)),
+                                  static_cast<sf::Uint8>(std::round(color.b * 255)),
+                                  static_cast<sf::Uint8>(std::round(color.a * 255))));
     target.draw(circle);
 
     b2Vec2 p = center + (radius * axis);
@@ -58,7 +72,10 @@ void Debug::DrawSolidCircle(const b2Vec2 &center, float radius, const b2Vec2 &ax
 void Debug::DrawSegment(const b2Vec2 &p1, const b2Vec2 &p2, const b2Color &color)
 {
     sf::VertexArray line(sf::Lines, 2);
-    sf::Color sfColor(color.r * 255, color.g * 255, color.b * 255, color.a * 255);
+    sf::Color sfColor(sf::Color(static_cast<sf::Uint8>(std::round(color.r * 255.0f)),
+                                static_cast<sf::Uint8>(std::round(color.g * 255)),
+                                static_cast<sf::Uint8>(std::round(color.b * 255)),
+                                static_cast<sf::Uint8>(std::round(color.a * 255))));
     line[0].position = sf::Vector2f(p1.x, p1.y);
     line[0].color = sfColor;
     line[1].position = sf::Vector2f(p2.x, p2.y);
@@ -81,6 +98,9 @@ void Debug::DrawPoint(const b2Vec2 &p, float size, const b2Color &color)
     sf::CircleShape circle(size);
     circle.setPosition(p.x, p.y);
     circle.setOrigin(size, size);
-    circle.setFillColor(sf::Color(color.r * 255, color.g * 255, color.b * 255, color.a * 255));
+    circle.setFillColor(sf::Color(static_cast<sf::Uint8>(std::round(color.r * 255.0f)),
+                                  static_cast<sf::Uint8>(std::round(color.g * 255)),
+                                  static_cast<sf::Uint8>(std::round(color.b * 255)),
+                                  static_cast<sf::Uint8>(std::round(color.a * 255))));
     target.draw(circle);
 }

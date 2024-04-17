@@ -23,12 +23,12 @@ struct FixtureData
 
     union
     {
-        Player* player;
+        [[maybe_unused]] Player* player;
         Object* object;
         struct
         {
-            int mapX;
-            int mapY;
+            [[maybe_unused]] int mapX;
+            [[maybe_unused]] int mapY;
         };
     };
 };

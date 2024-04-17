@@ -8,7 +8,6 @@
 #include "box2d/b2_circle_shape.h"
 #include "SFML/Window/Keyboard.hpp"
 #include <numbers>
-#include <iostream>
 
 #include "Enemy.h"
 #include "Object.h"
@@ -270,11 +269,6 @@ void Player::setPosition(sf::Vector2f newPosition)
     position = newPosition;
 }
 
-float Player::getAngle() const
-{
-    return angle;
-}
-
 bool Player::getDeadState() const
 {
     return isDead;
@@ -283,15 +277,6 @@ bool Player::getDeadState() const
 void Player::setDeadState(const bool state)
 {
     isDead = state;
-}
-
-bool Player::getHitState() const {
-    return isHit;
-}
-
-void Player::setHitState(const bool state)
-{
-    isHit = state;
 }
 
 

@@ -20,14 +20,11 @@ public:
     void draw(Renderer& renderer);
     void OnBeginContact(b2Fixture *self, b2Fixture *other) override;
     void OnEndContact(b2Fixture *self, b2Fixture *other) override;
-    int getHealth() const;
-    sf::Vector2f getPosition() const;
+    [[nodiscard]] int getHealth() const;
+    [[nodiscard]] sf::Vector2f getPosition() const;
     void setPosition(sf::Vector2f newPosition);
-    float getAngle() const;
-    bool getDeadState() const;
+    [[nodiscard]] bool getDeadState() const;
     void setDeadState(bool state);
-    bool getHitState() const;
-    void setHitState(bool state);
 private:
     void initAnimations();
     void initCollisionBoxes();

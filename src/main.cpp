@@ -7,7 +7,7 @@ Game game;
 
 int main()
 {
-    auto window = sf::RenderWindow{ sf::VideoMode(1200, 900), "CMake SFML Project", sf::Style::Close };
+    auto window = sf::RenderWindow{ sf::VideoMode(1200, 900), "Just Another Platformer", sf::Style::Close };
     sf::Clock deltaClock;
     Renderer renderer(window);
 

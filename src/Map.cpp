@@ -4,6 +4,7 @@
 
 #include <map>
 #include <iostream>
+#include <random>
 #include "Map.h"
 
 #include "engine/FixtureData.h"
@@ -94,14 +95,20 @@ sf::Vector2f Map::createFromImage(const sf::Image& image, std::vector<Object*>& 
             else if(color == sf::Color(0, 190, 0))
             {
                 // generate a random number between 0 and 3
-                int random = rand() % 4;
+                std::random_device rd;
+                std::mt19937 gen(rd());
+                std::uniform_int_distribution<> distrib(0, 3);
+                int random = distrib(gen);
                 std::string test = "assets/decor/flower_0" + std::to_string(random) + ".png";
                 object = new Decor(test, {0, 0}, {1, 1});
             }
             else if(color == sf::Color(0, 180, 0))
             {
                 // generate a random number between 0 and 2
-                int random = rand() % 3;
+                std::random_device rd;
+                std::mt19937 gen(rd());
+                std::uniform_int_distribution<> distrib(0, 2);
+                int random = distrib(gen);
                 std::string test = "assets/decor/grass_foliage_0" + std::to_string(random) + ".png";
                 object = new Decor(test, {0, 0}, {1, 1});
             }

@@ -29,7 +29,6 @@ public:
 
     static bool isPaused();
     static void setPaused(bool state);
-    static bool isInGame();
     static void setInGame(bool state);
     static Player getPlayer();
 

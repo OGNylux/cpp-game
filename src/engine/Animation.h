@@ -9,7 +9,7 @@
 
 struct AnimationFrame
 {
-    explicit AnimationFrame(float time = 0.0f, std::string path = "") : time(time)
+    explicit AnimationFrame(float time = 0.0f, const std::string& path = "") : time(time)
     {
         TextureManager::getInstance().loadTexture(path);
         texture = &TextureManager::getInstance().getTexture(path);

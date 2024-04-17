@@ -2,7 +2,6 @@
 // Created by nylux on 01.04.2024.
 //
 
-#include <iostream>
 #include "MainMenu.h"
 #include "../Game.h"
 

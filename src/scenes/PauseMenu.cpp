@@ -20,7 +20,7 @@ PauseMenu::PauseMenu()
     startButton.setSize(sf::Vector2f(25, 7));
     startButton.setFillColor(sf::Color(255, 255, 255, 180));
     startButton.setPosition(100.0f / 2 - startButton.getGlobalBounds().width / 2, 30);
-;
+
     startText.setString("Resume");
     startText.setCharacterSize(50);
     startText.scale(0.1f, 0.1f);

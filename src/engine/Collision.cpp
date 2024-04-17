@@ -29,10 +29,8 @@ void Collision::EndContact(b2Contact *contact)
 
 void Collision::OnBeginContact(b2Fixture *self, b2Fixture* other)
 {
-
 }
 
 void Collision::OnEndContact(b2Fixture *self, b2Fixture* other)
 {
-
 }

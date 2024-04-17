@@ -9,6 +9,7 @@
 #include "../engine/Physics.h"
 #include "box2d/b2_circle_shape.h"
 #include <numbers>
+#include <random>
 
 float distanceTimer = 0.0f;
 
@@ -87,8 +88,10 @@ void Enemy::update(const float deltaTime)
         if(randomMoveTimer >= 1.5f)
         {
             randomMoveTimer = 0.0f;
-            if (rand() % 2 == 0) movementSpeed = -rand() % 5;
-            else movementSpeed = rand() % 5;
+            std::random_device rd;
+            std::mt19937 gen(rd());
+            std::uniform_int_distribution<> distrib(-5, 5);
+            movementSpeed = static_cast<float>(distrib(gen));
         }
     }
 

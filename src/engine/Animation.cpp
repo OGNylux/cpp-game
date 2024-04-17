@@ -12,13 +12,15 @@ Animation::Animation(float length, std::vector<AnimationFrame> frames, const boo
 
 void Animation::update(float deltaTime)
 {
-    if (!holdOnLastFrame || time <= length) {
+    if (!holdOnLastFrame || time <= length)
+    {
         time += deltaTime;
     }
 }
 
 sf::Texture *Animation::getTexture() {
-    if (holdOnLastFrame && time > length) {
+    if (holdOnLastFrame && time > length)
+    {
         return frames.back().texture;
     }
 

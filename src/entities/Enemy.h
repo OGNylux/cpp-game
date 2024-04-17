@@ -18,7 +18,7 @@ public:
     void update(float deltaTime) override;
     void render(Renderer& renderer) override;
     void checkPlayerDistance();
-    bool getDeadState() const;
+    [[nodiscard]] bool getDeadState() const;
 
     void die();
 private:

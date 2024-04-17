@@ -15,7 +15,7 @@ class Map
 {
 public:
     explicit Map(float cellSize = 32.0f);
-    sf::Vector2f getCenterOfCell(size_t x, size_t y) const;
+    [[nodiscard]] sf::Vector2f getCenterOfCell(size_t x, size_t y) const;
     sf::Vector2f createFromImage(const sf::Image&, std::vector<Object*>& objects);
     void draw(Renderer& renderer);
 

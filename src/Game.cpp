@@ -136,10 +136,6 @@ void Game::setPaused(bool state)
     paused = state;
 }
 
-bool Game::isInGame() {
-    return inGame;
-}
-
 void Game::setInGame(bool state)
 {
     inGame = state;
