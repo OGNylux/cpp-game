@@ -2,7 +2,6 @@
 
 <p align="center">
   <img src="https://github.com/OGNylux/cpp-game/actions/workflows/ci.yml/badge.svg" />
-  <img src="https://badgen.net/github/release/OGNylux/cpp-game" />
 </p>
 
 ## Just Another Platformer
