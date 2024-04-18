@@ -6,7 +6,9 @@
 #define DEBUG_H
 #include "box2d/b2_draw.h"
 #include "SFML/Graphics/RenderTarget.hpp"
-
+/**
+ * @brief Class that handles the debug drawing (the shapes that show the physics bodies)
+ */
 class Debug final : public b2Draw
 {
 public:

@@ -5,7 +5,9 @@
 #ifndef CAMERA_H
 #define CAMERA_H
 #include "SFML/Graphics/View.hpp"
-
+/**
+ * @brief Class that handles the camera
+ */
 class Camera
 {
 public:

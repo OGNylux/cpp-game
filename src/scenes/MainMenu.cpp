@@ -76,7 +76,7 @@ void MainMenu::draw(Renderer& renderer)
     startText.setFont(font);
     exitText.setFont(font);
     sf::Texture backgroundTexture;
-    backgroundTexture.loadFromFile("assets/background2.png");
+    backgroundTexture.loadFromFile("assets/background.png");
     background.setTexture(backgroundTexture);
     background.setScale(0.25f, 0.25f);
     renderer.target.draw(background);

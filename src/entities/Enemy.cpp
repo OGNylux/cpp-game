@@ -16,41 +16,8 @@ float distanceTimer = 0.0f;
 void Enemy::init()
 {
     tag = "enemy";
-    moveAnimation = Animation(0.6f,
-{
-            AnimationFrame(0.45f, "assets/animations/enemy/slime_move_00.png"),
-            AnimationFrame(0.30f, "assets/animations/enemy/slime_move_01.png"),
-            AnimationFrame(0.15f, "assets/animations/enemy/slime_move_02.png"),
-            AnimationFrame(0.0f, "assets/animations/enemy/slime_move_03.png")
-        });
-
-    deathAnimation = Animation(0.6f,
-                               {
-            AnimationFrame(0.45f, "assets/animations/enemy/slime_death_00.png"),
-            AnimationFrame(0.30f, "assets/animations/enemy/slime_death_01.png"),
-            AnimationFrame(0.15f, "assets/animations/enemy/slime_death_02.png"),
-            AnimationFrame(0.0f, "assets/animations/enemy/slime_death_03.png")
-                               });
-
-    b2BodyDef bodyDef;
-    bodyDef.type = b2_dynamicBody;
-    bodyDef.position.Set(position.x, position.y);
-    bodyDef.fixedRotation = true;
-    body = Physics::world->CreateBody(&bodyDef);
-
-    fixtureData.type = FixtureDataType::Object;
-    fixtureData.object = this;
-
-    b2CircleShape circle_shape;
-    circle_shape.m_radius = 0.5f;
-
-    b2FixtureDef fixtureDef;
-    fixtureDef.userData.pointer = reinterpret_cast<uintptr_t>(&fixtureData);
-    fixtureDef.shape = &circle_shape;
-    fixtureDef.density = 1.0f;
-    fixtureDef.friction = 0.0f;
-    body->CreateFixture(&fixtureDef);
-
+    initAnimations();
+    initCollisionBoxes();
 }
 
 void Enemy::update(const float deltaTime)
@@ -71,7 +38,7 @@ void Enemy::update(const float deltaTime)
     b2Vec2 velocity = body->GetLinearVelocity();
 
     distanceTimer += deltaTime;
-    if(distanceTimer >= 4.0f)  // Check distance every 10 frames
+    if(distanceTimer >= 4.0f)  // Check distance every 4 seconds
     {
         checkPlayerDistance();
         distanceTimer = 0;
@@ -106,6 +73,45 @@ void Enemy::update(const float deltaTime)
 void Enemy::render(Renderer& renderer)
 {
     renderer.draw(*textureToDraw, sf::Vector2f(position.x, position.y - 0.4f), sf::Vector2f(2.0f, 2.0f), angle);
+}
+
+void Enemy::initAnimations()
+{
+    moveAnimation = Animation(0.6f,{
+        AnimationFrame(0.45f, "assets/animations/enemy/slime_move_00.png"),
+        AnimationFrame(0.30f, "assets/animations/enemy/slime_move_01.png"),
+        AnimationFrame(0.15f, "assets/animations/enemy/slime_move_02.png"),
+        AnimationFrame(0.0f, "assets/animations/enemy/slime_move_03.png")
+    });
+
+    deathAnimation = Animation(0.6f,{
+        AnimationFrame(0.45f, "assets/animations/enemy/slime_death_00.png"),
+        AnimationFrame(0.30f, "assets/animations/enemy/slime_death_01.png"),
+        AnimationFrame(0.15f, "assets/animations/enemy/slime_death_02.png"),
+        AnimationFrame(0.0f, "assets/animations/enemy/slime_death_03.png")
+    });
+}
+
+void Enemy::initCollisionBoxes()
+{
+    b2BodyDef bodyDef;
+    bodyDef.type = b2_dynamicBody;
+    bodyDef.position.Set(position.x, position.y);
+    bodyDef.fixedRotation = true;
+    body = Physics::world->CreateBody(&bodyDef);
+
+    fixtureData.type = FixtureDataType::Object;
+    fixtureData.object = this;
+
+    b2CircleShape circle_shape;
+    circle_shape.m_radius = 0.5f;
+
+    b2FixtureDef fixtureDef;
+    fixtureDef.userData.pointer = reinterpret_cast<uintptr_t>(&fixtureData);
+    fixtureDef.shape = &circle_shape;
+    fixtureDef.density = 1.0f;
+    fixtureDef.friction = 0.0f;
+    body->CreateFixture(&fixtureDef);
 }
 
 void Enemy::checkPlayerDistance()

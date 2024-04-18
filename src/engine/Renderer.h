@@ -7,7 +7,10 @@
 #include "SFML/Graphics/Sprite.hpp"
 #include "SFML/System/Vector2.hpp"
 
-
+/**
+ * @brief Class that handles rendering
+ * @details This class is used to draw textures on the screen
+ */
 class Renderer
 {
 public:

@@ -19,12 +19,30 @@ Heart::~Heart()
 void Heart::init()
 {
     tag = "heart";
-    animation = Animation(0.6f,
-{
-            AnimationFrame(0.3f, "assets/animations/heart/heart_idle_00.png"),
-            AnimationFrame(0.0f, "assets/animations/heart/heart_idle_01.png")
-        });
+    initAnimations();
+    initCollisionBoxes();
+}
 
+void Heart::update(const float deltaTime)
+{
+    animation.update(deltaTime);
+}
+
+void Heart::render(Renderer &renderer)
+{
+    renderer.draw(*animation.getTexture(), position, sf::Vector2f(1.0f, 1.0f));
+}
+
+void Heart::initAnimations()
+{
+    animation = Animation(0.6f,{
+        AnimationFrame(0.3f, "assets/animations/heart/heart_idle_00.png"),
+        AnimationFrame(0.0f, "assets/animations/heart/heart_idle_01.png")
+    });
+}
+
+void Heart::initCollisionBoxes()
+{
     b2BodyDef bodyDef;
     bodyDef.position.Set(position.x, position.y);
     body = Physics::world->CreateBody(&bodyDef);
@@ -41,16 +59,6 @@ void Heart::init()
     fixtureDef.density = 0.0f;
     fixtureDef.shape = &shape;
     body->CreateFixture(&fixtureDef);
-}
-
-void Heart::update(const float deltaTime)
-{
-    animation.update(deltaTime);
-}
-
-void Heart::render(Renderer &renderer)
-{
-    renderer.draw(*animation.getTexture(), position, sf::Vector2f(1.0f, 1.0f));
 }
 
 bool Heart::getCollected() const {

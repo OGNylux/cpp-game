@@ -11,6 +11,10 @@
 #include "engine/Renderer.h"
 #include "SFML/Graphics/Image.hpp"
 
+/**
+ * @brief Class that handles the creation of the map
+ * @details This class is responsible for creating the map from an image
+ */
 class Map
 {
 public:

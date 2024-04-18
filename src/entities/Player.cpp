@@ -145,55 +145,49 @@ void Player::OnEndContact(b2Fixture *self, b2Fixture* other)
 
 void Player::initAnimations()
 {
-    idleAnimation = Animation(1.0f,
-{
-           AnimationFrame(0.66f, "assets/animations/player/player_idle_02.png"),
-           AnimationFrame(0.33f, "assets/animations/player/player_idle_01.png"),
-           AnimationFrame(0.0f, "assets/animations/player/player_idle_00.png"),
-        });
+    idleAnimation = Animation(1.0f,{
+        AnimationFrame(0.66f, "assets/animations/player/player_idle_02.png"),
+        AnimationFrame(0.33f, "assets/animations/player/player_idle_01.png"),
+        AnimationFrame(0.0f, "assets/animations/player/player_idle_00.png"),
+    });
 
-    swordIdleAnimation = Animation(1.0f,
-{
-           AnimationFrame(0.66f, "assets/animations/player/player_sword_idle_02.png"),
-           AnimationFrame(0.33f, "assets/animations/player/player_sword_idle_01.png"),
-           AnimationFrame(0.0f, "assets/animations/player/player_sword_idle_00.png"),
-        });
+    swordIdleAnimation = Animation(1.0f,{
+        AnimationFrame(0.66f, "assets/animations/player/player_sword_idle_02.png"),
+        AnimationFrame(0.33f, "assets/animations/player/player_sword_idle_01.png"),
+        AnimationFrame(0.0f, "assets/animations/player/player_sword_idle_00.png"),
+    });
 
-    runAnimation = Animation(0.6f,
-{
-           AnimationFrame(0.5f, "assets/animations/player/player_run_05.png"),
-           AnimationFrame(0.4f, "assets/animations/player/player_run_04.png"),
-           AnimationFrame(0.3f, "assets/animations/player/player_run_03.png"),
-           AnimationFrame(0.2f, "assets/animations/player/player_run_02.png"),
-           AnimationFrame(0.1f, "assets/animations/player/player_run_01.png"),
-           AnimationFrame(0.0f, "assets/animations/player/player_run_00.png")
-        });
+    runAnimation = Animation(0.6f,{
+        AnimationFrame(0.5f, "assets/animations/player/player_run_05.png"),
+        AnimationFrame(0.4f, "assets/animations/player/player_run_04.png"),
+        AnimationFrame(0.3f, "assets/animations/player/player_run_03.png"),
+        AnimationFrame(0.2f, "assets/animations/player/player_run_02.png"),
+        AnimationFrame(0.1f, "assets/animations/player/player_run_01.png"),
+        AnimationFrame(0.0f, "assets/animations/player/player_run_00.png")
+    });
 
-    swordRunAnimation = Animation(0.6f,
-{
-           AnimationFrame(0.5f, "assets/animations/player/player_sword_run_05.png"),
-           AnimationFrame(0.4f, "assets/animations/player/player_sword_run_04.png"),
-           AnimationFrame(0.3f, "assets/animations/player/player_sword_run_03.png"),
-           AnimationFrame(0.2f, "assets/animations/player/player_sword_run_02.png"),
-           AnimationFrame(0.1f, "assets/animations/player/player_sword_run_01.png"),
-           AnimationFrame(0.0f, "assets/animations/player/player_sword_run_00.png")
-        });
+    swordRunAnimation = Animation(0.6f,{
+        AnimationFrame(0.5f, "assets/animations/player/player_sword_run_05.png"),
+        AnimationFrame(0.4f, "assets/animations/player/player_sword_run_04.png"),
+        AnimationFrame(0.3f, "assets/animations/player/player_sword_run_03.png"),
+        AnimationFrame(0.2f, "assets/animations/player/player_sword_run_02.png"),
+        AnimationFrame(0.1f, "assets/animations/player/player_sword_run_01.png"),
+        AnimationFrame(0.0f, "assets/animations/player/player_sword_run_00.png")
+    });
 
-    jumpAnimation = Animation(0.4f,
-{
-           AnimationFrame(0.3f, "assets/animations/player/player_jump_03.png"),
-           AnimationFrame(0.2f, "assets/animations/player/player_jump_02.png"),
-           AnimationFrame(0.1f, "assets/animations/player/player_jump_01.png"),
-           AnimationFrame(0.0f, "assets/animations/player/player_jump_00.png")
-        }, true);
+    jumpAnimation = Animation(0.4f,{
+        AnimationFrame(0.3f, "assets/animations/player/player_jump_03.png"),
+        AnimationFrame(0.2f, "assets/animations/player/player_jump_02.png"),
+        AnimationFrame(0.1f, "assets/animations/player/player_jump_01.png"),
+        AnimationFrame(0.0f, "assets/animations/player/player_jump_00.png")
+    }, true);
 
-    attackAnimation = Animation(0.4f,
-                                {
-                                        AnimationFrame(0.3f, "assets/animations/player/player_attack_03.png"),
-                                        AnimationFrame(0.2f, "assets/animations/player/player_attack_02.png"),
-                                        AnimationFrame(0.1f, "assets/animations/player/player_attack_01.png"),
-                                        AnimationFrame(0.0f, "assets/animations/player/player_attack_00.png")
-                                });
+    attackAnimation = Animation(0.4f,{
+        AnimationFrame(0.3f, "assets/animations/player/player_attack_03.png"),
+        AnimationFrame(0.2f, "assets/animations/player/player_attack_02.png"),
+        AnimationFrame(0.1f, "assets/animations/player/player_attack_01.png"),
+        AnimationFrame(0.0f, "assets/animations/player/player_attack_00.png")
+    });
 
 }
 

@@ -8,7 +8,9 @@
 
 class Player;
 class Object;
-
+/**
+ * @brief Enum that holds the type of the fixture data
+ */
 enum class FixtureDataType
 {
     Player,
@@ -16,6 +18,9 @@ enum class FixtureDataType
     Object
 };
 
+/**
+ * @brief Struct that holds the fixture data
+ */
 struct FixtureData
 {
     Collision* listener;

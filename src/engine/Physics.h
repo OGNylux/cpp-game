@@ -10,7 +10,10 @@
 
 #include "Debug.h"
 #include "Renderer.h"
-
+/**
+ * @brief Class that handles physics
+ * @details This class initializes the physics world and updates it
+ */
 class Physics
 {
 public:

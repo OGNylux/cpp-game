@@ -9,6 +9,10 @@
 #include <string>
 #include "SFML/Graphics/Texture.hpp"
 
+/**
+ * @brief Class that handles the textures
+ * @details This class is responsible for loading and storing textures
+ */
 class TextureManager {
 public:
     static TextureManager &getInstance();

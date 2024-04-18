@@ -5,9 +5,11 @@
 #ifndef PLATFORMER_DECOR_H
 #define PLATFORMER_DECOR_H
 
-
 #include "Object.h"
 
+/**
+ * @brief Class that initializes and renders the decor
+ */
 class Decor : public Object {
 public:
     explicit Decor(std::string resource, sf::Vector2f positionCorrection, sf::Vector2f size);

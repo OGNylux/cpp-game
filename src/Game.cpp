@@ -61,8 +61,8 @@ void Game::update(float deltaTime)
 
 void Game::render(Renderer& renderer)
 {
-    TextureManager::getInstance().loadTexture("assets/background2.png");
-    sf::Texture test = TextureManager::getInstance().getTexture("assets/background2.png");
+    TextureManager::getInstance().loadTexture("assets/background.png");
+    sf::Texture test = TextureManager::getInstance().getTexture("assets/background.png");
     float parallax = 0.1f*getCamera().getPosition().x;
     renderer.draw(test, {30+parallax,20}, {100,42});
     renderer.draw(test, {130+parallax,20}, {100,42});
@@ -87,7 +87,7 @@ void Game::renderUI(Renderer &renderer, sf::RenderWindow &window)
     }
     else
     {
-        TextureManager::getInstance().loadTexture("assets/background2.png");
+        TextureManager::getInstance().loadTexture("assets/animations/heart/heart_idle_00.png");
         sf::Texture heartTexture = TextureManager::getInstance().getTexture("assets/animations/heart/heart_idle_00.png");
         sf::Vector2u textureSize = heartTexture.getSize();
         sf::Vector2f position = {2.0f, 2.0f};

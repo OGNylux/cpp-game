@@ -13,6 +13,9 @@
 #include "SFML/Graphics/Text.hpp"
 #include "../engine/Renderer.h"
 
+/**
+ * @brief Class that handles the pause menu
+ */
 class PauseMenu {
 public:
     PauseMenu();

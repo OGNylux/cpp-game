@@ -51,6 +51,7 @@ add_executable(platformer src/main.cpp
         src/scenes/DeathMenu.h
         src/TextureManager.cpp
         src/TextureManager.h
+        src/Constants.h
 )
 file(COPY src/assets DESTINATION ${CMAKE_RUNTIME_OUTPUT_DIRECTORY})
 target_link_libraries(platformer PRIVATE sfml-graphics)

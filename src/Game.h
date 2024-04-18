@@ -14,6 +14,10 @@
 #include "scenes/MainMenu.h"
 #include "scenes/DeathMenu.h"
 
+/**
+ * @brief Class that handles the game
+ *
+ */
 class Game
 {
 public:

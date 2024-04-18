@@ -5,7 +5,9 @@
 #ifndef COLLISION_H
 #define COLLISION_H
 #include "box2d/b2_world_callbacks.h"
-
+/**
+ * @brief Class that handles collisions
+ */
 class Collision : public b2ContactListener
 {
 public:

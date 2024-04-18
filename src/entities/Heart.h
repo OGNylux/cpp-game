@@ -8,6 +8,10 @@
 #include "../engine/Animation.h"
 #include <box2d/b2_body.h>
 
+/**
+ * @brief Class that handles the heart
+ * @details This class initializes, updates and renders the heart
+ */
 class Heart final : public Object
 {
 public:
@@ -16,6 +20,8 @@ public:
     void init() override;
     void update(float deltaTime) override;
     void render(Renderer &renderer) override;
+    void initAnimations() override;
+    void initCollisionBoxes() override;
     [[nodiscard]] bool getCollected() const override;
     void setCollected(bool state) override;
 

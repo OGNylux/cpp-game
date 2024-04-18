@@ -11,12 +11,18 @@
 
 class Renderer;
 
+/**
+ * @brief Class that handles the enemy
+ * @details This class initializes, updates and renders the enemy
+ */
 class Enemy final : public Object
 {
 public:
     void init() override;
     void update(float deltaTime) override;
     void render(Renderer& renderer) override;
+    void initAnimations() override;
+    void initCollisionBoxes() override;
     void checkPlayerDistance();
     [[nodiscard]] bool getDeadState() const;
 

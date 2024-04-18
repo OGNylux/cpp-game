@@ -12,6 +12,10 @@
 #include "box2d/b2_polygon_shape.h"
 #include "box2d/b2_fixture.h"
 
+/**
+ * @brief Class that handles the player
+ * @details This class initializes, updates and renders the player
+ */
 class Player final : public Collision
 {
 public:
@@ -20,15 +24,15 @@ public:
     void draw(Renderer& renderer);
     void OnBeginContact(b2Fixture *self, b2Fixture *other) override;
     void OnEndContact(b2Fixture *self, b2Fixture *other) override;
+    void initAnimations();
+    void initCollisionBoxes();
+    void createSwordFixture();
     [[nodiscard]] int getHealth() const;
     [[nodiscard]] sf::Vector2f getPosition() const;
     void setPosition(sf::Vector2f newPosition);
     [[nodiscard]] bool getDeadState() const;
     void setDeadState(bool state);
 private:
-    void initAnimations();
-    void initCollisionBoxes();
-    void createSwordFixture();
     FixtureData fixtureData{};
 
     Animation runAnimation;

@@ -12,6 +12,9 @@
 #include "SFML/Graphics/Text.hpp"
 #include "SFML/Graphics/RectangleShape.hpp"
 
+/**
+ * @brief Class that handles the death menu
+ */
 class DeathMenu {
 public:
     DeathMenu();

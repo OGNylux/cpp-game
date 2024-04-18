@@ -8,6 +8,10 @@
 
 #include "../engine/Renderer.h"
 
+/**
+ * @brief Class that handles the objects
+ * @details This class is a base class for all objects
+ */
 class Object
 {
 public:
@@ -15,6 +19,8 @@ public:
     virtual void init() {}
     virtual void update(float deltaTime) {}
     virtual void render(Renderer& renderer) {}
+    virtual void initAnimations() {};
+    virtual void initCollisionBoxes() {};
     [[nodiscard]] virtual bool getCollected() const { return false; }
     virtual void setCollected(bool state) {};
 

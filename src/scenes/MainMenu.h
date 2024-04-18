@@ -15,6 +15,9 @@
 #include "SFML/Graphics/Font.hpp"
 #include "../engine/Renderer.h"
 
+/**
+ * @brief Class that handles the main menu
+ */
 class MainMenu {
 private:
     sf::Sprite background;
